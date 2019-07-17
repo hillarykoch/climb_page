@@ -281,7 +281,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">lieb</a>
+      <a class="navbar-brand" href="index.html"></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -384,10 +384,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree0c58cbcd4bc13a36bc05e63cb0279e01617b1401targetblank0c58cbca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/0c58cbcd4bc13a36bc05e63cb0279e01617b1401" target="_blank">0c58cbc</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5targetblank50cf23ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5" target="_blank">50cf23e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree0c58cbcd4bc13a36bc05e63cb0279e01617b1401targetblank0c58cbca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5targetblank50cf23ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -398,17 +398,9 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    analysis/.Rhistory
 
-Untracked files:
-    Untracked:  analysis/candidate_latent_classes.Rmd
-    Untracked:  analysis/pairwise_fitting.Rmd
-    Untracked:  analysis/priors.Rmd
-    Untracked:  analysis/running_mcmc.Rmd
-
 Unstaged changes:
     Modified:   analysis/_site.yml
-    Deleted:    analysis/about.Rmd
     Modified:   analysis/index.Rmd
-    Modified:   analysis/license.Rmd
 
 </code></pre>
 <p>
@@ -447,6 +439,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/lieb_page/blob/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/analysis/index.Rmd" target="_blank">50cf23e</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+make skeleton
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/docs/index.html" target="_blank">50cf23e</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+make skeleton
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -488,9 +514,10 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>Limited Information Empirical Bayes (LIEB) methodology for mixture models does blah. It occurs in 3 or 4 major steps which are</p>
+<p>The Limited Information Empirical Bayes (LIEB) methodology was designed for Gaussian mixture models where the behavior of each component in the mixture is dictated by a latent class <span class="math inline">\(h_m\)</span> which has the form <span class="math inline">\(h_m=(h_{[1]},\,h_{[2]},\ldots,h_{[D]})\)</span> where <span class="math inline">\(h_{[d]} \in\{-1,\,0,\,1\}\)</span> for <span class="math inline">\(d \in \{1,\ldots,D}\)</span>, where <span class="math inline">\(D\)</span> is the dimension of the data. For even moderate dimensions, this model becomes computationally intractible to fit directly because the number of <em>candidate</em> latent classes is <span class="math inline">\(3^D\)</span>. The LIEB procedure rigorously circumvents this computational challenge, providing the user with the likely latent classes and fitting the model in an empirical Bayesian hierarchical framework with Markov Chain Monte Carlo (MCMC).</p>
+<p>LIEB occurs in 4 major steps:</p>
 <ol style="list-style-type: decimal">
-<li>Step 1 (link them!)</li>
+<li><a href="pairwise_fitting.html">Pairwise fitting</a></li>
 <li>Step 2</li>
 <li>Step 3</li>
 <li>Step 4</li>
