@@ -12,7 +12,7 @@ navbar:
   right:
   - icon: fa-github
     text: Source code
-    href: https://github.com/hillarykoch/lieb
+    href: https://github.com/hillarykoch/lieb_page
 output:
   workflowr::wflow_html:
     toc: yes
