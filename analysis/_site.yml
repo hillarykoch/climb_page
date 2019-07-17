@@ -1,7 +1,7 @@
 name: lieb
 output_dir: ../docs
 navbar:
-  title: lieb
+  title: 
   left:
   - text: About LIEB
     href: index.html
