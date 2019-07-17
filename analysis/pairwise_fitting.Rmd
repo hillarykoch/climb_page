@@ -51,7 +51,7 @@ names(fits)
 
 Each fit contains additional information, including the length-2 association patterns estimated to be in the given pairwise fit, the posterior probability of each observation belonging to each of these classes, and their corresponding estimated means and covariances.
 
-Finally, save this output, as it is necessary for many parts of the downstream analyses, and can move on to [the next step](candidate_latent_classes.html).
+Finally, save this output, as it is necessary for many parts of the downstream analyses, before moving on to [the next step](candidate_latent_classes.html).
 
 ```{r, eval = FALSE}
 save(fits, file = "pwfits.Rdata")
