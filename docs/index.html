@@ -367,10 +367,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree31e07eb1f43a0eefce1fcf4feadc2fb6a2ee3011targetblank31e07eba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/31e07eb1f43a0eefce1fcf4feadc2fb6a2ee3011" target="_blank">31e07eb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea991668a59fcc2c321aecb4a4113e8e0fc38c756targetblanka991668a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/a991668a59fcc2c321aecb4a4113e8e0fc38c756" target="_blank">a991668</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree31e07eb1f43a0eefce1fcf4feadc2fb6a2ee3011targetblank31e07eba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea991668a59fcc2c321aecb4a4113e8e0fc38c756targetblanka991668a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -380,11 +380,12 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    analysis/.Rhistory
+    Ignored:    analysis/pairwise_fitting_cache/
     Ignored:    docs/.DS_Store
 
 Unstaged changes:
-    Modified:   analysis/_site.yml
     Modified:   analysis/index.Rmd
+    Modified:   analysis/pairwise_fitting.Rmd
 
 </code></pre>
 <p>
@@ -423,6 +424,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/lieb_page/blob/a991668a59fcc2c321aecb4a4113e8e0fc38c756/analysis/index.Rmd" target="_blank">a991668</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/a991668a59fcc2c321aecb4a4113e8e0fc38c756/docs/index.html" target="_blank">a991668</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -574,7 +609,8 @@ Start workflowr project.
 <li><a href="priors.html">Pruning the candidate list of latent classes</a> based on computed prior probabilities of each class’s mixing weight</li>
 <li><a href="running_mcmc.html">Fitting the final model</a> using MCMC</li>
 </ol>
-<p>This analysis can be tricky, because some parts (<em>e.g.</em>, Steps 1 and 3) require low memory but can be parallelized. Meanwhile, Steps 2 and 4 cannot be parallelized, and Step 2 in particular can require high memory. To be efficient when running an analysis with LIEB, we recommend splitting the steps up accordingly. Navigate to any step’s page to learn more.</p>
+<p>This analysis can be tricky, because some parts (<em>e.g.</em>, Steps 1 and 3) require low memory but can be parallelized. Meanwhile, Steps 2 and 4 cannot be parallelized, and Step 2 in particular can require high memory. To be efficient when running an analysis with LIEB, we recommend splitting the steps up accordingly.</p>
+<p>Each step of LIEB has its own page. We walk through a complete analysis of a simulated dataset throughout these 4 pages. Navigate to any step’s page to learn more.</p>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using

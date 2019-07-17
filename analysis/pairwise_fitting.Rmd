@@ -7,4 +7,45 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+## Pairwise fitting
+
+Here, we describe how to execute the first step of LIEB: pairwise fitting (a limited information maximum likelihood method).
+
+First, load the package and the simulated dataset. This **toy** dataset has $n=1500$ observations across $D=3$ conditions (*that is,* dimensions). Thus, we need to fit $\binom{D}{2}=3$ pairwise models.
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(autodep = TRUE)
+```
+
+```{r}
+# load that package
+library(LIEB)
+
+# load the toy data
+data("sim")
+```
+
+The fitting of each pairwise model can be done in parallel, which saves a lot of computing time when the dimension is larger. This can be done simply (in parallel, or linearly) with the function `get_pairwise_fits()`. Note that the input data should be $z$-scores (or data arising from some other scoring mechanism, transformed appropriately to $z$-scores).
+
+`get_pairwise_fits()` runs the pairwise analysis at the default settings used in the LIEB manuscript. The user can select a few settings with this functions:
+1.  `nlambda`: how many tuning parameters to try (defaults to 10)
+2.  `parallel`: logical indicating whether or not to do the analysis in parallel
+3.  `ncores`: if in parallel, how many cores to use (defaults to 10)
+4.  `bound`: is there a lower bound on the estimated non-null mean? (defaults to zero, and must be non-negative)
+
+With all of this in place, one can obtain the pairwise fits as follows:
+```{r, cache = TRUE, message = FALSE, warning = FALSE}
+fits <- get_pairwise_fits(z = sim$data, nlambda = 10, parallel = FALSE)
+```
+
+Calling `names(fits)` tells us which pair of dimensions each fit belongs to. 
+```{r}
+names(fits)
+```
+
+Each fit contains additional information, including the length-2 association patterns estimated to be in the given pairwise fit, the posterior probability of each observation belonging to each of these classes, and their corresponding estimated means and covariances.
+
+Finally, save this output, as it is necessary for many parts of the downstream analyses.
+```{r, eval = FALSE}
+saveRDS(fits, file = "pwfits.rds")
+```
