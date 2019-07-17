@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "About LIEB"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,4 +8,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+Limited Information Empirical Bayes (LIEB) methodology for mixture models does blah. It occurs in 3 or 4 major steps which are 
+
+1. Step 1 (link them!)
+2. Step 2
+3. Step 3
+4. Step 4
+
+Some parts require low memory, but can be parallelized so improve speed. Other parts cannot be parallelized but may require high memory. When running an analysis with LIEB, we recommend splitting the steps up accordingly. We walk through each step in the related tabs.

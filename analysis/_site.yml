@@ -3,10 +3,16 @@ output_dir: ../docs
 navbar:
   title: lieb
   left:
-  - text: Home
+  - text: About LIEB
     href: index.html
-  - text: About
-    href: about.html
+  - text: Pairwise fitting
+    href: pairwise_fitting.html
+  - text: Finding candidate classes
+    href: candidate_latent_classes.html
+  - text: Computing prior probabilities
+    href: priors.html
+  - text: Running the MCMC
+    href: running_mcmc.html
   - text: License
     href: license.html
   right:
