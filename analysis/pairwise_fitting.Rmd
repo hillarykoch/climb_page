@@ -7,8 +7,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Pairwise fitting
-
 ### <i><b><span style="color:salmon">---Special considerations: this portion is highly parallelizable---</span></b></i>
 
 Here, we describe how to execute the first step of LIEB: pairwise fitting (a limited information maximum likelihood method).

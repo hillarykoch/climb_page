@@ -9,7 +9,7 @@ navbar:
     href: pairwise_fitting.html
   - text: Finding candidate classes
     href: candidate_latent_classes.html
-  - text: Computing prior probabilities
+  - text: Computing prior hyperparameters
     href: priors.html
   - text: Running the MCMC
     href: running_mcmc.html

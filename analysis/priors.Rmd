@@ -7,8 +7,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Computing prior hyperparameters
-
 ### <i><b><span style="color:salmon">---Special considerations: this portion is highly parallelizable---</span></b></i>
 
 We are now just about ready to set up our MCMC. First, we need to determine the hyperparameters in the priors of our Gaussian mixture. These are all calculated in an empirical Bayesian manner -- that is, we can recycle information from the pairwise fits to inform our priors in the full-information mixture. This task can be split into 2 sub-tasks:
