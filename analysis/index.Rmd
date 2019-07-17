@@ -19,4 +19,4 @@ LIEB occurs in 4 major steps:
 
 This analysis can be tricky, because some parts (*e.g.*, Steps 1 and 3) require low memory but can be parallelized. Meanwhile, Steps 2 and 4 cannot be parallelized, and Step 2 in particular can require high memory. To be efficient when running an analysis with LIEB, we recommend splitting the steps up accordingly.
 
-Each step of LIEB has its own page. We walk through a complete analysis of a simulated dataset throughout these 4 pages. Navigate to any step's page to learn more.
+Each step of LIEB has its own page. We walk through a complete analysis of a simulated dataset throughout these 4 pages. Though the simple analysis provided here can be run on your personal laptop, in practice with real genomic datasets, one will need access to a computing cluster. We assume the user knows how to request multiple cores for parallel jobs or more memory for high-memory tasks. Navigate to any step's page to learn more.

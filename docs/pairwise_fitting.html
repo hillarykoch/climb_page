@@ -479,6 +479,9 @@ The following chunks had caches available:
 <li>
 unnamed-chunk-2
 </li>
+<li>
+unnamed-chunk-3
+</li>
 </ul>
 <p>To ensure reproducibility of the results, delete the cache directory <code>pairwise_fitting_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
 </div>
@@ -487,10 +490,10 @@ unnamed-chunk-2
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea991668a59fcc2c321aecb4a4113e8e0fc38c756targetblanka991668a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/a991668a59fcc2c321aecb4a4113e8e0fc38c756" target="_blank">a991668</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreee36b267d69f39269bcc6509be9cec996c5d741bftargetblanke36b267a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/e36b267d69f39269bcc6509be9cec996c5d741bf" target="_blank">e36b267</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea991668a59fcc2c321aecb4a4113e8e0fc38c756targetblanka991668a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreee36b267d69f39269bcc6509be9cec996c5d741bftargetblanke36b267a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -504,7 +507,6 @@ Ignored files:
     Ignored:    docs/.DS_Store
 
 Unstaged changes:
-    Modified:   analysis/index.Rmd
     Modified:   analysis/pairwise_fitting.Rmd
 
 </code></pre>
@@ -544,6 +546,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/lieb_page/blob/e36b267d69f39269bcc6509be9cec996c5d741bf/analysis/pairwise_fitting.Rmd" target="_blank">e36b267</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/e36b267d69f39269bcc6509be9cec996c5d741bf/docs/pairwise_fitting.html" target="_blank">e36b267</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -653,8 +689,10 @@ make skeleton
 </div>
 </div>
 </div>
-<div id="pairwise-fitting" class="section level2">
-<h2>Pairwise fitting</h2>
+<div id="pairwise-fitting" class="section level1">
+<h1>Pairwise fitting</h1>
+<div id="special-considerations-this-portion-can-be-run-in-parallel" class="section level3">
+<h3><i><b><span style="color:salmon">—Special considerations: this portion can be run in parallel—</span></b></i></h3>
 <p>Here, we describe how to execute the first step of LIEB: pairwise fitting (a limited information maximum likelihood method).</p>
 <p>First, load the package and the simulated dataset. This <strong>toy</strong> dataset has <span class="math inline">\(n=1500\)</span> observations across <span class="math inline">\(D=3\)</span> conditions (<em>that is,</em> dimensions). Thus, we need to fit <span class="math inline">\(\binom{D}{2}=3\)</span> pairwise models.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load that package</span>
@@ -663,7 +701,13 @@ make skeleton
 <span class="co"># load the toy data</span>
 <span class="kw">data</span>(<span class="st">&quot;sim&quot;</span>)</code></pre></div>
 <p>The fitting of each pairwise model can be done in parallel, which saves a lot of computing time when the dimension is larger. This can be done simply (in parallel, or linearly) with the function <code>get_pairwise_fits()</code>. Note that the input data should be <span class="math inline">\(z\)</span>-scores (or data arising from some other scoring mechanism, transformed appropriately to <span class="math inline">\(z\)</span>-scores).</p>
-<p><code>get_pairwise_fits()</code> runs the pairwise analysis at the default settings used in the LIEB manuscript. The user can select a few settings with this functions: 1. <code>nlambda</code>: how many tuning parameters to try (defaults to 10) 2. <code>parallel</code>: logical indicating whether or not to do the analysis in parallel 3. <code>ncores</code>: if in parallel, how many cores to use (defaults to 10) 4. <code>bound</code>: is there a lower bound on the estimated non-null mean? (defaults to zero, and must be non-negative)</p>
+<p><code>get_pairwise_fits()</code> runs the pairwise analysis at the default settings used in the LIEB manuscript. The user can select a few settings with this functions:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>nlambda</code>: how many tuning parameters to try (defaults to 10)</p></li>
+<li><p><code>parallel</code>: logical indicating whether or not to do the analysis in parallel</p></li>
+<li><p><code>ncores</code>: if in parallel, how many cores to use (defaults to 10)</p></li>
+<li><p><code>bound</code>: is there a lower bound on the estimated non-null mean? (defaults to zero, and must be non-negative)</p></li>
+</ol>
 <p>With all of this in place, one can obtain the pairwise fits as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fits &lt;-<span class="st"> </span><span class="kw">get_pairwise_fits</span>(<span class="dt">z =</span> sim$data, <span class="dt">nlambda =</span> <span class="dv">10</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>Calling <code>names(fits)</code> tells us which pair of dimensions each fit belongs to.</p>
@@ -671,7 +715,7 @@ make skeleton
 <pre><code>[1] &quot;1_2&quot; &quot;1_3&quot; &quot;2_3&quot;</code></pre>
 <p>Each fit contains additional information, including the length-2 association patterns estimated to be in the given pairwise fit, the posterior probability of each observation belonging to each of these classes, and their corresponding estimated means and covariances.</p>
 <p>Finally, save this output, as it is necessary for many parts of the downstream analyses.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(fits, <span class="dt">file =</span> <span class="st">&quot;pwfits.rds&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(fits, <span class="dt">file =</span> <span class="st">&quot;pwfits.Rdata&quot;</span>)</code></pre></div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -715,6 +759,7 @@ loaded via a namespace (and not attached):
 [43] htmltools_0.3.6      abind_1.4-5          assertthat_0.2.1    
 [46] nimble_0.7.0.1       stringi_1.3.1        doParallel_1.0.14   
 [49] crayon_1.3.4        </code></pre>
+</div>
 </div>
 </div>
 
