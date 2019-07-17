@@ -481,10 +481,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreeda651412881ca6cef839048852da800799e22ceetargetblankda65141a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/da651412881ca6cef839048852da800799e22cee" target="_blank">da65141</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree2faf4465c6a64ca0049932f56226e38efc75a361targetblank2faf446a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/2faf4465c6a64ca0049932f56226e38efc75a361" target="_blank">2faf446</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreeda651412881ca6cef839048852da800799e22ceetargetblankda65141a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree2faf4465c6a64ca0049932f56226e38efc75a361targetblank2faf446a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -498,10 +498,10 @@ Ignored files:
     Ignored:    docs/.DS_Store
     Ignored:    output/.DS_Store
 
+Untracked files:
+    Untracked:  docs/figure/
+
 Unstaged changes:
-    Modified:   analysis/_site.yml
-    Modified:   analysis/candidate_latent_classes.Rmd
-    Modified:   analysis/pairwise_fitting.Rmd
     Modified:   analysis/priors.Rmd
 
 </code></pre>
@@ -541,6 +541,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/lieb_page/blob/2faf4465c6a64ca0049932f56226e38efc75a361/analysis/priors.Rmd" target="_blank">2faf446</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/2faf4465c6a64ca0049932f56226e38efc75a361/docs/priors.html" target="_blank">2faf446</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -759,7 +793,7 @@ make skeleton
 <li><p>computing the prior hyperparameters for the cluster mixing weights</p></li>
 <li><p>computing every other hyperparameter</p></li>
 </ol>
-<p>The former is the most essential, as it helps us remove more candidate latent classes, ensuring that the number of clusters is fewer than the number of observations. <strong>An important note</strong>: this is the <em>only</em> step of LIEB that requires some sort of human intervention, but it does need to happen. A threshold, called <span class="math inline">\(\delta\)</span> in the manuscript, determines how strict one is about including classes in the final model. <span class="math inline">\(\delta\in\{0,1,\ldots,\hat{M}\}\)</span>, where <span class="math inline">\(\hat{M}\)</span> is the number of candidate latent classes determined by the <code>get_reduced_classes()</code> function, as calculated in the previous step.</p>
+<p>The former is the most essential, as it helps us remove more candidate latent classes, ensuring that the number of clusters is fewer than the number of observations. <strong>An important note</strong>: this is the <em>only</em> step of LIEB that requires some sort of human intervention, but it does need to happen. A threshold, called <span class="math inline">\(\delta\)</span> in the manuscript, determines how strict one is about including classes in the final model. <span class="math inline">\(\delta\in\{0,1,\ldots,\hat{M}\}\)</span>, where <span class="math inline">\(\hat{M}\)</span> is the number of candidate latent classes determined by the <code>get_reduced_classes()</code> function, as calculated in the previous step. We will get into selecting <span class="math inline">\(\delta\)</span> shortly.</p>
 <p>To get the prior weights on each candidate latent class, use the function <code>get_prior_weights()</code>. This function defaults to the settings used in the LIEB manuscript. The user can specify:</p>
 <ol style="list-style-type: decimal">
 <li><p><code>reduced_classes</code>: the matrix of candidate latent classes generated by <code>get_reduced_classes()</code></p></li>
@@ -779,6 +813,16 @@ reduced_classes &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</
 
 <span class="co"># Compute the prior weights</span>
 prior_weights &lt;-<span class="st"> </span><span class="kw">get_prior_weights</span>(reduced_classes, fits, <span class="dt">parallel =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><code>prior_weights</code> is a list of vectors. Each vector corresponds to the computed prior weights for a given value of <span class="math inline">\(\delta\)</span>. Here, <code>prior_weights[[m]]</code> corresponds to the prior weights when <span class="math inline">\(\delta = m-1\)</span>. We can plot how the number of latent classes included in the final model changes as we relax <span class="math inline">\(\delta\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is just grabbing the sample size and dimension</span>
+n &lt;-<span class="st"> </span><span class="kw">length</span>(fits[[<span class="dv">1</span>]]$cluster)
+D &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">strsplit</span>(<span class="kw">tail</span>(<span class="kw">names</span>(fits),<span class="dv">1</span>), <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])
+
+<span class="co"># to avoid degenerate distributions, we will only keep clusters such that the prior</span>
+<span class="co"># weight times the sample size is greater than the dimension.</span>
+<span class="kw">plot</span>(<span class="dv">0</span>:<span class="kw">nrow</span>(reduced_classes), <span class="kw">sapply</span>(prior_weights, function(X) <span class="kw">sum</span>(X *<span class="st"> </span>n &gt;<span class="st"> </span>D)), <span class="dt">ylab =</span> <span class="st">&quot;number of retained classes&quot;</span>, <span class="dt">xlab =</span> <span class="kw">expression</span>(delta))</code></pre></div>
+<p><img src="figure/priors.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This toy example is much cleaner than a real data set, but typically we expect to see that, as we relax <span class="math inline">\(\delta\)</span> away from 0, more classes are included in the final model. We have not identified a <em>uniformly best</em> way to select <span class="math inline">\(\delta\)</span>; a decent rule of thumb has simply been to include as many classes as one can while retaining computational feasibility, and selecting the <em>smallest</em> value of <span class="math inline">\(\delta\)</span> that gives this result. In this toy example, we might as well retain all classes, and thus select the prior weights corresponding to <span class="math inline">\(\delta = 1\)</span>.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

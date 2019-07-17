@@ -15,7 +15,7 @@ We are now just about ready to set up our MCMC. First, we need to determine the 
 
 2. computing every other hyperparameter
 
-The former is the most essential, as it helps us remove more candidate latent classes, ensuring that the number of clusters is fewer than the number of observations. **An important note**: this is the *only* step of LIEB that requires some sort of human intervention, but it does need to happen. A threshold, called $\delta$ in the manuscript, determines how strict one is about including classes in the final model. $\delta\in\{0,1,\ldots,\hat{M}\}$, where $\hat{M}$ is the number of candidate latent classes determined by the `get_reduced_classes()` function, as calculated in the previous step.
+The former is the most essential, as it helps us remove more candidate latent classes, ensuring that the number of clusters is fewer than the number of observations. **An important note**: this is the *only* step of LIEB that requires some sort of human intervention, but it does need to happen. A threshold, called $\delta$ in the manuscript, determines how strict one is about including classes in the final model. $\delta\in\{0,1,\ldots,\hat{M}\}$, where $\hat{M}$ is the number of candidate latent classes determined by the `get_reduced_classes()` function, as calculated in the previous step. We will get into selecting $\delta$ shortly.
 
 To get the prior weights on each candidate latent class, use the function `get_prior_weights()`. This function defaults to the settings used in the LIEB manuscript. The user can specify:
 
@@ -45,4 +45,22 @@ data("fits")
 # Compute the prior weights
 prior_weights <- get_prior_weights(reduced_classes, fits, parallel = FALSE)
 ```
+
+`prior_weights` is a list of vectors. Each vector corresponds to the computed prior weights for a given value of $\delta$. Here, `prior_weights[[m]]` corresponds to the prior weights when $\delta = m-1$. We can plot how the number of latent classes included in the final model changes as we relax $\delta$.
+
+```{r}
+# this is just grabbing the sample size and dimension
+n <- length(fits[[1]]$cluster)
+D <- as.numeric(strsplit(tail(names(fits),1), "_")[[1]][2])
+
+# to avoid degenerate distributions, we will only keep clusters such that the prior
+# weight times the sample size is greater than the dimension.
+plot(0:nrow(reduced_classes), sapply(prior_weights, function(X) sum(X * n > D)), ylab = "number of retained classes", xlab = expression(delta))
+```
+
+This toy example is much cleaner than a real data set, but typically we expect to see that, as we relax $\delta$ away from 0, more classes are included in the final model. We have not identified a *uniformly best* way to select $\delta$; a decent rule of thumb has simply been to include as many classes as one can while retaining computational feasibility, and selecting the *smallest* value of $\delta$ that gives this result. In this toy example, we might as well retain all classes, and thus select the prior weights corresponding to $\delta = 1$.
+
+
+
+
 
