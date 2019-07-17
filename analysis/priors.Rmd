@@ -1,5 +1,5 @@
 ---
-title: "Computing prior probabilities"
+title: "Computing prior hyperparameters"
 output:
   workflowr::wflow_html:
     toc: false
@@ -46,7 +46,11 @@ data("fits")
 prior_weights <- get_prior_weights(reduced_classes, fits, parallel = FALSE)
 ```
 
-`prior_weights` is a list of vectors. Each vector corresponds to the computed prior weights for a given value of $\delta$. Here, `prior_weights[[m]]` corresponds to the prior weights when $\delta = m-1$. We can plot how the number of latent classes included in the final model changes as we relax $\delta$.
+`prior_weights` is a list of vectors. Each vector corresponds to the computed prior weights for a given value of $\delta$. Here, `prior_weights[[m]]` corresponds to the prior weights when $\delta = m-1$.
+
+### <i><b><span style="color:salmon">Here comes the human intervention</span></b></i>
+
+We can plot how the number of latent classes included in the final model changes as we relax $\delta$.
 
 ```{r}
 # this is just grabbing the sample size and dimension
@@ -58,9 +62,25 @@ D <- as.numeric(strsplit(tail(names(fits),1), "_")[[1]][2])
 plot(0:nrow(reduced_classes), sapply(prior_weights, function(X) sum(X * n > D)), ylab = "number of retained classes", xlab = expression(delta))
 ```
 
-This toy example is much cleaner than a real data set, but typically we expect to see that, as we relax $\delta$ away from 0, more classes are included in the final model. We have not identified a *uniformly best* way to select $\delta$; a decent rule of thumb has simply been to include as many classes as one can while retaining computational feasibility, and selecting the *smallest* value of $\delta$ that gives this result. In this toy example, we might as well retain all classes, and thus select the prior weights corresponding to $\delta = 1$.
+This toy example is much cleaner than a real data set, but typically we expect to see that, as we relax $\delta$ away from 0, more classes are included in the final model. We have not identified a *uniformly best* way to select $\delta$; a decent rule of thumb has simply been to include as many classes as one can while retaining computational feasibility, and selecting the *smallest* value of $\delta$ that gives this result. In this toy example, we might as well retain all classes, and thus select the prior weights corresponding to $\delta = 1$. Let's store that in the variable `p`.
 
+```{r}
+p <- prior_weights[[2]]
+```
 
+### Obtaining the remaining hyperparameters
 
+Now that the human intervention is over, the rest is simple. Just use the function `get_hyperparameters()` to compute empirical estimates of the remaining prior hyperparameters.
+
+```{r}
+# load the data back in
+data("sim")
+
+# obtain the hyperparameters
+hyp <- get_hyperparameters(sim$data, fits, reduced_classes, p)
+
+# view the output
+str(hyp)
+```
 
 
