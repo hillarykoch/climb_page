@@ -83,4 +83,6 @@ hyp <- get_hyperparameters(sim$data, fits, reduced_classes, p)
 str(hyp)
 ```
 
+After all that work, we *finally* have a model to describe our data, and are ready to (run the MCMC)[running_mcmc.html].
+
 
