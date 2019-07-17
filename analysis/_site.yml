@@ -1,7 +1,7 @@
 name: lieb
 output_dir: ../docs
 navbar:
-  title: 
+  title: blah
   left:
   - text: About LIEB
     href: index.html
@@ -23,5 +23,5 @@ output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    theme: cosmo
-    highlight: textmate
+    theme: flatly
+    highlight: zenburn
