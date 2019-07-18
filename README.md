@@ -1,5 +1,3 @@
-# lieb
+# lieb workflow
 
-A [workflowr][] project.
-
-[workflowr]: https://github.com/jdblischak/workflowr
+[see the page here](https://hillarykoch.github.io/lieb_page/index.html)

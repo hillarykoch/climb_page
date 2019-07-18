@@ -7,4 +7,41 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+### <i><b><span style="color:salmon">---This is likely the most time-consuming step of LIEB analysis---</span></b></i>
+
+The final step of LIEB involves doing inference on the parsimonious Gaussian mixture using MCMC. MCMC is an iterative method, and thus the user needs to specify how many iterations to use. We recommend running a quick pilot analysis--say, for 10 iterations. This pilot analysis will give a good idea of how long an analysis will need to run for a given *larger* number of iterations (say, 20,000 iterations).
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(autodep = TRUE)
+```
+
+First, we load in our data, list of candidate latent classes, and estimated hyperparameters.
+```{r, message = FALSE, echo = 3:5}
+library(LIEB)
+
+data("sim")
+load("output/hyperparameters.Rdata")
+retained_classes <- readr::read_tsv("output/retained_classes.txt", col_names = FALSE)
+```
+
+You can start an mcmc with the function `run_mcmc()`. This function executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:
+
+1. `dat`: the input data you've been using throughout the analysis
+
+2. `hyp`: the hyperparameter values estimated in the previous step
+
+3. `nstep`: number of MCMC iterations to run
+
+4. `retained_classes`: the parsimonious list of candidate latent classes, after finally filtering out by prior weights as done in the previous step
+
+```{r, cache = TRUE}
+results <- run_mcmc(sim$data, hyp =  hyp, nstep = 100, retained_classes = retained_classes)
+```
+
+The object `results` contains 3 objects:
+
+1. `chain`: the estimate parameters over the course of `nstep` iterations
+ 
+2. `acceptane_rate_chain`: an $M\times\text{nstep}$ matrix of the acceptance rates for each cluster covariance. The proposals for each cluster are adaptively tuned such that the acceptance rates converge to about 0.3
+
+3. `tune_df_chain`: the tuning degrees of freedom across the chain, adjusted to yield optimal acceptance rates

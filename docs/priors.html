@@ -384,7 +384,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -393,7 +393,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -402,10 +402,10 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-07-17
+<strong>Last updated:</strong> 2019-07-18
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -421,12 +421,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -481,10 +481,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree963d8883572a2e8c5210a3547637f47dc82b7244targetblank963d888a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/963d8883572a2e8c5210a3547637f47dc82b7244" target="_blank">963d888</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea20df35eb1481e88c75a22f3450e217635e303bbtargetblanka20df35a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/a20df35eb1481e88c75a22f3450e217635e303bb" target="_blank">a20df35</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree963d8883572a2e8c5210a3547637f47dc82b7244targetblank963d888a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea20df35eb1481e88c75a22f3450e217635e303bbtargetblanka20df35a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -493,10 +493,21 @@ Great! You are using Git for version control. Tracking code development and conn
 Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/pairwise_fitting_cache/
+    Ignored:    analysis/running_mcmc_cache/
     Ignored:    docs/.DS_Store
     Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  output/hyperparameters.Rdata
+    Untracked:  output/retained_classes.txt
+
+Unstaged changes:
+    Modified:   README.md
+    Modified:   analysis/priors.Rmd
+    Modified:   analysis/running_mcmc.Rmd
 
 </code></pre>
 <p>
@@ -535,6 +546,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/a20df35eb1481e88c75a22f3450e217635e303bb/docs/priors.html" target="_blank">a20df35</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+fix link
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -971,7 +999,12 @@ D &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="
 
 <span class="co"># to avoid degenerate distributions, we will only keep clusters such that the prior</span>
 <span class="co"># weight times the sample size is greater than the dimension.</span>
-<span class="kw">plot</span>(<span class="dv">0</span>:<span class="kw">nrow</span>(reduced_classes), <span class="kw">sapply</span>(prior_weights, function(X) <span class="kw">sum</span>(X *<span class="st"> </span>n &gt;<span class="st"> </span>D)), <span class="dt">ylab =</span> <span class="st">&quot;number of retained classes&quot;</span>, <span class="dt">xlab =</span> <span class="kw">expression</span>(delta))</code></pre></div>
+<span class="kw">plot</span>(
+    <span class="dv">0</span>:<span class="kw">nrow</span>(reduced_classes),
+    <span class="kw">sapply</span>(prior_weights, function(X)
+    <span class="kw">sum</span>(X *<span class="st"> </span>n &gt;<span class="st"> </span>D)),
+    <span class="dt">ylab =</span> <span class="st">&quot;number of retained classes&quot;</span>,
+    <span class="dt">xlab =</span>  <span class="kw">expression</span>(delta))</code></pre></div>
 <p><img src="figure/priors.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
@@ -1011,7 +1044,16 @@ hillarykoch
 </div>
 </div>
 <p>This toy example is much cleaner than a real data set, but typically we expect to see that, as we relax <span class="math inline">\(\delta\)</span> away from 0, more classes are included in the final model. We have not identified a <em>uniformly best</em> way to select <span class="math inline">\(\delta\)</span>; a decent rule of thumb has simply been to include as many classes as one can while retaining computational feasibility, and selecting the <em>smallest</em> value of <span class="math inline">\(\delta\)</span> that gives this result. In this toy example, we might as well retain all classes, and thus select the prior weights corresponding to <span class="math inline">\(\delta = 1\)</span>. Let’s store that in the variable <code>p</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>prior_weights[[<span class="dv">2</span>]]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select out prior weights for delta = 1</span>
+p &lt;-<span class="st"> </span>prior_weights[[<span class="dv">2</span>]]
+
+<span class="co"># Filter out classes which have too small of a prior weight</span>
+<span class="co"># (In this toy example, we actually retain everything,</span>
+<span class="co">#   but this is not typical for higher-dimensional/empirical analyses)</span>
+retained_classes &lt;-<span class="st"> </span>reduced_classes[p *<span class="st"> </span>n &gt;<span class="st"> </span>D, ]
+
+<span class="co"># save the retained classes for downstream analysis</span>
+readr::<span class="kw">write_tsv</span>(retained_classes, <span class="dt">path =</span> <span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
 <div id="obtaining-the-remaining-hyperparameters" class="section level3">
 <h3>Obtaining the remaining hyperparameters</h3>
@@ -1020,7 +1062,7 @@ hillarykoch
 <span class="kw">data</span>(<span class="st">&quot;sim&quot;</span>)
 
 <span class="co"># obtain the hyperparameters</span>
-hyp &lt;-<span class="st"> </span><span class="kw">get_hyperparameters</span>(sim$data, fits, reduced_classes, p)
+hyp &lt;-<span class="st"> </span><span class="kw">get_hyperparameters</span>(sim$data, fits, retained_classes, p)
 
 <span class="co"># view the output</span>
 <span class="kw">str</span>(hyp)</code></pre></div>
@@ -1029,7 +1071,9 @@ hyp &lt;-<span class="st"> </span><span class="kw">get_hyperparameters</span>(si
  $ mu0   : num [1:13, 1:3] 2.46 2.46 2.46 0 0 ...
  $ alpha : num [1:13] 0.101 0.1403 0.0207 0.0988 0.0502 ...
  $ kappa0: num [1:13] 151 210 31 148 75 178 166 110 46 136 ...</code></pre>
-<p>After all that work, we <em>finally</em> have a model to describe our data, and are ready to <a href="running_mcmc.html">run the MCMC</a>.</p>
+<p>We can save these hyperparameters for the next step in the analysis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(hyp, <span class="dt">file =</span> <span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)</code></pre></div>
+<p>After all that work, <strong><em>we have a model to describe our data</em></strong>, and are ready to <a href="running_mcmc.html">run the MCMC</a>.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

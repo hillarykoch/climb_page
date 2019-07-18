@@ -59,13 +59,27 @@ D <- as.numeric(strsplit(tail(names(fits),1), "_")[[1]][2])
 
 # to avoid degenerate distributions, we will only keep clusters such that the prior
 # weight times the sample size is greater than the dimension.
-plot(0:nrow(reduced_classes), sapply(prior_weights, function(X) sum(X * n > D)), ylab = "number of retained classes", xlab = expression(delta))
+plot(
+    0:nrow(reduced_classes),
+    sapply(prior_weights, function(X)
+    sum(X * n > D)),
+    ylab = "number of retained classes",
+    xlab =  expression(delta))
 ```
 
 This toy example is much cleaner than a real data set, but typically we expect to see that, as we relax $\delta$ away from 0, more classes are included in the final model. We have not identified a *uniformly best* way to select $\delta$; a decent rule of thumb has simply been to include as many classes as one can while retaining computational feasibility, and selecting the *smallest* value of $\delta$ that gives this result. In this toy example, we might as well retain all classes, and thus select the prior weights corresponding to $\delta = 1$. Let's store that in the variable `p`.
 
 ```{r}
+# Select out prior weights for delta = 1
 p <- prior_weights[[2]]
+
+# Filter out classes which have too small of a prior weight
+# (In this toy example, we actually retain everything,
+#   but this is not typical for higher-dimensional/empirical analyses)
+retained_classes <- reduced_classes[p * n > D, ]
+
+# save the retained classes for downstream analysis
+readr::write_tsv(retained_classes, path = "output/retained_classes.txt", col_names = FALSE)
 ```
 
 ### Obtaining the remaining hyperparameters
@@ -77,12 +91,17 @@ Now that the human intervention is over, the rest is simple. Just use the functi
 data("sim")
 
 # obtain the hyperparameters
-hyp <- get_hyperparameters(sim$data, fits, reduced_classes, p)
+hyp <- get_hyperparameters(sim$data, fits, retained_classes, p)
 
 # view the output
 str(hyp)
 ```
 
-After all that work, we *finally* have a model to describe our data, and are ready to [run the MCMC](running_mcmc.html).
+We can save these hyperparameters for the next step in the analysis:
+```{r}
+save(hyp, file = "output/hyperparameters.Rdata")
+```
+
+After all that work, __*we have a model to describe our data*__, and are ready to [run the MCMC](running_mcmc.html).
 
 
