@@ -487,10 +487,10 @@ unnamed-chunk-3
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree499135617e42e2651714ac18b0a11d3a9b4f6ecatargetblank4991356a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/499135617e42e2651714ac18b0a11d3a9b4f6eca" target="_blank">4991356</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea8d87b407f9e0fc2982b7f8befcd47f19c1d1c2etargetblanka8d87b4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/a8d87b407f9e0fc2982b7f8befcd47f19c1d1c2e" target="_blank">a8d87b4</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree499135617e42e2651714ac18b0a11d3a9b4f6ecatargetblank4991356a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea8d87b407f9e0fc2982b7f8befcd47f19c1d1c2etargetblanka8d87b4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -546,6 +546,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/lieb_page/blob/a8d87b407f9e0fc2982b7f8befcd47f19c1d1c2e/analysis/running_mcmc.Rmd" target="_blank">a8d87b4</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-18
+</td>
+<td>
+updat mcmc section
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/a8d87b407f9e0fc2982b7f8befcd47f19c1d1c2e/docs/running_mcmc.html" target="_blank">a8d87b4</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-18
+</td>
+<td>
+updat mcmc section
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -828,25 +862,27 @@ make skeleton
 <div id="this-is-likely-the-most-time-consuming-step-of-lieb-analysis" class="section level3">
 <h3><i><b><span style="color:salmon">—This is likely the most time-consuming step of LIEB analysis—</span></b></i></h3>
 <p>The final step of LIEB involves doing inference on the parsimonious Gaussian mixture using MCMC. MCMC is an iterative method, and thus the user needs to specify how many iterations to use. We recommend running a quick pilot analysis–say, for 10 iterations. This pilot analysis will give a good idea of how long an analysis will need to run for a given <em>larger</em> number of iterations (say, 20,000 iterations).</p>
-<p>First, we load in our data, list of candidate latent classes, and estimated hyperparameters.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;sim&quot;</span>)
-<span class="kw">load</span>(<span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)
-retained_classes &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p>You can start an mcmc with the function <code>run_mcmc()</code>. This function calls a script written in <a href="https://julialang.org/">Julia</a>, and executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:</p>
+<p>You can run an mcmc simply with the function <code>run_mcmc()</code>. This function calls a script written in <a href="https://julialang.org/">Julia</a>, and executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:</p>
 <ol style="list-style-type: decimal">
 <li><p><code>dat</code>: the input data you’ve been using throughout the analysis</p></li>
 <li><p><code>hyp</code>: the hyperparameter values estimated in the previous step</p></li>
 <li><p><code>nstep</code>: number of MCMC iterations to run</p></li>
 <li><p><code>retained_classes</code>: the parsimonious list of candidate latent classes, after finally filtering out by prior weights as done in the previous step</p></li>
 </ol>
+<p>First, we load in our data, list of candidate latent classes, and estimated hyperparameters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;sim&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)
+retained_classes &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Now we are ready to launch an MCMC:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">results &lt;-<span class="st"> </span><span class="kw">run_mcmc</span>(sim$data, <span class="dt">hyp =</span>  hyp, <span class="dt">nstep =</span> <span class="dv">100</span>, <span class="dt">retained_classes =</span> retained_classes)</code></pre></div>
-<pre class="shell"><code>Running the MCMC...100\%|████████████████████████████████| Time: 0:00:33</code></pre>
+<pre class="shell"><code>Running the MCMC...100%|████████████████████████████████| Time: 0:00:33</code></pre>
 <p>The object <code>results</code> contains 3 objects:</p>
 <ol style="list-style-type: decimal">
 <li><p><code>chain</code>: the estimate parameters over the course of <code>nstep</code> iterations</p></li>
 <li><p><code>acceptane_rate_chain</code>: an <span class="math inline">\(M\times\)</span><code>nstep</code> matrix of the acceptance rates for each cluster covariance. The proposals for each cluster are adaptively tuned such that the acceptance rates converge to about 0.3</p></li>
 <li><p><code>tune_df_chain</code>: the tuning degrees of freedom across the chain, adjusted to yield optimal acceptance rates</p></li>
 </ol>
+<p>Functionality for processing the parameters estimates has not yet been introduced into LIEB.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

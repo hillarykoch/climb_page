@@ -15,16 +15,7 @@ The final step of LIEB involves doing inference on the parsimonious Gaussian mix
 knitr::opts_chunk$set(autodep = TRUE)
 ```
 
-First, we load in our data, list of candidate latent classes, and estimated hyperparameters.
-```{r, message = FALSE, echo = 3:5}
-library(LIEB)
-
-data("sim")
-load("output/hyperparameters.Rdata")
-retained_classes <- readr::read_tsv("output/retained_classes.txt", col_names = FALSE)
-```
-
-You can start an mcmc with the function `run_mcmc()`. This function calls a script written in [Julia](https://julialang.org/), and executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:
+You can run an mcmc simply with the function `run_mcmc()`. This function calls a script written in [Julia](https://julialang.org/), and executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:
 
 1. `dat`: the input data you've been using throughout the analysis
 
@@ -34,12 +25,23 @@ You can start an mcmc with the function `run_mcmc()`. This function calls a scri
 
 4. `retained_classes`: the parsimonious list of candidate latent classes, after finally filtering out by prior weights as done in the previous step
 
+
+First, we load in our data, list of candidate latent classes, and estimated hyperparameters.
+```{r, message = FALSE, echo = 3:5}
+library(LIEB)
+
+data("sim")
+load("output/hyperparameters.Rdata")
+retained_classes <- readr::read_tsv("output/retained_classes.txt", col_names = FALSE)
+```
+
+Now we are ready to launch an MCMC:
 ```{r, cache = TRUE, message= FALSE}
 results <- run_mcmc(sim$data, hyp =  hyp, nstep = 100, retained_classes = retained_classes)
 ```
 
 ```{shell}
-Running the MCMC...100\%|████████████████████████████████| Time: 0:00:33
+Running the MCMC...100%|████████████████████████████████| Time: 0:00:33
 ```
 
 The object `results` contains 3 objects:
