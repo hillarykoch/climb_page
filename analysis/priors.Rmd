@@ -105,3 +105,10 @@ save(hyp, file = "output/hyperparameters.Rdata")
 After all that work, __*we have a model to describe our data*__, and are ready to [run the MCMC](running_mcmc.html).
 
 
+<i><b><span style="color:salmon">A note on relaxing $\delta$</span></b></i>
+In particularly challenging/high-dimensional problems, relaxing $\delta$ can start to introduce chunks of classes that look very similar to one another, causing bloat in the candidate latent classes. If `reduced_classes` contains too many classes--say, in the hundreds of thousands--one can consider the following *heuristic* before running `get_prior_weights()`. The function `reduce_by_hamming()` filters out some classes that are too similar to one another (that is, within a given hamming distance to some other class). This computational advantage comes at the risk of loss of information due to stochasticity/heuristics. However, if certain canonical classes are in `reduced_classes` (the all 1 class, all 0 class, and all -1 class), you can force them to remain after applying `reduce_by_hamming()`.
+
+The function can be applied as follows:
+```{r}
+reduced_by_hamming_classes <- reduce_by_hamming(reduced_classes, hamming_tol = 2)
+```

@@ -481,10 +481,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea20df35eb1481e88c75a22f3450e217635e303bbtargetblanka20df35a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/a20df35eb1481e88c75a22f3450e217635e303bb" target="_blank">a20df35</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreed6d897c55b7b7b5fec928e893cb3f4a7e5631ff4targetblankd6d897ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/d6d897c55b7b7b5fec928e893cb3f4a7e5631ff4" target="_blank">d6d897c</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreea20df35eb1481e88c75a22f3450e217635e303bbtargetblanka20df35a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreed6d897c55b7b7b5fec928e893cb3f4a7e5631ff4targetblankd6d897ca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -500,14 +500,9 @@ Ignored files:
     Ignored:    docs/.DS_Store
     Ignored:    output/.DS_Store
 
-Untracked files:
-    Untracked:  output/hyperparameters.Rdata
-    Untracked:  output/retained_classes.txt
-
 Unstaged changes:
-    Modified:   README.md
+    Modified:   analysis/candidate_latent_classes.Rmd
     Modified:   analysis/priors.Rmd
-    Modified:   analysis/running_mcmc.Rmd
 
 </code></pre>
 <p>
@@ -546,6 +541,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/lieb_page/blob/499135617e42e2651714ac18b0a11d3a9b4f6eca/analysis/priors.Rmd" target="_blank">4991356</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-18
+</td>
+<td>
+updat mcmc section
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/499135617e42e2651714ac18b0a11d3a9b4f6eca/docs/priors.html" target="_blank">4991356</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-18
+</td>
+<td>
+updat mcmc section
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1074,6 +1103,9 @@ hyp &lt;-<span class="st"> </span><span class="kw">get_hyperparameters</span>(si
 <p>We can save these hyperparameters for the next step in the analysis:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(hyp, <span class="dt">file =</span> <span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)</code></pre></div>
 <p>After all that work, <strong><em>we have a model to describe our data</em></strong>, and are ready to <a href="running_mcmc.html">run the MCMC</a>.</p>
+<p><i><b><span style="color:salmon">A note on relaxing <span class="math inline">\(\delta\)</span></span></b></i> In particularly challenging/high-dimensional problems, relaxing <span class="math inline">\(\delta\)</span> can start to introduce chunks of classes that look very similar to one another, causing bloat in the candidate latent classes. If <code>reduced_classes</code> contains too many classes–say, in the hundreds of thousands–one can consider the following <em>heuristic</em> before running <code>get_prior_weights()</code>. The function <code>reduce_by_hamming()</code> filters out some classes that are too similar to one another (that is, within a given hamming distance to some other class). This computational advantage comes at the risk of loss of information due to stochasticity/heuristics. However, if certain canonical classes are in <code>reduced_classes</code> (the all 1 class, all 0 class, and all -1 class), you can force them to remain after applying <code>reduce_by_hamming()</code>.</p>
+<p>The function can be applied as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reduced_by_hamming_classes &lt;-<span class="st"> </span><span class="kw">reduce_by_hamming</span>(reduced_classes, <span class="dt">hamming_tol =</span> <span class="dv">2</span>)</code></pre></div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
