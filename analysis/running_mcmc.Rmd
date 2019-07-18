@@ -24,7 +24,7 @@ load("output/hyperparameters.Rdata")
 retained_classes <- readr::read_tsv("output/retained_classes.txt", col_names = FALSE)
 ```
 
-You can start an mcmc with the function `run_mcmc()`. This function executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:
+You can start an mcmc with the function `run_mcmc()`. This function calls a script written in [Julia](https://julialang.org/), and executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:
 
 1. `dat`: the input data you've been using throughout the analysis
 
@@ -34,14 +34,21 @@ You can start an mcmc with the function `run_mcmc()`. This function executes eve
 
 4. `retained_classes`: the parsimonious list of candidate latent classes, after finally filtering out by prior weights as done in the previous step
 
-```{r, cache = TRUE}
+```{r, cache = TRUE, message= FALSE}
 results <- run_mcmc(sim$data, hyp =  hyp, nstep = 100, retained_classes = retained_classes)
+```
+
+```{shell}
+Running the MCMC...100\%|████████████████████████████████| Time: 0:00:33
 ```
 
 The object `results` contains 3 objects:
 
 1. `chain`: the estimate parameters over the course of `nstep` iterations
  
-2. `acceptane_rate_chain`: an $M\times\text{nstep}$ matrix of the acceptance rates for each cluster covariance. The proposals for each cluster are adaptively tuned such that the acceptance rates converge to about 0.3
+2. `acceptane_rate_chain`: an $M\times$`nstep` matrix of the acceptance rates for each cluster covariance. The proposals for each cluster are adaptively tuned such that the acceptance rates converge to about 0.3
 
 3. `tune_df_chain`: the tuning degrees of freedom across the chain, adjusted to yield optimal acceptance rates
+
+Functionality for processing the parameters estimates has not yet been introduced into LIEB.
+
