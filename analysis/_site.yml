@@ -25,3 +25,4 @@ output:
     toc_float: yes
     theme: journal
     highlight: zenburn
+    runtime: shiny
