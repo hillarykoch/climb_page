@@ -11,7 +11,7 @@
 
 
 
-<title>Shiny app</title>
+<title>VISION Shiny App</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -377,7 +377,7 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">Shiny app</h1>
+<h1 class="title toc-ignore">VISION Shiny App</h1>
 
 </div>
 
@@ -426,7 +426,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -481,10 +481,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree56e3d810510e9b2d61a672f198a3c8bc1f30e2e2targetblank56e3d81a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/56e3d810510e9b2d61a672f198a3c8bc1f30e2e2" target="_blank">56e3d81</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreee4f645f015e091631aaa5479e14bcfcd9ef62048targetblanke4f645fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/e4f645f015e091631aaa5479e14bcfcd9ef62048" target="_blank">e4f645f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetree56e3d810510e9b2d61a672f198a3c8bc1f30e2e2targetblank56e3d81a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreee4f645f015e091631aaa5479e14bcfcd9ef62048targetblanke4f645fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -499,16 +499,18 @@ Ignored files:
     Ignored:    analysis/pairwise_fitting_cache/
     Ignored:    analysis/running_mcmc_cache/
     Ignored:    docs/.DS_Store
+    Ignored:    docs/figure/priors.Rmd/
     Ignored:    output/.DS_Store
-
-Untracked files:
-    Untracked:  analysis/shiny_app.Rmd
-    Untracked:  docs/figure/priors.Rmd (hbk5086@psu.edu)/
-    Untracked:  output/vision_shiny/
+    Ignored:    output/vision_shiny/.DS_Store
+    Ignored:    output/vision_shiny/.Rhistory
+    Ignored:    output/vision_shiny/Data/.DS_Store
 
 Unstaged changes:
     Modified:   analysis/_site.yml
     Modified:   analysis/index.Rmd
+    Modified:   analysis/shiny_app.Rmd
+    Deleted:    output/vision_shiny/server.R
+    Deleted:    output/vision_shiny/ui.R
 
 </code></pre>
 <p>
@@ -521,13 +523,80 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/lieb_page/blob/e4f645f015e091631aaa5479e14bcfcd9ef62048/analysis/shiny_app.Rmd" target="_blank">e4f645f</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+add shiny v1
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/e4f645f015e091631aaa5479e14bcfcd9ef62048/docs/shiny_app.html" target="_blank">e4f645f</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+add shiny v1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
+<p>This Shiny App provides an interactive means to explore some of the results obtained from the VISION data analysis from our manuscript. The app offers several features:</p>
+<ol style="list-style-type: decimal">
+<li>The model estimated 45 groups, but these groups can be merged together based on their distributional distance from one another. Merging groups may be useful for visualization, interpretation, or simply increasing the number of samples (loci) that belong to any one group.</li>
+<li>View which loci belong to which group in a given region of the chromosome</li>
+<li>View the pattern of effects across all cell types for a given group</li>
+<li>View the correlation between CTCF binding and expression levels of nearby genes across all cell types (RNA-seq not available for all cell types)</li>
+</ol>
 <div style="width: 100% ; height: 1000px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
 <br>
 <p>
@@ -565,10 +634,10 @@ loaded via a namespace (and not attached):
 [17] xfun_0.5         withr_2.1.2      stringr_1.4.0    knitr_1.22      
 [21] fs_1.2.6         hms_0.4.2        rprojroot_1.3-2  grid_3.5.2      
 [25] tidyselect_0.2.5 glue_1.3.1       R6_2.4.0         rmarkdown_1.12  
-[29] scales_1.0.0     backports_1.1.3  promises_1.0.1   htmltools_0.3.6 
-[33] assertthat_0.2.1 colorspace_1.4-0 mime_0.7         xtable_1.8-4    
-[37] httpuv_1.5.1     stringi_1.4.3    lazyeval_0.2.1   munsell_0.5.0   
-[41] crayon_1.3.4    </code></pre>
+[29] whisker_0.3-2    scales_1.0.0     backports_1.1.3  promises_1.0.1  
+[33] htmltools_0.3.6  assertthat_0.2.1 colorspace_1.4-0 mime_0.7        
+[37] xtable_1.8-4     httpuv_1.5.1     stringi_1.4.3    lazyeval_0.2.1  
+[41] munsell_0.5.0    crayon_1.3.4    </code></pre>
 </div>
 
 

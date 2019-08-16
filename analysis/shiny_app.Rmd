@@ -1,5 +1,5 @@
 ---
-title: "Shiny app"
+title: "VISION Shiny App"
 output:
   workflowr::wflow_html:
     toc: false
@@ -7,6 +7,14 @@ output:
 editor_options:
   chunk_output_type: console
 ---
+
+This Shiny App provides an interactive means to explore some of the results obtained from the VISION data analysis from our manuscript. The app offers several features:
+
+1.  The model estimated 45 groups, but these groups can be merged together based on their distributional distance from one another. Merging groups may be useful for visualization, interpretation, or simply increasing the number of samples (loci) that belong to any one group.
+2.  View which loci belong to which group in a given region of the chromosome
+3.  View the pattern of effects across all cell types for a given group
+4.  View the correlation between CTCF binding and expression levels of nearby genes across all cell types (RNA-seq not available for all cell types)
+
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
   library(shiny)
@@ -303,5 +311,4 @@ shinyApp(
   },
   options = list(height = 1000)
 )
-
 ```

@@ -21,4 +21,4 @@ This analysis can be tricky, because some parts (*e.g.*, Steps 1 and 3) require 
 
 Each step of LIEB has its own page. We walk through a complete analysis of a simulated dataset throughout these 4 pages. Though the simple analysis provided here can be run on your personal laptop, in practice with real genomic datasets, one will need access to a computing cluster. We assume the user knows how to request multiple cores for parallel jobs or more memory for high-memory tasks. Navigate to any step's page to learn more.
 
-[Test the shiny app](shiny_app.html)
+LIEB's output is rich for exploration. For example, in our manuscript, we analyze CTCF ChIP-seq data from 17 murine hematopoietic cell lineages collected as part of the VISION project. You can explore some of the results with [the VISION Shiny App](shiny_app.html).

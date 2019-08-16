@@ -22,7 +22,8 @@ navbar:
 output:
   workflowr::wflow_html:
     toc: yes
+    runtime: shiny
     toc_float: yes
     theme: journal
     highlight: zenburn
-    runtime: shiny
+  runtime: shiny
