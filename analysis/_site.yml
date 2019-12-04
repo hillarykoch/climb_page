@@ -3,7 +3,7 @@ output_dir: ../docs
 navbar:
   title: 
   left:
-  - text: About LIEB
+  - text: About CLIMB
     href: index.html
   - text: Pairwise fitting
     href: pairwise_fitting.html
@@ -18,7 +18,7 @@ navbar:
   right:
   - icon: fa-github
     text: Source code
-    href: https://github.com/hillarykoch/lieb_page
+    href: https://github.com/hillarykoch/climb_page
 output:
   workflowr::wflow_html:
     toc: yes
