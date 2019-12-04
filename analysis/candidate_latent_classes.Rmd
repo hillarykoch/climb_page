@@ -26,7 +26,7 @@ First, load in the previously obtained pairwise fits.
 
 ```{r, echo = 4}
 # load that package
-library(LIEB)
+library(CLIMB)
 
 data("fits")
 ```

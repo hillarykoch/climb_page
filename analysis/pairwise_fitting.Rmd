@@ -9,7 +9,7 @@ editor_options:
 
 ### <i><b><span style="color:salmon">---Special considerations: this portion is highly parallelizable---</span></b></i>
 
-Here, we describe how to execute the first step of LIEB: pairwise fitting (a limited information maximum likelihood method).
+Here, we describe how to execute the first step of CLIMB: pairwise fitting (a composite likelihood method).
 
 First, load the package and the simulated dataset. This **toy** dataset has $n=1500$ observations across $D=3$ conditions (*that is,* dimensions). Thus, we need to fit $\binom{D}{2}=3$ pairwise models.
 
@@ -27,7 +27,7 @@ data("sim")
 
 The fitting of each pairwise model can be done in parallel, which saves a lot of computing time when the dimension is larger. This can be done simply (in parallel, or linearly) with the function `get_pairwise_fits()`. Note that the input data should be $z$-scores (or data arising from some other scoring mechanism, transformed appropriately to $z$-scores).
 
-`get_pairwise_fits()` runs the pairwise analysis at the default settings used in the LIEB manuscript. The user can select a few settings with this functions:
+`get_pairwise_fits()` runs the pairwise analysis at the default settings used in the CLIMB manuscript. The user can select a few settings with this functions:
 
 1. `nlambda`: how many tuning parameters to try (defaults to 10)
 

@@ -7,15 +7,15 @@ editor_options:
   chunk_output_type: console
 ---
 
-### <i><b><span style="color:salmon">---This is likely the most time-consuming step of LIEB analysis---</span></b></i>
+### <i><b><span style="color:salmon">---This is likely the most time-consuming step of CLIMB analysis---</span></b></i>
 
-The final step of LIEB involves doing inference on the parsimonious Gaussian mixture using MCMC. MCMC is an iterative method, and thus the user needs to specify how many iterations to use. We recommend running a quick pilot analysis--say, for 10 iterations. This pilot analysis will give a good idea of how long an analysis will need to run for a given *larger* number of iterations (say, 20,000 iterations).
+The final step of CLIMB involves doing inference on the parsimonious Gaussian mixture using MCMC. MCMC is an iterative method, and thus the user needs to specify how many iterations to use. We recommend running a quick pilot analysis--say, for 10 iterations. This pilot analysis will give a good idea of how long an analysis will need to run for a given *larger* number of iterations (say, 20,000 iterations).
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(autodep = TRUE)
 ```
 
-You can run an mcmc simply with the function `run_mcmc()`. This function calls a script written in [Julia](https://julialang.org/), and executes everything at the default settings in the LIEB methodology. The user needs to provide 4 arguments:
+You can run an mcmc simply with the function `run_mcmc()`. This function calls a script written in [Julia](https://julialang.org/), and executes everything at the default settings in the CLIMB methodology. The user needs to provide 4 arguments:
 
 1. `dat`: the input data you've been using throughout the analysis
 
@@ -28,7 +28,7 @@ You can run an mcmc simply with the function `run_mcmc()`. This function calls a
 
 First, we load in our data, list of candidate latent classes, and estimated hyperparameters.
 ```{r, message = FALSE, echo = 3:5}
-library(LIEB)
+library(CLIMB)
 
 data("sim")
 load("output/hyperparameters.Rdata")
@@ -52,5 +52,5 @@ The object `results` contains 3 objects:
 
 3. `tune_df_chain`: the tuning degrees of freedom across the chain, adjusted to yield optimal acceptance rates
 
-Functionality for processing the parameters estimates has not yet been introduced into LIEB.
+Functionality for processing the parameters estimates has not yet been introduced into CLIMB.
 
