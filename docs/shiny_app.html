@@ -318,7 +318,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -327,7 +327,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -336,10 +336,10 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-08-16
+<strong>Last updated:</strong> 2019-12-03
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -355,22 +355,22 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreed58e1a6bf2175fcda383137e324380ec24a4445ftargetblankd58e1a6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/lieb_page/tree/d58e1a6bf2175fcda383137e324380ec24a4445f" target="_blank">d58e1a6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree645d4086a8963dc00bf52ba1112b858d74fadc41targetblank645d408a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/645d4086a8963dc00bf52ba1112b858d74fadc41" target="_blank">645d408</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochliebpagetreed58e1a6bf2175fcda383137e324380ec24a4445ftargetblankd58e1a6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree645d4086a8963dc00bf52ba1112b858d74fadc41targetblank645d408a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -386,16 +386,14 @@ Ignored files:
     Ignored:    analysis/running_mcmc_cache/
     Ignored:    docs/.DS_Store
     Ignored:    output/.DS_Store
+    Ignored:    output/chip_shiny/.DS_Store
+    Ignored:    output/chip_shiny/Data/.DS_Store
     Ignored:    output/vision_shiny/.DS_Store
     Ignored:    output/vision_shiny/.Rhistory
     Ignored:    output/vision_shiny/Data/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/shiny_app.Rmd
-
 Unstaged changes:
-    Modified:   _workflowr.yml
-    Modified:   analysis/index.Rmd
+    Deleted:    lieb.Rproj
 
 </code></pre>
 <p>
@@ -436,10 +434,44 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/e467a514b21ab37f8e14b42b4519daa27a8a4ca4/analysis/shiny_app.Rmd" target="_blank">e467a51</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+different shiny location
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/d58e1a6bf2175fcda383137e324380ec24a4445f/docs/shiny_app.html" target="_blank">d58e1a6</a>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e467a514b21ab37f8e14b42b4519daa27a8a4ca4/docs/shiny_app.html" target="_blank">e467a51</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+different shiny location
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/d58e1a6bf2175fcda383137e324380ec24a4445f/docs/shiny_app.html" target="_blank">d58e1a6</a>
 </td>
 <td>
 hillarykoch
@@ -456,7 +488,7 @@ resource data
 Rmd
 </td>
 <td>
-<a href="https://github.com/hillarykoch/lieb_page/blob/38fb1c0ff8ca8636c8ee3201a961d3681567f703/analysis/shiny_app.Rmd" target="_blank">38fb1c0</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/38fb1c0ff8ca8636c8ee3201a961d3681567f703/analysis/shiny_app.Rmd" target="_blank">38fb1c0</a>
 </td>
 <td>
 hillarykoch
@@ -473,7 +505,7 @@ edit shiny
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/38fb1c0ff8ca8636c8ee3201a961d3681567f703/docs/shiny_app.html" target="_blank">38fb1c0</a>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/38fb1c0ff8ca8636c8ee3201a961d3681567f703/docs/shiny_app.html" target="_blank">38fb1c0</a>
 </td>
 <td>
 hillarykoch
@@ -490,7 +522,7 @@ edit shiny
 Rmd
 </td>
 <td>
-<a href="https://github.com/hillarykoch/lieb_page/blob/e4f645f015e091631aaa5479e14bcfcd9ef62048/analysis/shiny_app.Rmd" target="_blank">e4f645f</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/e4f645f015e091631aaa5479e14bcfcd9ef62048/analysis/shiny_app.Rmd" target="_blank">e4f645f</a>
 </td>
 <td>
 hillarykoch
@@ -507,7 +539,7 @@ add shiny v1
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/hillarykoch/lieb_page/e4f645f015e091631aaa5479e14bcfcd9ef62048/docs/shiny_app.html" target="_blank">e4f645f</a>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e4f645f015e091631aaa5479e14bcfcd9ef62048/docs/shiny_app.html" target="_blank">e4f645f</a>
 </td>
 <td>
 hillarykoch
