@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -68,7 +68,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -217,6 +216,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -228,18 +228,6 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -336,7 +324,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-12-03
+<strong>Last updated:</strong> 2020-02-07
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -346,7 +334,7 @@ div.section {
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -367,10 +355,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree0e7f751ed0a41a0ff8ae4032806b2c6443031c4btargetblank0e7f751a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/0e7f751ed0a41a0ff8ae4032806b2c6443031c4b" target="_blank">0e7f751</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree47b2adb7a9ddb5e81e2a22e34dbaae3ad3f7e23btargetblank47b2adba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/47b2adb7a9ddb5e81e2a22e34dbaae3ad3f7e23b" target="_blank">47b2adb</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree0e7f751ed0a41a0ff8ae4032806b2c6443031c4btargetblank0e7f751a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree47b2adb7a9ddb5e81e2a22e34dbaae3ad3f7e23btargetblank47b2adba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -384,7 +372,6 @@ Ignored files:
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/pairwise_fitting_cache/
     Ignored:    analysis/running_mcmc_cache/
-    Ignored:    docs/.DS_Store
     Ignored:    output/.DS_Store
     Ignored:    output/chip_shiny/.DS_Store
     Ignored:    output/chip_shiny/Data/.DS_Store
@@ -393,7 +380,15 @@ Ignored files:
     Ignored:    output/vision_shiny/Data/.DS_Store
 
 Unstaged changes:
-    Deleted:    lieb.Rproj
+    Modified:   _workflowr.yml
+    Modified:   analysis/_site.yml
+    Modified:   analysis/priors.Rmd
+    Modified:   analysis/running_mcmc.Rmd
+    Deleted:    analysis/shiny_app.Rmd
+    Modified:   output/hyperparameters.Rdata
+
+Staged changes:
+    Modified:   analysis/pairwise_fitting.Rmd
 
 </code></pre>
 <p>
@@ -437,6 +432,23 @@ Message
 html
 </td>
 <td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8b3e55676721b78e0a86e24bf1e7290093533dd2/docs/index.html" target="_blank">8b3e556</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-12-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
 <a href="https://rawcdn.githack.com/hillarykoch/climb_page/39383ac9a8503b078f7e20fadc852a618e31820c/docs/index.html" target="_blank">39383ac</a>
 </td>
 <td>
@@ -447,6 +459,23 @@ hillarykoch
 </td>
 <td>
 Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/645d4086a8963dc00bf52ba1112b858d74fadc41/analysis/index.Rmd" target="_blank">645d408</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-12-03
+</td>
+<td>
+workflowr::wflow_publish(files = “*“)
 </td>
 </tr>
 <tr>
@@ -956,6 +985,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

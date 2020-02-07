@@ -96,6 +96,7 @@ hyp <- get_hyperparameters(sim$data, fits, retained_classes, p)
 # view the output
 str(hyp)
 ```
+`hyp$kappa0` controls the informativity of the priors. To reduce informativity, one can make the elements of `kappa0` smaller (but still larger than $D$!). For example, you could use something like `hyp$kappa0 <- rep(10, D)`, instead of the automatic choice (proportional to `hyp$alpha`) which is returned from the `get_hyperparameters` function.
 
 We can save these hyperparameters for the next step in the analysis:
 ```{r}

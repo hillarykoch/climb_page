@@ -19,7 +19,7 @@ knitr::opts_chunk$set(autodep = TRUE)
 
 ```{r}
 # load that package
-library(LIEB)
+library(CLIMB)
 
 # load the toy data
 data("sim")
