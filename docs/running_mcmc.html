@@ -390,7 +390,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-02-07
+<strong>Last updated:</strong> 2020-02-20
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 3
@@ -487,10 +487,10 @@ unnamed-chunk-3
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree47b2adb7a9ddb5e81e2a22e34dbaae3ad3f7e23btargetblank47b2adba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/47b2adb7a9ddb5e81e2a22e34dbaae3ad3f7e23b" target="_blank">47b2adb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree862bc020269581307b908bf1cecc5a084df76352targetblank862bc02a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/862bc020269581307b908bf1cecc5a084df76352" target="_blank">862bc02</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree47b2adb7a9ddb5e81e2a22e34dbaae3ad3f7e23btargetblank47b2adba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree862bc020269581307b908bf1cecc5a084df76352targetblank862bc02a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -512,15 +512,7 @@ Ignored files:
     Ignored:    output/vision_shiny/Data/.DS_Store
 
 Unstaged changes:
-    Modified:   _workflowr.yml
-    Modified:   analysis/_site.yml
-    Modified:   analysis/priors.Rmd
     Modified:   analysis/running_mcmc.Rmd
-    Deleted:    analysis/shiny_app.Rmd
-    Modified:   output/hyperparameters.Rdata
-
-Staged changes:
-    Modified:   analysis/pairwise_fitting.Rmd
 
 </code></pre>
 <p>
@@ -559,6 +551,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/862bc020269581307b908bf1cecc5a084df76352/analysis/running_mcmc.Rmd" target="_blank">862bc02</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-07
+</td>
+<td>
+big updates for mcmc processors
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/862bc020269581307b908bf1cecc5a084df76352/docs/running_mcmc.html" target="_blank">862bc02</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-07
+</td>
+<td>
+big updates for mcmc processors
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1050,9 +1076,53 @@ out &lt;-<span class="st"> </span><span class="kw">extract_chains</span>(results
 <li><p><code>tune_df_chain</code>: the tuning degrees of freedom across the chain, adjusted to yield optimal acceptance rates</p></li>
 </ol>
 <p><code>results</code> is effectively a Julia object, so the first thing you should do with this object is to extract the data for R’s use:</p>
-<p><code>out</code> will contain all the different chains from the MCMC. For example, you can check the MCMC trace plots. Here is the trace plots of the mean from the first cluster in the third dimension:</p>
+<p><code>out</code> will contain all the different chains from the MCMC. For example, you can check the MCMC trace plots. Here is the trace plot of the mean from the first cluster in the third dimension:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(out$mu_chains[[<span class="dv">1</span>]][,<span class="dv">3</span>], <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;iteration&quot;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(mu[<span class="dv">3</span>]))</code></pre></div>
 <p><img src="figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/862bc020269581307b908bf1cecc5a084df76352/docs/figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" target="_blank">862bc02</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>More specifically, <code>extract_chains</code> returns a list with 4 elements. First, recall that <code>M</code> is the number of input classes, <code>D</code> is the dimension of the data, and let <code>iterations</code> be <code>nstep+1</code>.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>mu_chains</code>: a list with <code>M</code> elements, each element a matrix of dimension <code>iterations x D</code>. <code>mu_chains[[i]]</code> is the MCMC samples for the mean vector of cluster <code>i</code>.</p></li>
+<li><p><code>Sigma_chains</code>: a list with <code>M</code> elements, each element an array of dimension <code>D x D x iterations</code>. <code>Sigma_chains[[i]]</code> is the MCMC samples for the covariance matrix of cluster <code>i</code>.</p></li>
+<li><p><code>prop_chain</code>: A matrix of dimension <code>M x iterations</code>, containing the MCMC samples for the mixing proportions of each class.</p></li>
+<li><p><code>z_chain</code>: A matrix of dimension <code>n x iterations</code>, containing the MCMC samples for the class labels of each observation. These labels correspond to the row indices of <code>retained_classes</code> (above).</p></li>
+</ol>
 </div>
 
 
