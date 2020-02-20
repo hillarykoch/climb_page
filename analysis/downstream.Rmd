@@ -1,0 +1,10 @@
+---
+title: "Downstream analysis"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+**user-friendly testing functions etc not yet implemented**

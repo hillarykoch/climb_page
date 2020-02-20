@@ -13,6 +13,8 @@ navbar:
     href: priors.html
   - text: Running the MCMC
     href: running_mcmc.html
+  - text: Downstream analysis
+    href: downstream.html
   - text: License
     href: license.html
   right:
