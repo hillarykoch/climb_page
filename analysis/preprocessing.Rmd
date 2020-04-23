@@ -77,7 +77,7 @@ Note that it is critical here that we filtered out the same rows in bed_df (the 
 
 ### Preparation of RNA-seq data
 
-First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.
+Here, we discuss 2 different ways of preparing RNA-seq data for input to CLIMB. First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.
 
 ```{r, message = FALSE, warning = FALSE}
 library(curl)

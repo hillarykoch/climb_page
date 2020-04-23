@@ -430,7 +430,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -497,16 +497,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreec5fd6fcb20e5913288cd75965141bc2b853ed5a5targetblankc5fd6fca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/c5fd6fcb20e5913288cd75965141bc2b853ed5a5" target="_blank">c5fd6fc</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree828e725ac9ae66949f0c7821028faa80ae0242c5targetblank828e725a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/828e725ac9ae66949f0c7821028faa80ae0242c5" target="_blank">828e725</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreec5fd6fcb20e5913288cd75965141bc2b853ed5a5targetblankc5fd6fca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree828e725ac9ae66949f0c7821028faa80ae0242c5targetblank828e725a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/c5fd6fcb20e5913288cd75965141bc2b853ed5a5" target="_blank">c5fd6fc</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/828e725ac9ae66949f0c7821028faa80ae0242c5" target="_blank">828e725</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -529,17 +529,10 @@ Ignored files:
     Ignored:    output/vision_shiny/Data/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/preprocessing.Rmd
-    Untracked:  data/olsson2016.tsv
-    Untracked:  data/toy_chip.tsv
-    Untracked:  data/tpm_zebrafish.tsv
-    Untracked:  data/tpm_zebrafish.tsv.gz
+    Untracked:  analysis/downstream.Rmd
 
 Unstaged changes:
-    Modified:   analysis/_site.yml
-    Modified:   analysis/candidate_latent_classes.Rmd
-    Modified:   analysis/index.Rmd
-    Deleted:    data/README.md
+    Modified:   analysis/preprocessing.Rmd
 
 </code></pre>
 <p>
@@ -552,9 +545,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/preprocessing.Rmd</code>) and HTML (<code>docs/preprocessing.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/analysis/preprocessing.Rmd" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+<td>
+add a preprocessing section
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/preprocessing.html" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+<td>
+add a preprocessing section
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -623,12 +676,49 @@ z &lt;-<span class="st"> </span>-z
 <span class="co"># Quickly plot the data</span>
 <span class="kw">plot</span>(z, <span class="dt">xlim =</span> <span class="kw">c</span>(-<span class="dv">3</span>,<span class="dv">25</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="dv">3</span>,<span class="dv">25</span>), <span class="dt">pch =</span> <span class="dv">4</span>, <span class="dt">xlab =</span> <span class="st">&quot;condition 1&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;condition 2&quot;</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-2-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
+Past versions of unnamed-chunk-2-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-2-1.png" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Note that it is critical here that we filtered out the same rows in bed_df (the BED information) and pw_df (the data). This is because, for downstream analyses, we need to track which loci were analyzed.</p>
 </div>
 </div>
 <div id="preparation-of-rna-seq-data" class="section level3">
 <h3>Preparation of RNA-seq data</h3>
-<p>First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.</p>
+<p>Here, we discuss 2 different ways of preparing RNA-seq data for input to CLIMB. First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(curl)
 
 <span class="co"># Download, unzip, and read in RNA-seq data from GEO</span>
@@ -702,6 +792,43 @@ z &lt;-<span class="st"> </span>ql_dat -<span class="st"> </span>estimated_mode
 <span class="co"># Make a quick histogram of normalized expression from one condition</span>
 <span class="kw">hist</span>(z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of GFP&quot;</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-4-1.png" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>As with the ChIP-seq, we filter out genes which are removed from the analysis, so that we know which genes we examined.</p>
 <p>While this data pre-processing strategy was suitable for the analyses in the CLIMB manuscript, it may not always be suitable for all RNA-seq. Here, we demonstrate another variation on this data pre-processing strategy. Here, we will pool single-cell experiments of hematopoietic progenitor cells, take from Olsson et al. 2016 (accession code GSE70245).</p>
 <p>After reading in the data, we see that there are 382 cells in total in the experiment, coming from 4 unique cell populations.</p>
@@ -770,6 +897,43 @@ ql_dat &lt;-<span class="st"> </span>limma::<span class="kw">normalizeQuantiles<
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(ql_dat[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of LK&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="fl">4.5</span>), <span class="dt">col =</span> <span class="st">&quot;darkcyan&quot;</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-7-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-7-1.png" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Most importantly, there is a flattening of the disrtibution between the vertical cyan lines. This motivates us to apply a location shift such that this flat region lies over the origin, rather than the positive mode (here, the positive mode is around 7.5). To do this, we approximate the first and second derivitaves of the density using finite differences, and apply a location shift to the data such that the positive inflection point sits over 0.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#------------------------------------------------------------------------------</span>
 <span class="co"># Apply a location shift at the inflection point</span>
@@ -797,6 +961,43 @@ z &lt;-<span class="st"> </span>ql_dat -<span class="st"> </span>flattening
 <span class="co"># Make a quick histogram and plot of normalized expression from one condition</span>
 <span class="kw">hist</span>(z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of LK, after shifting&quot;</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-8-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
+Past versions of unnamed-chunk-8-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-8-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-8-1.png" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>This transformation may be more widely applicable to RNA-seq datasets.</p>
 </div>
 
