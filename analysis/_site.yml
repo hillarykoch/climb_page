@@ -5,16 +5,20 @@ navbar:
   left:
   - text: About CLIMB
     href: index.html
-  - text: Pairwise fitting
+  - text: Pre-processing input data
     href: pairwise_fitting.html
-  - text: Finding candidate classes
-    href: candidate_latent_classes.html
-  - text: Computing prior hyperparameters
-    href: priors.html
-  - text: Running the MCMC
-    href: running_mcmc.html
-  - text: License
-    href: license.html
+  - text: Four-step procedure
+    menu:
+    - text: Pairwise fitting
+      href: pairwise_fitting.html
+    - text: Finding candidate classes
+      href: candidate_latent_classes.html
+    - text: Computing prior hyperparameters
+      href: priors.html
+    - text: Running the MCMC
+      href: running_mcmc.html
+    - text: License
+      href: license.html
   right:
   - icon: fa-github
     text: Source code
