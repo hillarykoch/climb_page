@@ -1,0 +1,231 @@
+---
+title: "Pre-processing input data"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+### Preparing data for input into CLIMB
+
+CLIMB can, in some cases, be sensitive to data preparation and normalization. This has to do with the relationship between the association labels ($-1, 0, 1$) and associated parameters. Most notably, if a cluster has a positive (negative) association in dimension $d$, then the cluster mean will be positive (negative) in dimension $d$ as well. Similarly, if a cluster has null association in dimension $d$, then the cluster mean will be 0 in dimension $d$. What this means is that, for data which may have positive, negative, and null associations, we want the data appropriately pre-processed such that these relationships with cluster means will reasonably hold.
+
+In some cases, such as input from a peak-calling routine, this is straightforward. In others, such has right-skewed data like RNA-seq, preparation is slightly less so. Here, we walk through steps used for the data analyses in the CLIMB manuscript, with a brief discussion of alternatives.
+
+
+#### Preparation of ChIP-seq data
+Preparation of data which come from a peak-calling routine is fairly natural. This is because the data are reported as $p$-values, where small values provide support for the presence of a peak, and the lack of a peak corresponds to "null" behavior.
+
+First, we assume the user has chosed some peak-calling procedure, with output reported in a format such as ENCODE narrowPeak format, which contains information about **the chromosome, start location, stop location, and $-\log_{10}(p$-**value) **for the peak**. Next, since the analysis will be across multiple conditions, one needs to align the peaks across the various conditions being analyzed. In our case, we merged overlapping peak locations with `bedtools merge`. For locations which had a peak in one condition, but lacked a peak in another, we used a $-\log_{10}(p$-value) of 0 as a placeholder (this correponds to the not-statistically-significant $p$-value of 1).
+
+As an example, let's read in a 2-dimensional ChIP-seq dataset, where the peak regions have already been aligned with `bedtools`. We can see that this dataset consists of the typical BED format information (chromosome, start, stop), as well as the $-\log_{10}(p$-values) for 2 conditions. We see that at row 3, there is a peak in condition 1 that is absent in condition 2, and the reverse is the case at row 6.
+
+```{r, message = FALSE}
+pairwise_chip <- readr::read_tsv("data/toy_chip.tsv", col_names = FALSE)
+head(pairwise_chip)
+```
+
+Now, we need to transform these data to input for CLIMB. This is shown below, but involves only a few main steps, as described in the CLIMB manuscript.
+
+1.  Transform everything to $p$-values.
+2.  Transform $p$-values to $z$-scores with the standard normal quantile function
+3.  Impute $z$-scores at locations where a peak was absent in a condition.
+
+```{r, message = FALSE, warning = FALSE, fig.height=4, fig.width=4}
+library(tidyverse)
+
+# BED file information, store this for downstream analysis, e.g. examining loci with GREAT
+bed_df <- dplyr::select(pairwise_chip, X1, X2, X3)
+
+# Actual data to prepare now
+pw_df <- dplyr::select(pairwise_chip, X4, X5) %>%
+  # transform to p-values
+  purrr::map_df(~ 10 ^ -(.x))
+
+# Filter out rows which have no peaks in any condition
+#   (this may happen as a by-product of data normalization, or from data subsetting)
+keep_idx <- apply(pw_df, 1, function(row) !all(row == 1))
+  
+bed_df <- dplyr::filter(bed_df, keep_idx)
+pw_df <- dplyr::filter(pw_df, keep_idx)
+
+# Identify locations with p-value = 1 (these will be imputed)
+one_idx <- pw_df == 1
+  
+# Transform data to z-scores using the standard normal quantile function
+z <- qnorm(as.matrix(pw_df))
+
+# Address numerical overflow
+maxval <- max(z[z != Inf])
+minval <- min(z[z != -Inf])
+z[z == Inf] <- maxval
+z[z == -Inf] <- minval
+
+# Impute z-scores at loci without peaks
+z[one_idx] <- rnorm(sum(one_idx))
+
+# Take the negative, so that small p-value ==> large signal
+z <- -z
+
+# Quickly plot the data
+plot(z, xlim = c(-3,25), ylim = c(-3,25), pch = 4, xlab = "condition 1", ylab = "condition 2")
+```
+
+Note that it is critical here that we filtered out the same rows in bed_df (the BED information) and pw_df (the data). This is because, for downstream analyses, we need to track which loci were analyzed.
+
+
+### Preparation of RNA-seq data
+
+First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.
+
+```{r, message = FALSE, warning = FALSE}
+library(curl)
+
+# Download, unzip, and read in RNA-seq data from GEO
+curl::curl_download(url = "ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133459/suppl/GSE133459_RSEM_GSE133459_GFP_GSE133459_NFYADN_GSE133459_PBCAB_12hpf_zebrafish_genes_expression_tpm.tsv.gz",
+                    destfile = "data/tpm_zebrafish.tsv.gz")
+system("gunzip data/tpm_zebrafish.tsv.gz")
+TPMs <- readr::read_tsv("data/tpm_zebrafish.tsv")
+
+head(TPMs)
+```
+
+
+We follow some fairly typical normalization strategies to prepare the data for input into CLIMB. Only step 4 is unusual.
+
+1.  Pool replicates.
+2.  Apply a $\log2$ transform, using 1 as an offset to avoid infinities.
+3.  Quantile normalize the data.
+4. Apply a location shift to the data such that the positive mode sits over 0.
+
+We apply step 4 so that the transformed data better adhere to CLIMB's modeling assumptions. As it is only a location shift, it does not affect the associations between gene expression levels across conditions.
+
+```{r, message = FALSE, warning = FALSE, fig.height=4, fig.width=4}
+library(limma)
+library(modeest)
+
+#------------------------------------------------------------------------------
+# Pool together replicated data
+
+# First, find unique conditions (here, there are three)
+conditions <- stringr::str_split(names(TPMs)[-(1:2)], pattern = "[[:digit:]]") %>%
+  purrr::map_chr(1) %>%
+  unique
+
+# Pool together TPMs across replicates
+merge_dat <- matrix(NA, nrow = nrow(TPMs), ncol = length(conditions))
+for(i in seq_along(conditions)) {
+    idx <- grepl(pattern = conditions[i], x = names(TPMs))
+    if(sum(idx) > 1) {
+        merge_dat[,i] <- rowSums(TPMs[,idx])    
+    } else {
+        merge_dat[,i] <- TPMs[,idx]
+    }
+}
+colnames(merge_dat) <- conditions
+
+#------------------------------------------------------------------------------
+# Do the adjusted quantile normalization
+
+# Remove genes which are 0s in all conditions
+keep_idx <- apply(merge_dat, 1, function(row) !(all(row == 0)))
+genes <- TPMs$gene[keep_idx]
+merge_dat <- merge_dat[keep_idx,]
+
+# log2 transform and quantile normalize with limma
+l_dat <- log2(merge_dat + 1)
+ql_dat <- limma::normalizeQuantiles(l_dat)
+
+# Estimate the central mode
+#   It should be the same in every condition, due to quantile normalization
+estimated_mode <- modeest::mlv(as.vector(ql_dat), method = "meanshift", par = 5)
+
+# Center the mode over 0
+z <- ql_dat - estimated_mode
+colnames(z) <- colnames(merge_dat)
+
+# Make a quick histogram of normalized expression from one condition
+hist(z[,1], breaks = 30, xlab = "normalized transcripts", main = "Histogram of GFP")
+```
+
+As with the ChIP-seq, we filter out genes which are removed from the analysis, so that we know which genes we examined.
+
+While this data pre-processing strategy was suitable for the analyses in the CLIMB manuscript, it may not always be suitable for all RNA-seq. Here, we demonstrate another variation on this data pre-processing strategy. Here, we will pool single-cell experiments of hematopoietic progenitor cells, take from Olsson et al. 2016 (accession code GSE70245).
+
+After reading in the data, we see that there are 382 cells in total in the experiment, coming from 4 unique cell populations.
+```{r, warning = FALSE, message = FALSE}
+sc_dat <- readr::read_tsv("data/olsson2016.tsv")
+head(sc_dat)
+
+uid <- sc_dat$uid
+sc_dat$uid <- NULL
+
+# Extract cell types
+cells <- str_split(colnames(sc_dat), pattern = "\\.") %>%
+    map_chr(1)
+unique(cells)
+```
+
+Again, we will pool the data by cell type, apply a log2 transformation with offset, and quantile normalize.
+```{r}
+#------------------------------------------------------------------------------
+# Pool together replicated data
+merged_dat <- matrix(NA, nrow = nrow(sc_dat), ncol = length(unique(cells)))
+for(i in seq_along(unique(cells))) {
+    cell_idx <- cells == unique(cells)[i]
+    merged_dat[,i] <- rowSums(sc_dat[,cell_idx])
+}
+colnames(merged_dat) <- unique(cells)
+
+#------------------------------------------------------------------------------
+# Do the adjusted quantile normalization
+
+# Remove genes which are 0s in all conditions
+keep_idx <- apply(merged_dat, 1, function(X) !all(X == 0))
+merged_dat <- merged_dat[keep_idx,]
+uid <- uid[keep_idx]
+
+# log2 transform and quantile normalize with limma
+l_dat <- log2(merged_dat + 1)
+ql_dat <- limma::normalizeQuantiles(l_dat)
+```
+
+However, if we plot the histogram of these data, we notice they have a sligtly different distributional structure than the previous Zebrafish data.
+
+```{r, fig.height=4, fig.width=4}
+hist(ql_dat[,1], breaks = 30, xlab = "normalized transcripts", main = "Histogram of LK")
+abline(v = c(3,4.5), col = "darkcyan")
+```
+
+Most importantly, there is a flattening of the disrtibution between the vertical cyan lines. This motivates us to apply a location shift such that this flat region lies over the origin, rather than the positive mode (here, the positive mode is around 7.5). To do this, we approximate the first and second derivitaves of the density using finite differences, and apply a location shift to the data such that the positive inflection point sits over 0.
+
+```{r, fig.height=4, fig.width=4}
+#------------------------------------------------------------------------------
+# Apply a location shift at the inflection point
+
+# Approximate the density
+dens <- density(unlist(ql_dat))
+
+# Approximate the first and second derivatives of the density
+first_deriv <- diff(dens$y) / diff(dens$x)
+second_deriv <- diff(first_deriv) / diff(tail(dens$x, -1))
+
+# Find inflections
+flex <- c()
+for(i in 2:length(second_deriv)){
+    if(sign(second_deriv[i]) != sign(second_deriv[i-1])){
+        flex <- c(flex, i)
+    }
+}
+
+# Find which inflection point coincides with first derivative being approximately 0
+#   Apply the location shift accordingly
+flattening <- dens$x[flex[which.min(abs(first_deriv[flex]))]]
+z <- ql_dat - flattening
+
+# Make a quick histogram and plot of normalized expression from one condition
+hist(z[,1], breaks = 30, xlab = "normalized transcripts", main = "Histogram of LK, after shifting")
+```
+
+This transformation may be more widely applicable to RNA-seq datasets.

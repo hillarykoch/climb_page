@@ -6,7 +6,7 @@ navbar:
   - text: About CLIMB
     href: index.html
   - text: Pre-processing input data
-    href: pairwise_fitting.html
+    href: preprocessing.html
   - text: Four-step procedure
     menu:
     - text: Pairwise fitting
@@ -17,9 +17,11 @@ navbar:
       href: priors.html
     - text: Running the MCMC
       href: running_mcmc.html
-    - text: License
-      href: license.html
+  - text: Downstream analysis
+    href: downstream.html
   right:
+  - text: License
+    href: license.html
   - icon: fa-github
     text: Source code
     href: https://github.com/hillarykoch/climb_page

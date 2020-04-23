@@ -7,15 +7,6 @@ editor_options:
   chunk_output_type: console
 ---
 
----
-title: "Pairwise fitting"
-output:
-  workflowr::wflow_html:
-    toc: false
-editor_options:
-  chunk_output_type: console
----
-
 ### Finding candidate latent classes: the graph enumeration and pruning algorithm
 
 ### <i><b><span style="color:salmon">---Special considerations: this portion is likely a high-memory task!---</span></b></i>
