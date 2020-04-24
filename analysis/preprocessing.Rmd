@@ -11,7 +11,7 @@ editor_options:
 
 CLIMB can, in some cases, be sensitive to data preparation and normalization. This has to do with the relationship between the association labels ($-1, 0, 1$) and associated parameters. Most notably, if a cluster has a positive (negative) association in dimension $d$, then the cluster mean will be positive (negative) in dimension $d$ as well. Similarly, if a cluster has null association in dimension $d$, then the cluster mean will be 0 in dimension $d$. What this means is that, for data which may have positive, negative, and null associations, we want the data appropriately pre-processed such that these relationships with cluster means will reasonably hold.
 
-In some cases, such as input from a peak-calling routine, this is straightforward. In others, such has right-skewed data like RNA-seq, preparation is slightly less so. Here, we walk through steps used for the data analyses in the CLIMB manuscript, with a brief discussion of alternatives.
+In some cases, such as input from a peak-calling routine, this is straightforward. In others, such has right-skewed data like RNA-seq, preparation is slightly less so. Here, we walk through steps used for the data analyses in the CLIMB manuscript, plus a promising additional alternative.
 
 
 #### Preparation of ChIP-seq data
