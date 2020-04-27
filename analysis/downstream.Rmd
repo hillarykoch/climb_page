@@ -7,4 +7,22 @@ editor_options:
   chunk_output_type: console
 ---
 
-#### To be written
+CLIMB's output is effectively the posterior MCMC samples of the parameters of the normal mixture. These samples can be used for clustering/classification, visualizations, and statistical inference. Here, we show implementations of several of the analyses used in the CLIMB manuscript.
+
+## To be written...
+
+### Visualizing convergence
+
+First, let's load in the MCMC we briefly ran on simulated data in the [running the MCMC](running_mcmc.html) section.
+
+
+### Clustering dimensions and observations
+
+
+### Merging groups
+
+
+### Testing for consistency
+
+
+

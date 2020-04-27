@@ -322,7 +322,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -331,7 +331,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -340,10 +340,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-04-24
+<strong>Last updated:</strong> 2020-04-27
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -359,28 +359,28 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree717e7627599663c41b14ce8f699853d839bde713targetblank717e762a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/717e7627599663c41b14ce8f699853d839bde713" target="_blank">717e762</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree3d86b6874edfb335799f62af846156fd345d4b9atargetblank3d86b68a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/3d86b6874edfb335799f62af846156fd345d4b9a" target="_blank">3d86b68</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree717e7627599663c41b14ce8f699853d839bde713targetblank717e762a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree3d86b6874edfb335799f62af846156fd345d4b9atargetblank3d86b68a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/717e7627599663c41b14ce8f699853d839bde713" target="_blank">717e762</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/3d86b6874edfb335799f62af846156fd345d4b9a" target="_blank">3d86b68</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -393,6 +393,7 @@ Ignored files:
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/pairwise_fitting_cache/
+    Ignored:    analysis/running_mcmc_cache/
     Ignored:    data/.DS_Store
     Ignored:    output/.DS_Store
     Ignored:    output/chip_shiny/.DS_Store
@@ -401,9 +402,12 @@ Ignored files:
     Ignored:    output/vision_shiny/.Rhistory
     Ignored:    output/vision_shiny/Data/.DS_Store
 
+Untracked files:
+    Untracked:  output/chain.rds
+
 Unstaged changes:
-    Modified:   analysis/pairwise_fitting.Rmd
-    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/downstream.Rmd
+    Modified:   analysis/running_mcmc.Rmd
 
 </code></pre>
 <p>
@@ -442,6 +446,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/docs/downstream.html" target="_blank">cc98d2b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+<td>
+replace cache and update to describe flex_mu
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -568,8 +589,22 @@ add new page about downstream analysis
 </div>
 </div>
 </div>
-<div id="to-be-written" class="section level4">
-<h4>To be written</h4>
+<p>CLIMB’s output is effectively the posterior MCMC samples of the parameters of the normal mixture. These samples can be used for clustering/classification, visualizations, and statistical inference. Here, we show implementations of several of the analyses used in the CLIMB manuscript.</p>
+<div id="to-be-written" class="section level2">
+<h2>To be written…</h2>
+<div id="visualizing-convergence" class="section level3">
+<h3>Visualizing convergence</h3>
+<p>First, let’s load in the MCMC we briefly ran on simulated data in the <a href="running_mcmc.html">running the MCMC</a> section.</p>
+</div>
+<div id="clustering-dimensions-and-observations" class="section level3">
+<h3>Clustering dimensions and observations</h3>
+</div>
+<div id="merging-groups" class="section level3">
+<h3>Merging groups</h3>
+</div>
+<div id="testing-for-consistency" class="section level3">
+<h3>Testing for consistency</h3>
+</div>
 </div>
 
 
