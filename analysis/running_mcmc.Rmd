@@ -76,5 +76,5 @@ More specifically, `extract_chains()` returns a list with 4 elements. First, rec
 
 4. `z_chain`: A matrix of dimension `n x iterations`, containing the MCMC samples for the class labels of each observation. These labels correspond to the row indices of `retained_classes` (above).
 
-These posterior samples can be used for all many [downstream analyses](downstream.html).
+These posterior samples can be used for many [downstream analyses](downstream.html).
 
