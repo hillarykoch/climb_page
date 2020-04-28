@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-CLIMB's output is effectively the posterior MCMC samples of the parameters of the normal mixture. These samples can be used for clustering/classification, visualizations, and statistical inference. Here, we show implementations of several of the analyses used in the CLIMB manuscript.
+CLIMB's output is nothing but the posterior MCMC samples of the parameters of the normal mixture (means, variance-covariance matrices, mixing weights, and cluster assignments). These samples can be used for clustering/classification, visualizations, and statistical inference. *While there are many downstream analyses one could do with such output*, here, we demonstrate implementations of several of the analyses used in the CLIMB manuscript.
 
 First, let's load in the MCMC we briefly ran on simulated data in the [running the MCMC](running_mcmc.html) section.
 
@@ -145,8 +145,109 @@ print(p2)
 
 ## Testing for consistency
 
+In the CLIMB manuscript, we introduce a statistical test for consistency of signals based on the *partial conjunction hypothesis*:
+
+\begin{equation}
+  \begin{aligned}
+    \mathcal{H}_0^{u/D} &:= \text{less than }u\text{ out of }D\text{ instances of the observed effect are non-null, versus }\\
+    \mathcal{H}_1^{u/D} &:= \text{at least }u\text{ out of }D\text{ instances of the observed effect are non-null}
+  \end{aligned}
+\end{equation}
+
+where $u$ is some user-defined consistency threshold, and $D$ is the dimension of the data. This hypothesis is texting using some combination of the following quantites:
+
+\begin{align}
+    &P^{u/D+}:=\sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x}) \cdot \mathbf{1} \big[ \sum_{d=1}^D \mathbf{1} (h_{[d]}^m=1) \geq u\big] \tag{a}\\
+    &P^{u/D0} := \sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x})\cdot\mathbf{1}\big[\sum_{d=1}^D\mathbf{1}(h_{[d]}^m=0) \geq u\big] \tag{b} \\
+    &P^{u/D-}:=\sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x})\cdot\mathbf{1}\big[\sum_{d=1}^D\mathbf{1}(h_{[d]}^m=-1) \geq u\big] \tag{c} \\
+    &P^{u/D}:=\sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x})\cdot\mathbf{1}\big[\sum_{d=1}^D\mathbf{1}(h_{[d]}^m \neq 0) \geq u\big] \tag{d}
+\end{align}
+
+Which quantities you use depends on what you want to test. If you want to test whether some signals are replicated, and you care about the sign of the signals, you would employ a replicability test with quantities (a) and (c). If you wanted to do the same test, but you are agnostic to the sign of the signal, you would employ quantity (d) instead. If you wanted to test for consistent behavior (e.g., what is done in the CLIMB manuscript for differential gene expression along a lineage), you would employ a test using quantites (a), (b), and (c).
+
+This is all implemented in the CLIMB function `test_consistency`. Test consistency takes 6 arguments.
+
+* `chain`: the output of `extract_chains()`
+* `burnin`: a vector of iterations (indices) to be used as burn-in
+* `u`: the consistency threshold, which is an integer in $2\ldots D$
+* `b`: the confidence level in (0,1), corresponding the **posterior probability that an observation rejects the null hypothesis**. Here, a natural threshold is 0.5, though larger, more stringent thresholds could be applied.
+* `with_zero`: Set this equal to `TRUE` to implement the test for consistency across all dimensions, as in the CLIMB manuscript when testing for differentially expressed genes.
+* `agnostic_to_sign`: Set equal to `TRUE` if you do not care if a signal is in the positive or negative directions.
+
+This function will return a boolean vector with $n$ elements ($n$ being the sample size). If returns `TRUE` when the null is rejected.
+
+So, for example, we can test for which simulated observations are "consistently expressed" across all 3 dimensions as follows:
+
+```{r}
+non_differential <- test_consistency(chain, burnin, with_zero = TRUE)
+head(non_differential)
+```
+
+Here, `TRUE` sits at the indices of observations who are likely to be consistent across all 3 dimensions.
+
+Alternatively, we could test for observations which show a consistent *signal* (i.e., a -1 or a 1) in at least 2 out of the 3 dimensions. Let's do this, and also make a precision-recall curve displaying the results. To make a precision-recall curve, we first need to know the underlying truth of the simulation.
+
+```{r}
+#-------------------------------------------------------------------------------
+# First, obtain the truth
+
+# Load in true association patterns
+data("true_association")
+
+# Consistency threshold
+u <- 2
+
+# Which indices correspond to consistent signals  at threshold u = 2?
+consistent_pos_lab_idx <- apply(true_assoc, 1, function(X) sum(X == 1) >= u)
+consistent_neg_lab_idx <- apply(true_assoc, 1, function(X) sum(X == -1) >= u)
+consistent_lab_idx <-
+      sort(unique(c(
+        which(consistent_neg_lab_idx),
+        which(consistent_pos_lab_idx)
+      )))
+
+# These are the labels corresponding to consistent behavior
+consistent_lab_idx
+```
 
 
-### To be written...
+Now, we can compute precision and recall across a range of `b` in (0,1).
+
+```{r, message = FALSE, warning = FALSE, fig.width=4, fig.height=4}
+b_grid <- seq(0, 1, length.out = 1000)
+
+replicable <- test_consistency(chain, burnin, u = 2, b = b_grid)
+
+
+# Which observations are the replicable ones
+rep_idx <- sim$cluster %in% consistent_lab_idx
+
+# Total number of positives in the dataset
+P <- sum(rep_idx)
+
+# True positives
+TP <- map(replicable, ~ .x & rep_idx)
+
+# False positives
+FP <- map(replicable, ~ .x & !rep_idx)
+
+# True positive rate aka recall
+recall <- map_dbl(TP, ~ sum(.x) / P)
+
+# precision
+precision <- map2_dbl(TP, FP, ~ sum(.x) / (sum(.x) + sum(.y)))
+
+# Plot
+df <- data.frame("recall" = recall, "precision" = precision)
+p3 <- ggplot(data = df, aes(x = recall, y = precision)) +
+  geom_line() +
+  # This horizontal line is the true proportion of replicable observations
+  geom_hline(yintercept = mean(rep_idx), lty = 2, color = "darkcyan") +
+  lims(x = c(0,1), y = c(0,1)) +
+  theme_minimal()
+  
+p3
+
+```
 
 

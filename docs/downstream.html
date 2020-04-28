@@ -497,16 +497,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree16778b17b7cefe096f21914cdf74756d907063d9targetblank16778b1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/16778b17b7cefe096f21914cdf74756d907063d9" target="_blank">16778b1</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree4350be6df52d101cfe0b392a2a7244a55ee68daatargetblank4350be6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/4350be6df52d101cfe0b392a2a7244a55ee68daa" target="_blank">4350be6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree16778b17b7cefe096f21914cdf74756d907063d9targetblank16778b1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree4350be6df52d101cfe0b392a2a7244a55ee68daatargetblank4350be6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/16778b17b7cefe096f21914cdf74756d907063d9" target="_blank">16778b1</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/4350be6df52d101cfe0b392a2a7244a55ee68daa" target="_blank">4350be6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -518,7 +518,6 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/.Rhistory
-    Ignored:    analysis/figure/
     Ignored:    analysis/pairwise_fitting_cache/
     Ignored:    analysis/running_mcmc_cache/
     Ignored:    data/.DS_Store
@@ -569,6 +568,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/4350be6df52d101cfe0b392a2a7244a55ee68daa/analysis/downstream.Rmd" target="_blank">4350be6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+<td>
+add cluster merging
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/4350be6df52d101cfe0b392a2a7244a55ee68daa/docs/downstream.html" target="_blank">4350be6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+<td>
+add cluster merging
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -780,7 +813,7 @@ add new page about downstream analysis
 </div>
 </div>
 </div>
-<p>CLIMB’s output is effectively the posterior MCMC samples of the parameters of the normal mixture. These samples can be used for clustering/classification, visualizations, and statistical inference. Here, we show implementations of several of the analyses used in the CLIMB manuscript.</p>
+<p>CLIMB’s output is nothing but the posterior MCMC samples of the parameters of the normal mixture (means, variance-covariance matrices, mixing weights, and cluster assignments). These samples can be used for clustering/classification, visualizations, and statistical inference. <em>While there are many downstream analyses one could do with such output</em>, here, we demonstrate implementations of several of the analyses used in the CLIMB manuscript.</p>
 <p>First, let’s load in the MCMC we briefly ran on simulated data in the <a href="running_mcmc.html">running the MCMC</a> section.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chain &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;output/chain.rds&quot;</span>)</code></pre></div>
 <div id="visualizing-convergence" class="section level2">
@@ -975,8 +1008,10 @@ merged &lt;-<span class="st"> </span><span class="kw">merge_classes</span>(<span
   ..$ dist.method: NULL
   ..- attr(*, &quot;class&quot;)= chr &quot;hclust&quot;</code></pre>
 <p>We can visualize the salient features of the new groups with a simple visualization of the merged group means:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># For the plot color palette</span>
+<span class="kw">library</span>(RColorBrewer)
 
+<span class="co"># Melt for plotting</span>
 molten2 &lt;-<span class="st"> </span>reshape2::<span class="kw">melt</span>(merged$merged_mu) %&gt;%
 <span class="st">  `</span><span class="dt">colnames&lt;-</span><span class="st">`</span> (<span class="kw">c</span>(<span class="st">&quot;group&quot;</span>, <span class="st">&quot;condition&quot;</span>, <span class="st">&quot;mu&quot;</span>))
 
@@ -994,12 +1029,132 @@ p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt"
 
 <span class="kw">print</span>(p2)</code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/4350be6df52d101cfe0b392a2a7244a55ee68daa/docs/figure/downstream.Rmd/unnamed-chunk-7-1.png" target="_blank">4350be6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="testing-for-consistency" class="section level2">
 <h2>Testing for consistency</h2>
-<div id="to-be-written" class="section level3">
-<h3>To be written…</h3>
-</div>
+<p>In the CLIMB manuscript, we introduce a statistical test for consistency of signals based on the <em>partial conjunction hypothesis</em>:</p>
+<span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \mathcal{H}_0^{u/D} &amp;:= \text{less than }u\text{ out of }D\text{ instances of the observed effect are non-null, versus }\\
+    \mathcal{H}_1^{u/D} &amp;:= \text{at least }u\text{ out of }D\text{ instances of the observed effect are non-null}
+  \end{aligned}
+\end{equation}\]</span>
+<p>where <span class="math inline">\(u\)</span> is some user-defined consistency threshold, and <span class="math inline">\(D\)</span> is the dimension of the data. This hypothesis is texting using some combination of the following quantites:</p>
+<span class="math display">\[\begin{align}
+    &amp;P^{u/D+}:=\sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x}) \cdot \mathbf{1} \big[ \sum_{d=1}^D \mathbf{1} (h_{[d]}^m=1) \geq u\big] \tag{a}\\
+    &amp;P^{u/D0} := \sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x})\cdot\mathbf{1}\big[\sum_{d=1}^D\mathbf{1}(h_{[d]}^m=0) \geq u\big] \tag{b} \\
+    &amp;P^{u/D-}:=\sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x})\cdot\mathbf{1}\big[\sum_{d=1}^D\mathbf{1}(h_{[d]}^m=-1) \geq u\big] \tag{c} \\
+    &amp;P^{u/D}:=\sum_{m=1}^M \text{Pr}(\mathbf{x}_i\in h_m \mid \mathbf{x})\cdot\mathbf{1}\big[\sum_{d=1}^D\mathbf{1}(h_{[d]}^m \neq 0) \geq u\big] \tag{d}
+\end{align}\]</span>
+<p>Which quantities you use depends on what you want to test. If you want to test whether some signals are replicated, and you care about the sign of the signals, you would employ a replicability test with quantities (a) and (c). If you wanted to do the same test, but you are agnostic to the sign of the signal, you would employ quantity (d) instead. If you wanted to test for consistent behavior (e.g., what is done in the CLIMB manuscript for differential gene expression along a lineage), you would employ a test using quantites (a), (b), and (c).</p>
+<p>This is all implemented in the CLIMB function <code>test_consistency</code>. Test consistency takes 6 arguments.</p>
+<ul>
+<li><code>chain</code>: the output of <code>extract_chains()</code></li>
+<li><code>burnin</code>: a vector of iterations (indices) to be used as burn-in</li>
+<li><code>u</code>: the consistency threshold, which is an integer in <span class="math inline">\(2\ldots D\)</span></li>
+<li><code>b</code>: the confidence level in (0,1), corresponding the <strong>posterior probability that an observation rejects the null hypothesis</strong>. Here, a natural threshold is 0.5, though larger, more stringent thresholds could be applied.</li>
+<li><code>with_zero</code>: Set this equal to <code>TRUE</code> to implement the test for consistency across all dimensions, as in the CLIMB manuscript when testing for differentially expressed genes.</li>
+<li><code>agnostic_to_sign</code>: Set equal to <code>TRUE</code> if you do not care if a signal is in the positive or negative directions.</li>
+</ul>
+<p>This function will return a boolean vector with <span class="math inline">\(n\)</span> elements (<span class="math inline">\(n\)</span> being the sample size). If returns <code>TRUE</code> when the null is rejected.</p>
+<p>So, for example, we can test for which simulated observations are “consistently expressed” across all 3 dimensions as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">non_differential &lt;-<span class="st"> </span><span class="kw">test_consistency</span>(chain, burnin, <span class="dt">with_zero =</span> <span class="ot">TRUE</span>)
+<span class="kw">head</span>(non_differential)</code></pre></div>
+<pre><code>[1] FALSE FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<p>Here, <code>TRUE</code> sits at the indices of observations who are likely to be consistent across all 3 dimensions.</p>
+<p>Alternatively, we could test for observations which show a consistent <em>signal</em> (i.e., a -1 or a 1) in at least 2 out of the 3 dimensions. Let’s do this, and also make a precision-recall curve displaying the results. To make a precision-recall curve, we first need to know the underlying truth of the simulation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#-------------------------------------------------------------------------------</span>
+<span class="co"># First, obtain the truth</span>
+
+<span class="co"># Load in true association patterns</span>
+<span class="kw">data</span>(<span class="st">&quot;true_association&quot;</span>)
+
+<span class="co"># Consistency threshold</span>
+u &lt;-<span class="st"> </span><span class="dv">2</span>
+
+<span class="co"># Which indices correspond to consistent signals  at threshold u = 2?</span>
+consistent_pos_lab_idx &lt;-<span class="st"> </span><span class="kw">apply</span>(true_assoc, <span class="dv">1</span>, function(X) <span class="kw">sum</span>(X ==<span class="st"> </span><span class="dv">1</span>) &gt;=<span class="st"> </span>u)
+consistent_neg_lab_idx &lt;-<span class="st"> </span><span class="kw">apply</span>(true_assoc, <span class="dv">1</span>, function(X) <span class="kw">sum</span>(X ==<span class="st"> </span>-<span class="dv">1</span>) &gt;=<span class="st"> </span>u)
+consistent_lab_idx &lt;-
+<span class="st">      </span><span class="kw">sort</span>(<span class="kw">unique</span>(<span class="kw">c</span>(
+        <span class="kw">which</span>(consistent_neg_lab_idx),
+        <span class="kw">which</span>(consistent_pos_lab_idx)
+      )))
+
+<span class="co"># These are the labels corresponding to consistent behavior</span>
+consistent_lab_idx</code></pre></div>
+<pre><code>[1] 3 8</code></pre>
+<p>Now, we can compute precision and recall across a range of <code>b</code> in (0,1).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_grid &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> <span class="dv">1000</span>)
+
+replicable &lt;-<span class="st"> </span><span class="kw">test_consistency</span>(chain, burnin, <span class="dt">u =</span> <span class="dv">2</span>, <span class="dt">b =</span> b_grid)
+
+
+<span class="co"># Which observations are the replicable ones</span>
+rep_idx &lt;-<span class="st"> </span>sim$cluster %in%<span class="st"> </span>consistent_lab_idx
+
+<span class="co"># Total number of positives in the dataset</span>
+P &lt;-<span class="st"> </span><span class="kw">sum</span>(rep_idx)
+
+<span class="co"># True positives</span>
+TP &lt;-<span class="st"> </span><span class="kw">map</span>(replicable, ~<span class="st"> </span>.x &amp;<span class="st"> </span>rep_idx)
+
+<span class="co"># False positives</span>
+FP &lt;-<span class="st"> </span><span class="kw">map</span>(replicable, ~<span class="st"> </span>.x &amp;<span class="st"> </span>!rep_idx)
+
+<span class="co"># True positive rate aka recall</span>
+recall &lt;-<span class="st"> </span><span class="kw">map_dbl</span>(TP, ~<span class="st"> </span><span class="kw">sum</span>(.x) /<span class="st"> </span>P)
+
+<span class="co"># precision</span>
+precision &lt;-<span class="st"> </span><span class="kw">map2_dbl</span>(TP, FP, ~<span class="st"> </span><span class="kw">sum</span>(.x) /<span class="st"> </span>(<span class="kw">sum</span>(.x) +<span class="st"> </span><span class="kw">sum</span>(.y)))
+
+<span class="co"># Plot</span>
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;recall&quot;</span> =<span class="st"> </span>recall, <span class="st">&quot;precision&quot;</span> =<span class="st"> </span>precision)
+p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="kw">aes</span>(<span class="dt">x =</span> recall, <span class="dt">y =</span> precision)) +
+<span class="st">  </span><span class="kw">geom_line</span>() +
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(rep_idx), <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;darkcyan&quot;</span>) +
+<span class="st">  </span><span class="kw">lims</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) +
+<span class="st">  </span><span class="kw">theme_minimal</span>()
+  
+p3</code></pre></div>
+<p><img src="figure/downstream.Rmd/unnamed-chunk-10-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 
 
