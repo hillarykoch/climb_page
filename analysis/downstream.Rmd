@@ -15,7 +15,7 @@ First, let's load in the MCMC we briefly ran on simulated data in the [running t
 chain <- readRDS("output/chain.rds")
 ```
 
-### Visualizing convergence
+## Visualizing convergence
 
 The first thing we should do make some trace plots for some of the parameters being estimated. This will help us decide when the chain has entered its stationary distribution. Here, we make plots of a mean, variance, covariance, and mixing weight.
 
@@ -46,7 +46,7 @@ Looking at a few of these trace plots reveals that the chain achieves stationary
 burnin <- 1:200
 ```
 
-### Clustering dimensions and observations
+## Clustering dimensions and observations
 
 CLIMB can provide a **bi-clustering** of analyzed data. Row clusters come from the estimated latent classes, of course, though these classes can even be grouped by their similarity.
 
@@ -69,7 +69,7 @@ hc_row <- hclust(as.dist(row_distmat), method = "complete")
 plot(hc_row, xlab = "", ylab= "", axes = FALSE, sub = "", main = "Column cluster dendrogram")
 ```
 
-These figures aren't very thrilling on their own, but we can use them to make some nice heatmaps:
+These figures aren't very thrilling on their own, but we can use them to make some nice heatmaps. CLIMB provides the function `get_row_reordering` to facilitate plotting the bi-clustering:
 
 ```{r, echo = -1, fig.width = 2.5, fig.height = 6}
 library(ggplot2)
@@ -82,15 +82,15 @@ dat <- sim$data
 row_reordering <- get_row_reordering(row_clustering = hc_row, chain = chain, burnin = burnin)
 
 # Melt (for ggplot2)
-molten <-
+molten1 <-
   reshape2::melt(data = dplyr::mutate(dat, "row" = row_reordering),
   id.vars = "row")
 
 # Rename the factor levels to match the dimensions
-levels(molten$variable) <- paste(1:3)[hc_col$order]
+levels(molten1$variable) <- paste(1:3)[hc_col$order]
 
 # Plot the bi-clustering heatmap, like in the CLIMB manuscript
-p <- ggplot(data = molten,
+p1 <- ggplot(data = molten1,
             aes(x = variable, y = row, fill = value)) +
     geom_raster() +
     cowplot::theme_cowplot() +
@@ -100,17 +100,53 @@ p <- ggplot(data = molten,
     ggtitle("Bi-clustering\nheatmap") +
     scale_fill_gradientn(colours=RColorBrewer::brewer.pal(9,"Greens"))
 
-print(p)
+print(p1)
 ```
 
 
-### Merging groups
+## Merging groups
 
-## To be written...
+CLIMB allows you to merge similar groups for the sake of visualization, for examble on the Genome Browser. In the CLIMB manuscript, we merged clusters of CTCF binding patterns to color peaks more in a more parsimonious set of 5 groups on the genome browser. We show how to do this for an arbitrary number of groups with CLIMB's `merge_classes` function.
+
+The output of a `merge_classes` call provides the means and mixing weights of the new parent groups. These means and weights are aggregated from each groups constituent classes. `merged_z` gives the **new group assignments** for each observations. The `clustering` obect is simply a call to `stats::hclust()`.
+
+```{r}
+# Merge into 5 parent groups
+merged <- merge_classes(n_groups = 5, chain = chain, burnin = burnin)
+
+# Check the structure of the merging
+str(merged)
+```
+
+We can visualize the salient features of the new groups with a simple visualization of the merged group means:
+
+```{r, fig.width = 5, fig.height = 2.5}
+# For the plot color palette
+library(RColorBrewer)
+
+# Melt for plotting
+molten2 <- reshape2::melt(merged$merged_mu) %>%
+  `colnames<-` (c("group", "condition", "mu"))
+
+p2 <- ggplot(data = molten2, aes(group, condition, fill = mu)) +
+  geom_tile(color = "black") +
+  scale_fill_distiller(palette = "PiYG", direction = 1) +
+  coord_fixed() +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust = 1, size = 18),
+          axis.text.y = element_text(size = 20),
+          axis.title.x = element_text(size = 18),
+          axis.ticks.y = element_blank(),
+          axis.ticks.x = element_blank(),
+          legend.title = element_text(size = 12))
+
+print(p2)
+```
+
+## Testing for consistency
 
 
-### Testing for consistency
 
-## To be written...
+### To be written...
 
 

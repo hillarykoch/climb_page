@@ -497,16 +497,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree30514e2119d505cc708e8059d757b187de298855targetblank30514e2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/30514e2119d505cc708e8059d757b187de298855" target="_blank">30514e2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree16778b17b7cefe096f21914cdf74756d907063d9targetblank16778b1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/16778b17b7cefe096f21914cdf74756d907063d9" target="_blank">16778b1</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree30514e2119d505cc708e8059d757b187de298855targetblank30514e2a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree16778b17b7cefe096f21914cdf74756d907063d9targetblank16778b1a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/30514e2119d505cc708e8059d757b187de298855" target="_blank">30514e2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/16778b17b7cefe096f21914cdf74756d907063d9" target="_blank">16778b1</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -518,6 +518,7 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/.Rhistory
+    Ignored:    analysis/figure/
     Ignored:    analysis/pairwise_fitting_cache/
     Ignored:    analysis/running_mcmc_cache/
     Ignored:    data/.DS_Store
@@ -530,8 +531,6 @@ Ignored files:
 
 Unstaged changes:
     Modified:   analysis/downstream.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/running_mcmc.Rmd
 
 </code></pre>
 <p>
@@ -570,6 +569,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/bf87fa04bd2b201124c1547def537ff160c08835/analysis/downstream.Rmd" target="_blank">bf87fa0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+<td>
+add some downstream analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/bf87fa04bd2b201124c1547def537ff160c08835/docs/downstream.html" target="_blank">bf87fa0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+<td>
+add some downstream analysis
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -750,8 +783,8 @@ add new page about downstream analysis
 <p>CLIMB’s output is effectively the posterior MCMC samples of the parameters of the normal mixture. These samples can be used for clustering/classification, visualizations, and statistical inference. Here, we show implementations of several of the analyses used in the CLIMB manuscript.</p>
 <p>First, let’s load in the MCMC we briefly ran on simulated data in the <a href="running_mcmc.html">running the MCMC</a> section.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chain &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;output/chain.rds&quot;</span>)</code></pre></div>
-<div id="visualizing-convergence" class="section level3">
-<h3>Visualizing convergence</h3>
+<div id="visualizing-convergence" class="section level2">
+<h2>Visualizing convergence</h2>
 <p>The first thing we should do make some trace plots for some of the parameters being estimated. This will help us decide when the chain has entered its stationary distribution. Here, we make plots of a mean, variance, covariance, and mixing weight.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The mean in the first dimension of the third cluster</span>
 mu31 &lt;-<span class="st"> </span>chain$mu_chains[[<span class="dv">3</span>]][,<span class="dv">1</span>]
@@ -765,11 +798,48 @@ sigma423 &lt;-<span class="st"> </span>chain$Sigma_chains[[<span class="dv">4</s
 <span class="co"># The mixing weight of the seventh cluster</span>
 pi7 &lt;-<span class="st"> </span>chain$prop_chain[,<span class="dv">7</span>]</code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-2-1.png" width="1536" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
+Past versions of unnamed-chunk-2-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/bf87fa04bd2b201124c1547def537ff160c08835/docs/figure/downstream.Rmd/unnamed-chunk-2-1.png" target="_blank">bf87fa0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Looking at a few of these trace plots reveals that the chain achieves stationary around 200 iterations in. Therefore, we discard the first 200 iterations as burn-in, and do our analyses on the remaining 800.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">burnin &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">200</span></code></pre></div>
 </div>
-<div id="clustering-dimensions-and-observations" class="section level3">
-<h3>Clustering dimensions and observations</h3>
+<div id="clustering-dimensions-and-observations" class="section level2">
+<h2>Clustering dimensions and observations</h2>
 <p>CLIMB can provide a <strong>bi-clustering</strong> of analyzed data. Row clusters come from the estimated latent classes, of course, though these classes can even be grouped by their similarity.</p>
 <p>CLIMB uses a distance based on class covariances to cluster the dimensions (columns). The function <code>compute_distances_between_conditions</code> will compute these pairwise distances between conditions based on model fit. This was used in the CLIMB manuscript to determine the relationship among hematopoietic cell populations based on CTCF binding patterns.</p>
 <p>CLIMB’s estimated classes naturally cluster the rows. However, the function <code>compute_distances_between_clusters</code> will compute distances between estimated clusters as well. This distance is based on a symmetrified theoretical Kullback-Liebler divergence.</p>
@@ -778,7 +848,44 @@ pi7 &lt;-<span class="st"> </span>chain$prop_chain[,<span class="dv">7</span>]</
 <span class="co"># The figure isn&#39;t as exciting with simulated data</span>
 col_distmat &lt;-<span class="st"> </span><span class="kw">compute_distances_between_conditions</span>(chain, burnin)</code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-4-1.png" width="720" style="display: block; margin: auto;" /></p>
-<p>These figures aren’t very thrilling on their own, but we can use them to make some nice heatmaps:</p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/bf87fa04bd2b201124c1547def537ff160c08835/docs/figure/downstream.Rmd/unnamed-chunk-4-1.png" target="_blank">bf87fa0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>These figures aren’t very thrilling on their own, but we can use them to make some nice heatmaps. CLIMB provides the function <code>get_row_reordering</code> to facilitate plotting the bi-clustering:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load back in the data</span>
 <span class="kw">data</span>(<span class="st">&quot;sim&quot;</span>)
 dat &lt;-<span class="st"> </span>sim$data
@@ -787,15 +894,15 @@ dat &lt;-<span class="st"> </span>sim$data
 row_reordering &lt;-<span class="st"> </span><span class="kw">get_row_reordering</span>(<span class="dt">row_clustering =</span> hc_row, <span class="dt">chain =</span> chain, <span class="dt">burnin =</span> burnin)
 
 <span class="co"># Melt (for ggplot2)</span>
-molten &lt;-
+molten1 &lt;-
 <span class="st">  </span>reshape2::<span class="kw">melt</span>(<span class="dt">data =</span> dplyr::<span class="kw">mutate</span>(dat, <span class="st">&quot;row&quot;</span> =<span class="st"> </span>row_reordering),
   <span class="dt">id.vars =</span> <span class="st">&quot;row&quot;</span>)
 
 <span class="co"># Rename the factor levels to match the dimensions</span>
-<span class="kw">levels</span>(molten$variable) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="dv">1</span>:<span class="dv">3</span>)[hc_col$order]
+<span class="kw">levels</span>(molten1$variable) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="dv">1</span>:<span class="dv">3</span>)[hc_col$order]
 
 <span class="co"># Plot the bi-clustering heatmap, like in the CLIMB manuscript</span>
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> molten,
+p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> molten1,
             <span class="kw">aes</span>(<span class="dt">x =</span> variable, <span class="dt">y =</span> row, <span class="dt">fill =</span> value)) +
 <span class="st">    </span><span class="kw">geom_raster</span>() +
 <span class="st">    </span>cowplot::<span class="kw">theme_cowplot</span>() +
@@ -805,20 +912,94 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 <span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Bi-clustering</span><span class="ch">\n</span><span class="st">heatmap&quot;</span>) +
 <span class="st">    </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours=</span>RColorBrewer::<span class="kw">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;Greens&quot;</span>))
 
-<span class="kw">print</span>(p)</code></pre></div>
+<span class="kw">print</span>(p1)</code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-5-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/bf87fa04bd2b201124c1547def537ff160c08835/docs/figure/downstream.Rmd/unnamed-chunk-5-1.png" target="_blank">bf87fa0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-28
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="merging-groups" class="section level3">
-<h3>Merging groups</h3>
-</div>
-<div id="to-be-written" class="section level2">
-<h2>To be written…</h2>
-<div id="testing-for-consistency" class="section level3">
-<h3>Testing for consistency</h3>
 </div>
 </div>
-<div id="to-be-written-1" class="section level2">
-<h2>To be written…</h2>
+<div id="merging-groups" class="section level2">
+<h2>Merging groups</h2>
+<p>CLIMB allows you to merge similar groups for the sake of visualization, for examble on the Genome Browser. In the CLIMB manuscript, we merged clusters of CTCF binding patterns to color peaks more in a more parsimonious set of 5 groups on the genome browser. We show how to do this for an arbitrary number of groups with CLIMB’s <code>merge_classes</code> function.</p>
+<p>The output of a <code>merge_classes</code> call provides the means and mixing weights of the new parent groups. These means and weights are aggregated from each groups constituent classes. <code>merged_z</code> gives the <strong>new group assignments</strong> for each observations. The <code>clustering</code> obect is simply a call to <code>stats::hclust()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Merge into 5 parent groups</span>
+merged &lt;-<span class="st"> </span><span class="kw">merge_classes</span>(<span class="dt">n_groups =</span> <span class="dv">5</span>, <span class="dt">chain =</span> chain, <span class="dt">burnin =</span> burnin)
+
+<span class="co"># Check the structure of the merging</span>
+<span class="kw">str</span>(merged)</code></pre></div>
+<pre><code>List of 4
+ $ merged_z   : int [1:1500] 5 2 2 2 2 2 2 2 2 2 ...
+ $ merged_mu  : num [1:5, 1:3] 2.531 0.813 0 -2.501 -2.52 ...
+ $ merged_prop: num [1:5] 0.125 0.471 0.148 0.131 0.125
+ $ clustering :List of 7
+  ..$ merge      : int [1:7, 1:2] -3 -4 -2 -1 -8 1 -7 -6 -5 2 ...
+  ..$ height     : num [1:7] 0.00185 0.01065 0.02871 0.45571 1.09804 ...
+  ..$ order      : int [1:8] 7 3 6 8 1 2 4 5
+  ..$ labels     : chr [1:8] &quot;1&quot; &quot;2&quot; &quot;4&quot; &quot;6&quot; ...
+  ..$ method     : chr &quot;complete&quot;
+  ..$ call       : language hclust(d = as.dist(cluster_dist), method = &quot;complete&quot;)
+  ..$ dist.method: NULL
+  ..- attr(*, &quot;class&quot;)= chr &quot;hclust&quot;</code></pre>
+<p>We can visualize the salient features of the new groups with a simple visualization of the merged group means:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer)
+
+molten2 &lt;-<span class="st"> </span>reshape2::<span class="kw">melt</span>(merged$merged_mu) %&gt;%
+<span class="st">  `</span><span class="dt">colnames&lt;-</span><span class="st">`</span> (<span class="kw">c</span>(<span class="st">&quot;group&quot;</span>, <span class="st">&quot;condition&quot;</span>, <span class="st">&quot;mu&quot;</span>))
+
+p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> molten2, <span class="kw">aes</span>(group, condition, <span class="dt">fill =</span> mu)) +
+<span class="st">  </span><span class="kw">geom_tile</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;PiYG&quot;</span>, <span class="dt">direction =</span> <span class="dv">1</span>) +
+<span class="st">  </span><span class="kw">coord_fixed</span>() +
+<span class="st">  </span><span class="kw">theme_minimal</span>() +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">0</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">18</span>),
+          <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
+          <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">18</span>),
+          <span class="dt">axis.ticks.y =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))
+
+<span class="kw">print</span>(p2)</code></pre></div>
+<p><img src="figure/downstream.Rmd/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+<div id="testing-for-consistency" class="section level2">
+<h2>Testing for consistency</h2>
+<div id="to-be-written" class="section level3">
+<h3>To be written…</h3>
+</div>
 </div>
 
 
