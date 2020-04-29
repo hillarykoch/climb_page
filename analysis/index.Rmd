@@ -21,4 +21,4 @@ Each step of analysis CLIMB requires a bit of attention because of their memory/
 
 Each step of CLIMB has its own page in the "Four-step procedure" menu. We walk through a complete analysis of a simulated dataset throughout these 4 pages. Though the simple analysis provided here can be run on your personal laptop, in practice with real genomic datasets, one will need access to a computing cluster. We assume the user knows how to request multiple cores for parallel jobs or more memory for high-memory tasks. Navigate to any step's page to learn more.
 
-CLIMB's output is rich for exploration. For example, in our manuscript, we analyze CTCF ChIP-seq data from 17 murine hematopoietic cell lineages collected as part of the VISION project. You can explore some of the results with this [VISION analysis Shiny App](https://github.com/hillarykoch/vision_shiny).
+CLIMB's output is rich for exploration. We demonstrate how to produce some of the results or figures in the CLIMB manuscript [here](downstream.html).
