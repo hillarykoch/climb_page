@@ -263,8 +263,8 @@ hist(z[,1], breaks = 35, xlab = "normalized transcripts", main = "Histogram of L
 hist(sc_z[,1], breaks = 35, xlab = "normalized transcripts", main = "Histogram of GFP")
 
 # But the joint distributions look like mixtures
-plot(z[,c(2,3)], xlab = colnames(z)[2], ylab = colnames(z)[3], main = "Zebrafish RNA-seq")
-plot(sc_z[,c(1,4)], xlab = colnames(sc_z)[1], ylab = colnames(sc_z)[4], main = "Pooled single-cell RNA-seq")
+plot(z[,c(2,3)], xlab = colnames(z)[2], ylab = colnames(z)[3], main = "Zebrafish RNA-seq", pch = 4)
+plot(sc_z[,c(1,4)], xlab = colnames(sc_z)[1], ylab = colnames(sc_z)[4], main = "Pooled single-cell RNA-seq", pch = 4)
 ```
 
 
@@ -276,26 +276,28 @@ Here, we fit a pairwise model to the Zebrafish and pooled single cell datasets. 
 2. A model with no lower bound on the magnitude of the class means, but which is more flexible in estimation of positive and negative associations
 3. A model with a lower bound on the magnitude of the class means, which is also more flexible in estimation of positive and negative associations
 
-We plot the data colored by their maximum *a posterior* class labels. We can see that **modeling approach 3** appears the most robust, as approach 1 is not flexible enough, and approach 2 encounters identifiability issues, resulting in an unwanted merging of clusters.
+We plot the data colored by their maximum *a posteriori* class labels. We can see that **modeling approach 3** appears the most robust, as approach 1 is not flexible enough, and approach 2 encounters identifiability issues, resulting in an unwanted merging of clusters.
 
 ```{r, cache = TRUE, fig.width = 10.5, fig.height = 7, warning = FALSE, message = FALSE}
 par(mfrow = c(2,3))
 
-fit_no_bound <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 1, parallel = FALSE, bound = 0)
-fit_no_bound_flex <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 1, parallel = FALSE, bound = 0, flex_mu = TRUE)
-fit_bound_flex <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 1, parallel = FALSE, bound = qnorm(.8), flex_mu = TRUE)
+pal <- CLIMB::get_pals(1)
 
-sc_fit_no_bound <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 1, parallel = FALSE, bound = 0)
-sc_fit_no_bound_flex <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 1, parallel = FALSE, bound = 0, flex_mu = TRUE)
-sc_fit_bound_flex <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 1, parallel = FALSE, bound = qnorm(.8), flex_mu = TRUE)
+fit_no_bound <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 3, parallel = FALSE, bound = 0)
+fit_no_bound_flex <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 3, parallel = FALSE, bound = 0, flex_mu = TRUE)
+fit_bound_flex <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 3, parallel = FALSE, bound = qnorm(.8), flex_mu = TRUE)
 
-plot(z[,c(2,3)], col = fit_no_bound[[1]]$cluster, main = "Approach 1")
-plot(z[,c(2,3)], col = fit_no_bound_flex[[1]]$cluster, main = "Approach 2")
-plot(z[,c(2,3)], col = fit_bound_flex[[1]]$cluster, main = "Approach 3")
+sc_fit_no_bound <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 3, parallel = FALSE, bound = 0)
+sc_fit_no_bound_flex <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 3, parallel = FALSE, bound = 0, flex_mu = TRUE)
+sc_fit_bound_flex <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 3, parallel = FALSE, bound = qnorm(.8), flex_mu = TRUE)
 
-plot(sc_z[,c(1,4)], col = sc_fit_no_bound[[1]]$cluster, main = "Approach 1")
-plot(sc_z[,c(1,4)], col = sc_fit_no_bound_flex[[1]]$cluster, main = "Approach 2")
-plot(sc_z[,c(1,4)], col = sc_fit_bound_flex[[1]]$cluster, main = "Approach 3")
+plot(z[,c(2,3)], col = pal[fit_no_bound[[1]]$cluster], main = "Approach 1", pch = 4)
+plot(z[,c(2,3)], col = pal[fit_no_bound_flex[[1]]$cluster], main = "Approach 2", pch = 4)
+plot(z[,c(2,3)], col = pal[fit_bound_flex[[1]]$cluster], main = "Approach 3", pch = 4)
+
+plot(sc_z[,c(1,4)], col = pal[sc_fit_no_bound[[1]]$cluster], main = "Approach 1", pch = 4)
+plot(sc_z[,c(1,4)], col = pal[sc_fit_no_bound_flex[[1]]$cluster], main = "Approach 2", pch = 4)
+plot(sc_z[,c(1,4)], col = pal[sc_fit_bound_flex[[1]]$cluster], main = "Approach 3", pch = 4)
 ```
 
 

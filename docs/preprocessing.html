@@ -406,7 +406,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-05-02
+<strong>Last updated:</strong> 2020-05-03
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 3
@@ -506,16 +506,16 @@ unnamed-chunk-11
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4e50bd43dbfdd59b49c561e781b414560154494targetblanke4e50bda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/e4e50bd43dbfdd59b49c561e781b414560154494" target="_blank">e4e50bd</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree41ecdb67ed5cfe173b5a641f89d3749ce80e3fbbtargetblank41ecdb6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb" target="_blank">41ecdb6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4e50bd43dbfdd59b49c561e781b414560154494targetblanke4e50bda" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree41ecdb67ed5cfe173b5a641f89d3749ce80e3fbbtargetblank41ecdb6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/e4e50bd43dbfdd59b49c561e781b414560154494" target="_blank">e4e50bd</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb" target="_blank">41ecdb6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -532,9 +532,6 @@ Ignored files:
     Ignored:    analysis/running_mcmc_cache/
     Ignored:    data/.DS_Store
     Ignored:    output/.DS_Store
-
-Untracked files:
-    Untracked:  data/tpm_zebrafish.tsv.gz
 
 Unstaged changes:
     Modified:   analysis/preprocessing.Rmd
@@ -576,6 +573,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/analysis/preprocessing.Rmd" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+<td>
+update preprocessing with quantile transformation for RNA-seq
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/preprocessing.html" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+<td>
+update preprocessing with quantile transformation for RNA-seq
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -779,6 +810,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-3-1.png" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-3-1.png" target="_blank">828e725</a>
 </td>
 <td>
@@ -872,6 +914,43 @@ z &lt;-<span class="st"> </span>ql_dat -<span class="st"> </span>estimated_mode
 <span class="co"># Make a quick histogram of normalized expression from one condition</span>
 <span class="kw">hist</span>(z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of GFP&quot;</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-5-1.png" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>As with the ChIP-seq, we filter out genes which are removed from the analysis, so that we know which genes we examined.</p>
 <p>While this data pre-processing strategy was suitable for the analyses in the CLIMB manuscript, it may not always be suitable for all RNA-seq. Here, we demonstrate another variation on this data pre-processing strategy. Here, we will pool single-cell experiments of hematopoietic progenitor cells, take from Olsson et al. 2016 (accession code GSE70245).</p>
 <p>After reading in the data, we see that there are 382 cells in total in the experiment, coming from 4 unique cell populations.</p>
@@ -964,6 +1043,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-8-1.png" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-8-1.png" target="_blank">828e725</a>
 </td>
 <td>
@@ -1004,6 +1094,43 @@ z &lt;-<span class="st"> </span>ql_dat -<span class="st"> </span>flattening
 <span class="co"># Make a quick histogram and plot of normalized expression from one condition</span>
 <span class="kw">hist</span>(z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of LK, after shifting&quot;</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-9-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
+Past versions of unnamed-chunk-9-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-9-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-9-1.png" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>This transformation may be more widely applicable to RNA-seq datasets.</p>
 </div>
 <div id="by-quantile-transformation" class="section level4">
@@ -1025,9 +1152,46 @@ sc_z &lt;-<span class="st"> </span><span class="kw">apply</span>(sc_merge_dat, <
 <span class="kw">hist</span>(sc_z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">35</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of GFP&quot;</span>)
 
 <span class="co"># But the joint distributions look like mixtures</span>
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">xlab =</span> <span class="kw">colnames</span>(z)[<span class="dv">2</span>], <span class="dt">ylab =</span> <span class="kw">colnames</span>(z)[<span class="dv">3</span>], <span class="dt">main =</span> <span class="st">&quot;Zebrafish RNA-seq&quot;</span>)
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">xlab =</span> <span class="kw">colnames</span>(sc_z)[<span class="dv">1</span>], <span class="dt">ylab =</span> <span class="kw">colnames</span>(sc_z)[<span class="dv">4</span>], <span class="dt">main =</span> <span class="st">&quot;Pooled single-cell RNA-seq&quot;</span>)</code></pre></div>
+<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">xlab =</span> <span class="kw">colnames</span>(z)[<span class="dv">2</span>], <span class="dt">ylab =</span> <span class="kw">colnames</span>(z)[<span class="dv">3</span>], <span class="dt">main =</span> <span class="st">&quot;Zebrafish RNA-seq&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
+<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">xlab =</span> <span class="kw">colnames</span>(sc_z)[<span class="dv">1</span>], <span class="dt">ylab =</span> <span class="kw">colnames</span>(sc_z)[<span class="dv">4</span>], <span class="dt">main =</span> <span class="st">&quot;Pooled single-cell RNA-seq&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-10-1.png" width="1344" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
+Past versions of unnamed-chunk-10-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-10-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-10-1.png" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Using the normalized ranks and standard normal quantile transformation may cause a sort of “compressing” of the data. This is because ranking the data obscured distances between various clusters in the mixture. Then, when applying the typical pairwise fitting step, the cluster estimation may be sub-optimal. To resolve this, we suggest placing a lower bound on the absolute value of the class means for dimensions associated with some signal (i.e., -1 or 1), while allowing more flexibility in the estimation of the positive and negative means. It is important to note that such constraints only exist in the pairwise fitting step, and no longer pose any issue downstream.</p>
 <p>Here, we fit a pairwise model to the Zebrafish and pooled single cell datasets. We fit the model under three scenarios:</p>
 <ol style="list-style-type: decimal">
@@ -1035,25 +1199,64 @@ sc_z &lt;-<span class="st"> </span><span class="kw">apply</span>(sc_merge_dat, <
 <li>A model with no lower bound on the magnitude of the class means, but which is more flexible in estimation of positive and negative associations</li>
 <li>A model with a lower bound on the magnitude of the class means, which is also more flexible in estimation of positive and negative associations</li>
 </ol>
-<p>We plot the data colored by their maximum <em>a posterior</em> class labels. We can see that <strong>modeling approach 3</strong> appears the most robust, as approach 1 is not flexible enough, and approach 2 encounters identifiability issues, resulting in an unwanted merging of clusters.</p>
+<p>We plot the data colored by their maximum <em>a posteriori</em> class labels. We can see that <strong>modeling approach 3</strong> appears the most robust, as approach 1 is not flexible enough, and approach 2 encounters identifiability issues, resulting in an unwanted merging of clusters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))
 
-fit_no_bound &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">1</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>)
-fit_no_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">1</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>, <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
-fit_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">1</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="kw">qnorm</span>(.<span class="dv">8</span>), <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
+pal &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pals</span>(<span class="dv">1</span>)
 
-sc_fit_no_bound &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">1</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>)
-sc_fit_no_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">1</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>, <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
-sc_fit_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">1</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="kw">qnorm</span>(.<span class="dv">8</span>), <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
+fit_no_bound &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>)
+fit_no_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>, <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
+fit_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="kw">qnorm</span>(.<span class="dv">8</span>), <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
 
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> fit_no_bound[[<span class="dv">1</span>]]$cluster, <span class="dt">main =</span> <span class="st">&quot;Approach 1&quot;</span>)
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> fit_no_bound_flex[[<span class="dv">1</span>]]$cluster, <span class="dt">main =</span> <span class="st">&quot;Approach 2&quot;</span>)
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> fit_bound_flex[[<span class="dv">1</span>]]$cluster, <span class="dt">main =</span> <span class="st">&quot;Approach 3&quot;</span>)
+sc_fit_no_bound &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>)
+sc_fit_no_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>, <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
+sc_fit_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="kw">qnorm</span>(.<span class="dv">8</span>), <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
 
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> sc_fit_no_bound[[<span class="dv">1</span>]]$cluster, <span class="dt">main =</span> <span class="st">&quot;Approach 1&quot;</span>)
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> sc_fit_no_bound_flex[[<span class="dv">1</span>]]$cluster, <span class="dt">main =</span> <span class="st">&quot;Approach 2&quot;</span>)
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> sc_fit_bound_flex[[<span class="dv">1</span>]]$cluster, <span class="dt">main =</span> <span class="st">&quot;Approach 3&quot;</span>)</code></pre></div>
+<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> pal[fit_no_bound[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 1&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
+<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> pal[fit_no_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 2&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
+<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> pal[fit_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 3&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
+
+<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> pal[sc_fit_no_bound[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 1&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
+<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> pal[sc_fit_no_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 2&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
+<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> pal[sc_fit_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 3&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)</code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-11-1.png" width="1008" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-11-1.png" target="_blank">41ecdb6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-02
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 
