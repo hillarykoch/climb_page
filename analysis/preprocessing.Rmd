@@ -7,15 +7,23 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(autodep = TRUE)
+```
+
 ### Preparing data for input into CLIMB
 
-CLIMB can, in some cases, be sensitive to data preparation and normalization. This has to do with the relationship between the association labels ($-1, 0, 1$) and associated parameters. Most notably, if a cluster has a positive (negative) association in dimension $d$, then the cluster mean will be positive (negative) in dimension $d$ as well. Similarly, if a cluster has null association in dimension $d$, then the cluster mean will be 0 in dimension $d$. What this means is that, for data which may have positive, negative, and null associations, we want the data appropriately pre-processed such that these relationships with cluster means will reasonably hold.
+CLIMB can, in some cases, be sensitive to data preparation and normalization. This has to do with the relationship between the association labels ($-1, 0, 1$) and associated parameters. Most notably, if a cluster has a positive (negative) association in dimension $d$, then the cluster mean will be positive (negative) in dimension $d$ as well. Similarly, if a cluster has null association in dimension $d$, then the cluster mean will be 0 in dimension $d$. What this means is that, for data which may have positive, negative, and null associations, we want the data appropriately pre-processed such that these relationships with cluster means will reasonably hold. One should be able to test the suitability of the pre-processing method chosen using only the first step of CLIMB, the pairwise fitting procedure. We will demonstrate what we mean by that later on this page.
 
-In some cases, such as input from a peak-calling routine, this is straightforward. In others, such has right-skewed data like RNA-seq, preparation is slightly less so. Here, we walk through steps used for the data analyses in the CLIMB manuscript, plus a promising additional alternative.
+In some cases, such as input from a peak-calling routine, preparation of data is straightforward. In others, such has right-skewed data like RNA-seq, preparation may be slightly less so. Here, we walk through steps used for the data analyses in the CLIMB manuscript, plus additional alternatives. These pre-processing steps are:
+
+1. [Quantile transformation and imputation for peak data](#preparation-of-chip-seq-data)
+2. [Log transformation and quantile normalization of RNA-seq](#by-log-transformation)
+3. [Quantile transformation of RNA-seq](#by-quantile-transformation)
 
 
-#### Preparation of ChIP-seq data
-Preparation of data which come from a peak-calling routine is fairly natural. This is because the data are reported as $p$-values, where small values provide support for the presence of a peak, and the lack of a peak corresponds to "null" behavior.
+### Preparation of ChIP-seq data
+Preparation of data which come from a peak-calling routine is fairly natural. This is because the data are reported as $p$-values, where small values provide support for the presence of a peak, and the lack of a peak corresponds to "null" behavior. We walk through the data preparation used on the ChIP-seq data in the CLIMB manuscript, though we expect this approach to be more broadly applicable to data output from a peak-calling tool such as MACS2.
 
 First, we assume the user has chosed some peak-calling procedure, with output reported in a format such as ENCODE narrowPeak format, which contains information about **the chromosome, start location, stop location, and $-\log_{10}(p$-**value) **for the peak**. Next, since the analysis will be across multiple conditions, one needs to align the peaks across the various conditions being analyzed. In our case, we merged overlapping peak locations with `bedtools merge`. For locations which had a peak in one condition, but lacked a peak in another, we used a $-\log_{10}(p$-value) of 0 as a placeholder (this correponds to the not-statistically-significant $p$-value of 1).
 
@@ -77,7 +85,9 @@ Note that it is critical here that we filtered out the same rows in bed_df (the 
 
 ### Preparation of RNA-seq data
 
-Here, we discuss 2 different ways of preparing RNA-seq data for input to CLIMB. First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.
+#### By log transformation
+
+Here, we discuss 2 very similar ways of preparing RNA-seq data for input to CLIMB. First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.
 
 ```{r, message = FALSE, warning = FALSE}
 library(curl)
@@ -171,23 +181,23 @@ Again, we will pool the data by cell type, apply a log2 transformation with offs
 ```{r}
 #------------------------------------------------------------------------------
 # Pool together replicated data
-merged_dat <- matrix(NA, nrow = nrow(sc_dat), ncol = length(unique(cells)))
+sc_merge_dat <- matrix(NA, nrow = nrow(sc_dat), ncol = length(unique(cells)))
 for(i in seq_along(unique(cells))) {
     cell_idx <- cells == unique(cells)[i]
-    merged_dat[,i] <- rowSums(sc_dat[,cell_idx])
+    sc_merge_dat[,i] <- rowSums(sc_dat[,cell_idx])
 }
-colnames(merged_dat) <- unique(cells)
+colnames(sc_merge_dat) <- unique(cells)
 
 #------------------------------------------------------------------------------
 # Do the adjusted quantile normalization
 
 # Remove genes which are 0s in all conditions
-keep_idx <- apply(merged_dat, 1, function(X) !all(X == 0))
-merged_dat <- merged_dat[keep_idx,]
+keep_idx <- apply(sc_merge_dat, 1, function(X) !all(X == 0))
+sc_merge_dat <- sc_merge_dat[keep_idx,]
 uid <- uid[keep_idx]
 
 # log2 transform and quantile normalize with limma
-l_dat <- log2(merged_dat + 1)
+l_dat <- log2(sc_merge_dat + 1)
 ql_dat <- limma::normalizeQuantiles(l_dat)
 ```
 
@@ -229,3 +239,64 @@ hist(z[,1], breaks = 30, xlab = "normalized transcripts", main = "Histogram of L
 ```
 
 This transformation may be more widely applicable to RNA-seq datasets.
+
+#### By quantile transformation
+
+A final, straightforward method to preprocessing RNA-seq data involves quantile transformation, just like with peak-calling data. This method has the advantage of being simple, while also assuring greater suitability of CLIMB's assumption that data labeled 0 in some dimension marginally follow a $Z$-score distribution (sometimes called the theoretical null). Let's apply this method to the previously shown RNA-seq datasets.
+
+```{r, echo = 2:19, fig.width = 14, fig.height = 3.5}
+par(mfrow = c(1,4))
+
+# Get the normalized ranks (empirical CDF) which are uniformly distributed
+# then apply the quantile function of the standard normal
+
+# RECALL: merge_dat is the Zebrafish RNA-seq data
+z <- apply(merge_dat, 2, function(X) rank(X, ties.method = "random") / (length(X) + 1)) %>%
+  qnorm
+
+# RECALL: sc_merge_dat is the pooled single-cell RNA-seq data
+sc_z <- apply(sc_merge_dat, 2, function(X) rank(X, ties.method = "random") / (length(X) + 1)) %>%
+  qnorm
+
+# We see from these histograms that the data are standard normal
+hist(z[,1], breaks = 35, xlab = "normalized transcripts", main = "Histogram of LSK")
+hist(sc_z[,1], breaks = 35, xlab = "normalized transcripts", main = "Histogram of GFP")
+
+# But the joint distributions look like mixtures
+plot(z[,c(2,3)], xlab = colnames(z)[2], ylab = colnames(z)[3], main = "Zebrafish RNA-seq")
+plot(sc_z[,c(1,4)], xlab = colnames(sc_z)[1], ylab = colnames(sc_z)[4], main = "Pooled single-cell RNA-seq")
+```
+
+
+Using the normalized ranks and standard normal quantile transformation may cause a sort of "compressing" of the data. This is because ranking the data obscured distances between various clusters in the mixture. Then, when applying the typical pairwise fitting step, the cluster estimation may be sub-optimal. To resolve this, we suggest placing a lower bound on the absolute value of the class means for dimensions associated with some signal (i.e., -1 or 1), while allowing more flexibility in the estimation of the positive and negative means. It is important to note that such constraints only exist in the pairwise fitting step, and no longer pose any issue downstream. 
+
+Here, we fit a pairwise model to the Zebrafish and pooled single cell datasets. We fit the model under three scenarios:
+
+1. A model with no lower bound on the magnitude of the class means, which is also less flexible in estimation of positive and negative associations
+2. A model with no lower bound on the magnitude of the class means, but which is more flexible in estimation of positive and negative associations
+3. A model with a lower bound on the magnitude of the class means, which is also more flexible in estimation of positive and negative associations
+
+We plot the data colored by their maximum *a posterior* class labels. We can see that **modeling approach 3** appears the most robust, as approach 1 is not flexible enough, and approach 2 encounters identifiability issues, resulting in an unwanted merging of clusters.
+
+```{r, cache = TRUE, fig.width = 10.5, fig.height = 7, warning = FALSE, message = FALSE}
+par(mfrow = c(2,3))
+
+fit_no_bound <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 1, parallel = FALSE, bound = 0)
+fit_no_bound_flex <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 1, parallel = FALSE, bound = 0, flex_mu = TRUE)
+fit_bound_flex <- CLIMB::get_pairwise_fits(z[,c(2,3)], nlambda = 1, parallel = FALSE, bound = qnorm(.8), flex_mu = TRUE)
+
+sc_fit_no_bound <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 1, parallel = FALSE, bound = 0)
+sc_fit_no_bound_flex <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 1, parallel = FALSE, bound = 0, flex_mu = TRUE)
+sc_fit_bound_flex <- CLIMB::get_pairwise_fits(sc_z[,c(1,4)], nlambda = 1, parallel = FALSE, bound = qnorm(.8), flex_mu = TRUE)
+
+plot(z[,c(2,3)], col = fit_no_bound[[1]]$cluster, main = "Approach 1")
+plot(z[,c(2,3)], col = fit_no_bound_flex[[1]]$cluster, main = "Approach 2")
+plot(z[,c(2,3)], col = fit_bound_flex[[1]]$cluster, main = "Approach 3")
+
+plot(sc_z[,c(1,4)], col = sc_fit_no_bound[[1]]$cluster, main = "Approach 1")
+plot(sc_z[,c(1,4)], col = sc_fit_no_bound_flex[[1]]$cluster, main = "Approach 2")
+plot(sc_z[,c(1,4)], col = sc_fit_bound_flex[[1]]$cluster, main = "Approach 3")
+```
+
+
+
