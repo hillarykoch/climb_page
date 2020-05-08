@@ -2,7 +2,8 @@
 title: "Pre-processing input data"
 output:
   workflowr::wflow_html:
-    toc: false
+    toc: true
+    toc_depth: 4
 editor_options:
   chunk_output_type: console
 ---
