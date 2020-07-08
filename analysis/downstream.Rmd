@@ -54,7 +54,7 @@ CLIMB uses a distance based on class covariances to cluster the dimensions (colu
 
 CLIMB's estimated classes naturally cluster the rows. However, the function `compute_distances_between_clusters` will compute distances between estimated clusters as well. This distance is based on a symmetrified theoretical Kullback-Liebler divergence. 
 
-```{r, echo = 3:6, fig.height=3.5, fig.width=7.5}
+```{r, echo = 3:12, fig.height=3.5, fig.width=7.5}
 library(CLIMB)
 library(purrr)
 par(mfrow = c(1,2))
@@ -179,7 +179,8 @@ This function will return a boolean vector with $n$ elements ($n$ being the samp
 
 So, for example, we can test for which simulated observations are "consistently expressed" across all 3 dimensions as follows:
 
-```{r}
+```{r, echo = 2:3}
+library(CLIMB)
 non_differential <- test_consistency(chain, burnin, with_zero = TRUE)
 head(non_differential)
 ```
