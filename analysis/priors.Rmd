@@ -15,7 +15,7 @@ We are now just about ready to set up our MCMC. First, we need to determine the 
 
 2. computing every other hyperparameter
 
-The former is the most essential, as it helps us remove more candidate latent classes, ensuring that the number of clusters is fewer than the number of observations. **An important note**: this is the *only* step of CLIMB that requires some sort of human intervention, but it does need to happen. A threshold, called $\delta$ in the manuscript, determines how strict one is about including classes in the final model. $\delta\in\{0,1,\ldots,\hat{M}\}$, where $\hat{M}$ is the number of candidate latent classes determined by the `get_reduced_classes()` function, as calculated in the previous step. We will get into selecting $\delta$ shortly.
+The former is the most essential, as it helps us remove more candidate latent classes, ensuring that the number of clusters is fewer than the number of observations. **An important note**: this is the *only* step of CLIMB that requires some sort of human intervention, but it does need to happen. A threshold, called $\delta$ in the manuscript, determines how strict one is about including classes in the final model. $\delta\in\{0,1,\ldots,\binom{D}{2}\}$. We will get into selecting $\delta$ shortly.
 
 To get the prior weights on each candidate latent class, use the function `get_prior_weights()`. This function defaults to the settings used in the CLIMB manuscript. The user can specify:
 
@@ -46,7 +46,7 @@ data("fits")
 prior_weights <- get_prior_weights(reduced_classes, fits, parallel = FALSE)
 ```
 
-`prior_weights` is a list of vectors. Each vector corresponds to the computed prior weights for a given value of $\delta$. Here, `prior_weights[[m]]` corresponds to the prior weights when $\delta = m-1$.
+`prior_weights` is a list of vectors. Each vector corresponds to the computed prior weights for a given value of $\delta$. Here, `prior_weights[[j]]` corresponds to the prior weights when $\delta = j-1$.
 
 ### <i><b><span style="color:salmon">Here comes the human intervention</span></b></i>
 
