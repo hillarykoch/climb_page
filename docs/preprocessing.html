@@ -482,17 +482,17 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-05-07
+<strong>Last updated:</strong> 2020-10-15
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 3
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.1). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -501,12 +501,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -518,7 +518,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it's best to always run the code in an empty environment.</p>
 </div>
 </div>
 </div>
@@ -530,7 +530,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20190717code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20190717)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20190717)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -542,28 +542,19 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSessioninformationstrongunavailable" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Recording the operating system, R version, and package versions is critical for reproducibility. To record the session information, add <code>sessioninfo: “sessionInfo()”</code> to _workflowr.yml. Alternatively, you could use <code>devtools::session_info()</code> or <code>sessioninfo::session_info()</code>. Lastly, you can manually add a code chunk to this file to run any one of these commands and then disable to automatic insertion by changing the workflowr setting to <code>sessioninfo: “”</code>.</p>
+<p>Recording the operating system, R version, and package versions is critical for reproducibility. To record the session information, add <code>sessioninfo: &quot;sessionInfo()&quot;</code> to _workflowr.yml. Alternatively, you could use <code>devtools::session_info()</code> or <code>sessioninfo::session_info()</code>. Lastly, you can manually add a code chunk to this file to run any one of these commands and then disable to automatic insertion by changing the workflowr setting to <code>sessioninfo: &quot;&quot;</code>.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
-<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-The following chunks had caches available:
-<ul>
-<li>
-unnamed-chunk-10
-</li>
-<li>
-unnamed-chunk-11
-</li>
-</ul>
-<p>To ensure reproducibility of the results, delete the cache directory <code>preprocessing_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
 </div>
 </div>
 </div>
@@ -582,16 +573,16 @@ unnamed-chunk-11
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree194207230fb39f8d5e47c1bb44a77d0c57c1365ftargetblank1942072a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/194207230fb39f8d5e47c1bb44a77d0c57c1365f" target="_blank">1942072</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree545f48d0833617a28fcb68f5763b9631ad4b08b2targetblank545f48da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/545f48d0833617a28fcb68f5763b9631ad4b08b2" target="_blank">545f48d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree194207230fb39f8d5e47c1bb44a77d0c57c1365ftargetblank1942072a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree545f48d0833617a28fcb68f5763b9631ad4b08b2targetblank545f48da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/194207230fb39f8d5e47c1bb44a77d0c57c1365f" target="_blank">1942072</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/545f48d0833617a28fcb68f5763b9631ad4b08b2" target="_blank">545f48d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -604,18 +595,13 @@ Ignored files:
     Ignored:    analysis/.DS_Store
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/pairwise_fitting_cache/
-    Ignored:    analysis/preprocessing_cache/
-    Ignored:    analysis/running_mcmc_cache/
     Ignored:    data/.DS_Store
     Ignored:    data/.Rhistory
     Ignored:    output/.DS_Store
 
-Unstaged changes:
-    Modified:   analysis/preprocessing.Rmd
-
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
 </p>
 </div>
 </div>
@@ -626,7 +612,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/preprocessing.Rmd</code>) and HTML (<code>docs/preprocessing.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/preprocessing.Rmd</code>) and HTML (<code>docs/preprocessing.html</code>) files. If you've configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -650,6 +636,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/ed24c1bc4a5e0542bed7f286a2119436be190df0/analysis/preprocessing.Rmd" target="_blank">ed24c1b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-08
+</td>
+<td>
+update toc
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/ed24c1bc4a5e0542bed7f286a2119436be190df0/docs/preprocessing.html" target="_blank">ed24c1b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-08
+</td>
+<td>
+update toc
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -839,9 +859,9 @@ add a preprocessing section
 </div>
 <div id="preparation-of-chip-seq-data" class="section level3">
 <h3>Preparation of ChIP-seq data</h3>
-<p>Preparation of data which come from a peak-calling routine is fairly natural. This is because the data are reported as <span class="math inline">\(p\)</span>-values, where small values provide support for the presence of a peak, and the lack of a peak corresponds to “null” behavior. We walk through the data preparation used on the ChIP-seq data in the CLIMB manuscript, though we expect this approach to be more broadly applicable to data output from a peak-calling tool such as MACS2.</p>
+<p>Preparation of data which come from a peak-calling routine is fairly natural. This is because the data are reported as <span class="math inline">\(p\)</span>-values, where small values provide support for the presence of a peak, and the lack of a peak corresponds to &quot;null&quot; behavior. We walk through the data preparation used on the ChIP-seq data in the CLIMB manuscript, though we expect this approach to be more broadly applicable to data output from a peak-calling tool such as MACS2.</p>
 <p>First, we assume the user has chosed some peak-calling procedure, with output reported in a format such as ENCODE narrowPeak format, which contains information about <strong>the chromosome, start location, stop location, and <span class="math inline">\(-\log_{10}(p\)</span>-</strong>value) <strong>for the peak</strong>. Next, since the analysis will be across multiple conditions, one needs to align the peaks across the various conditions being analyzed. In our case, we merged overlapping peak locations with <code>bedtools merge</code>. For locations which had a peak in one condition, but lacked a peak in another, we used a <span class="math inline">\(-\log_{10}(p\)</span>-value) of 0 as a placeholder (this correponds to the not-statistically-significant <span class="math inline">\(p\)</span>-value of 1).</p>
-<p>As an example, let’s read in a 2-dimensional ChIP-seq dataset, where the peak regions have already been aligned with <code>bedtools</code>. We can see that this dataset consists of the typical BED format information (chromosome, start, stop), as well as the <span class="math inline">\(-\log_{10}(p\)</span>-values) for 2 conditions. We see that at row 3, there is a peak in condition 1 that is absent in condition 2, and the reverse is the case at row 6.</p>
+<p>As an example, let's read in a 2-dimensional ChIP-seq dataset, where the peak regions have already been aligned with <code>bedtools</code>. We can see that this dataset consists of the typical BED format information (chromosome, start, stop), as well as the <span class="math inline">\(-\log_{10}(p\)</span>-values) for 2 conditions. We see that at row 3, there is a peak in condition 1 that is absent in condition 2, and the reverse is the case at row 6.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pairwise_chip &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span class="st">&quot;data/toy_chip.tsv&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)
 <span class="kw">head</span>(pairwise_chip)</code></pre></div>
 <pre><code># A tibble: 6 x 5
@@ -978,7 +998,7 @@ TPMs &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span
 <li>Quantile normalize the data.</li>
 <li>Apply a location shift to the data such that the positive mode sits over 0.</li>
 </ol>
-<p>We apply step 4 so that the transformed data better adhere to CLIMB’s modeling assumptions. As it is only a location shift, it does not affect the associations between gene expression levels across conditions.</p>
+<p>We apply step 4 so that the transformed data better adhere to CLIMB's modeling assumptions. As it is only a location shift, it does not affect the associations between gene expression levels across conditions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
 <span class="kw">library</span>(modeest)
 
@@ -1246,7 +1266,7 @@ hillarykoch
 </div>
 <div id="by-quantile-transformation" class="section level4">
 <h4>By quantile transformation</h4>
-<p>A final, straightforward method to preprocessing RNA-seq data involves quantile transformation, just like with peak-calling data. This method has the advantage of being simple, while also assuring greater suitability of CLIMB’s assumption that data labeled 0 in some dimension marginally follow a <span class="math inline">\(Z\)</span>-score distribution (sometimes called the theoretical null). Let’s apply this method to the previously shown RNA-seq datasets.</p>
+<p>A final, straightforward method to preprocessing RNA-seq data involves quantile transformation, just like with peak-calling data. This method has the advantage of being simple, while also assuring greater suitability of CLIMB's assumption that data labeled 0 in some dimension marginally follow a <span class="math inline">\(Z\)</span>-score distribution (sometimes called the theoretical null). Let's apply this method to the previously shown RNA-seq datasets.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the normalized ranks (empirical CDF) which are uniformly distributed</span>
 <span class="co"># then apply the quantile function of the standard normal</span>
 
@@ -1314,7 +1334,7 @@ hillarykoch
 </table>
 </div>
 </div>
-<p>Using the normalized ranks and standard normal quantile transformation may cause a sort of “compressing” of the data. This is because ranking the data obscured distances between various clusters in the mixture. Then, when applying the typical pairwise fitting step, the cluster estimation may be sub-optimal. To resolve this, we suggest placing a lower bound on the absolute value of the class means for dimensions associated with some signal (i.e., -1 or 1), while allowing more flexibility in the estimation of the positive and negative means. It is important to note that such constraints only exist in the pairwise fitting step, and no longer pose any issue downstream.</p>
+<p>Using the normalized ranks and standard normal quantile transformation may cause a sort of &quot;compressing&quot; of the data. This is because ranking the data obscured distances between various clusters in the mixture. Then, when applying the typical pairwise fitting step, the cluster estimation may be sub-optimal. To resolve this, we suggest placing a lower bound on the absolute value of the class means for dimensions associated with some signal (i.e., -1 or 1), while allowing more flexibility in the estimation of the positive and negative means. It is important to note that such constraints only exist in the pairwise fitting step, and no longer pose any issue downstream.</p>
 <p>Here, we fit a pairwise model to the Zebrafish and pooled single cell datasets. We fit the model under three scenarios:</p>
 <ol style="list-style-type: decimal">
 <li>A model with no lower bound on the magnitude of the class means, which is also less flexible in estimation of positive and negative associations</li>
@@ -1364,6 +1384,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/194207230fb39f8d5e47c1bb44a77d0c57c1365f/docs/figure/preprocessing.Rmd/unnamed-chunk-11-1.png" target="_blank">1942072</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-05-03
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-11-1.png" target="_blank">41ecdb6</a>
@@ -1444,7 +1475,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
