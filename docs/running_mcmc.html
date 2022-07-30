@@ -540,9 +540,6 @@ The following chunks had caches available:
 <li>
 unnamed-chunk-3
 </li>
-<li>
-unnamed-chunk-6
-</li>
 </ul>
 <p>To ensure reproducibility of the results, delete the cache directory
 <code>running_mcmc_cache</code> and re-run the analysis. To have
@@ -570,15 +567,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreefc7424fa9a703c8e0b602a086dbcd165243a5a08targetblankfc7424fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree9dd8b503649f666fe6efebcf0157e8c1de5fd144targetblank9dd8b50a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/hillarykoch/climb_page/tree/fc7424fa9a703c8e0b602a086dbcd165243a5a08" target="_blank">fc7424f</a>
+<a href="https://github.com/hillarykoch/climb_page/tree/9dd8b503649f666fe6efebcf0157e8c1de5fd144" target="_blank">9dd8b50</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreefc7424fa9a703c8e0b602a086dbcd165243a5a08targetblankfc7424fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree9dd8b503649f666fe6efebcf0157e8c1de5fd144targetblank9dd8b50a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -588,7 +585,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/hillarykoch/climb_page/tree/fc7424fa9a703c8e0b602a086dbcd165243a5a08" target="_blank">fc7424f</a>.
+<a href="https://github.com/hillarykoch/climb_page/tree/9dd8b503649f666fe6efebcf0157e8c1de5fd144" target="_blank">9dd8b50</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -604,10 +601,10 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rproj.user/
+    Ignored:    analysis/running_mcmc_cache/
 
 Untracked files:
     Untracked:  .DS_Store
-    Untracked:  .gitignore
 
 Unstaged changes:
     Modified:   analysis/running_mcmc.Rmd
@@ -656,6 +653,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/21aa6784ccd96e70df2c981de74548175ddf0dca/analysis/running_mcmc.Rmd" target="_blank">21aa678</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+clear run mcmc cache
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/38dabc1cc8f163b95fae245c4df5a83ada8515e3/analysis/running_mcmc.Rmd" target="_blank">38dabc1</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+reformat gelman rubin part
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/38dabc1cc8f163b95fae245c4df5a83ada8515e3/docs/running_mcmc.html" target="_blank">38dabc1</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+reformat gelman rubin part
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -764,7 +812,7 @@ estimated hyperparameters.</p>
 <p>Now we are ready to launch an MCMC:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">1000</span>, <span class="at">retained_classes =</span> retained_classes)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">extract_chains</span>(results)</span></code></pre></div>
-<pre class="shell"><code>Running the MCMC...100%|████████████████████████████████| Time: 0:02:14</code></pre>
+<p><code>Running the MCMC...100%|████████████████████████████████| Time: 0:02:14</code></p>
 <p>The object <code>results</code> contains 3 objects:</p>
 <ol style="list-style-type: decimal">
 <li><p><code>chain</code>: the estimate parameters over the course of
@@ -783,56 +831,8 @@ use:</p>
 <p><code>out</code> will contain all the different chains from the MCMC.
 For example, you can check the MCMC trace plots. Here is the trace plot
 of the mean from the first cluster in the third dimension:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out<span class="sc">$</span>mu_chains[[<span class="dv">1</span>]][,<span class="dv">3</span>], <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;iteration&quot;</span>, <span class="at">ylab =</span> <span class="fu">expression</span>(mu[<span class="dv">3</span>]))</span></code></pre></div>
-<p><img src="figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
-Past versions of unnamed-chunk-5-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-5-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/fc7424fa9a703c8e0b602a086dbcd165243a5a08/docs/figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" target="_blank">fc7424f</a>
-</td>
-<td>
-Hillary Koch
-</td>
-<td>
-2022-07-30
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" target="_blank">c1e13d0</a>
-</td>
-<td>
-Hillary Koch
-</td>
-<td>
-2022-07-30
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out<span class="sc">$</span>mu_chains[[<span class="dv">1</span>]][,<span class="dv">3</span>], <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;iteration&quot;</span>, <span class="at">ylab =</span> <span class="fu">expression</span>(mu[<span class="dv">3</span>]))</span></code></pre></div>
+<p><img src="figure/running_mcmc.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>More specifically, <code>extract_chains()</code> returns a list with
 4 elements. First, recall that <code>M</code> is the number of input
 classes, <code>D</code> is the dimension of the data, and let
@@ -869,69 +869,37 @@ factors (PSRFs) for each parameter estimate. Ideally, each PSRF should
 be close to 1. Note that <code>calculate_gelmanRubin</code> returns NA
 for parameters associated with a 0 class label, since these parameters
 do not actually get sampled during MCMC.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run 3 replicate MCMC chains</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>results3 <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="sc">~</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">500</span>, <span class="at">retained_classes =</span> retained_classes))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>chain_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(results3, extract_chains)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>burnin_list <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>), <span class="fu">length</span>(chain_list))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate potential scale reduction factors for each parameter</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>PSRFs <span class="ot">&lt;-</span> <span class="fu">calculate_gelmanRubin</span>(chain_list, burnin_list)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(PSRFs)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run 3 replicate MCMC chains</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results3 <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="sc">~</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">1000</span>, <span class="at">retained_classes =</span> retained_classes))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>chain_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(results3, extract_chains)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>burnin_list <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>), <span class="fu">length</span>(chain_list))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate potential scale reduction factors for each parameter</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>PSRFs <span class="ot">&lt;-</span> <span class="fu">calculate_gelmanRubin</span>(chain_list, burnin_list)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(PSRFs)</span></code></pre></div>
 <pre><code>List of 3
- $ PSRF_mu   : num [1:13, 1:3] 1.06 1 1.02 NA NA ...
- $ PSRF_Sigma: num [1:3, 1:3, 1:13] 1.11 NA 1.12 NA NA ...
- $ PSRF_prop : num [1:13] 1.06 1 1.02 1 1.02 ...</code></pre>
+ $ PSRF_mu   : num [1:13, 1:3] 1 1.01 1 NA NA ...
+ $ PSRF_Sigma: num [1:3, 1:3, 1:13] 1.1 NA 1.06 NA NA ...
+ $ PSRF_prop : num [1:13] 1.01 1.01 1 1 1.03 ...</code></pre>
 <p>Below we plot histograms of the PSRFs for each parameter. Even after
 running these chains for a short time, we already have achieved good
 convergence properties. Unsurprisingly, cluster mean and proportion
 estimates converge faster than the covariance parameters. In practice,
 for larger and more complex datasets, chains will need to be run for
 longer than what was done here.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(PSRFs, <span class="sc">~</span> <span class="fu">as.vector</span>(.x) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             magrittr<span class="sc">::</span><span class="fu">extract</span>(<span class="sc">!</span><span class="fu">is.na</span>(.))) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">iwalk</span>(<span class="sc">~</span><span class="fu">hist</span>(.x, <span class="at">xlab =</span> <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&quot;_&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot; &quot;</span>, .y), <span class="at">main =</span> <span class="st">&quot;&quot;</span>))</span></code></pre></div>
-<p><img src="figure/running_mcmc.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
-Past versions of unnamed-chunk-7-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-7-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/fc7424fa9a703c8e0b602a086dbcd165243a5a08/docs/figure/running_mcmc.Rmd/unnamed-chunk-7-1.png" target="_blank">fc7424f</a>
-</td>
-<td>
-Hillary Koch
-</td>
-<td>
-2022-07-30
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(PSRFs, <span class="sc">~</span> <span class="fu">as.vector</span>(.x) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>             magrittr<span class="sc">::</span><span class="fu">extract</span>(<span class="sc">!</span><span class="fu">is.na</span>(.))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">imap_dfr</span>( <span class="sc">~</span> <span class="fu">data.frame</span>(<span class="at">parameter =</span> .y, <span class="at">PSRF =</span> .x)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PSRF)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>parameter, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">.cols =</span> <span class="sc">~</span>  <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&quot;PSRF_&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>, .x))) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="figure/running_mcmc.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 
 
