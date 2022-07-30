@@ -13,17 +13,27 @@
 
 <title>Computing prior hyperparameters</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -32,44 +42,89 @@ div.section {
 </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #cccccc; background-color: #303030; }
-code > span.kw { color: #f0dfaf; } /* Keyword */
-code > span.dt { color: #dfdfbf; } /* DataType */
-code > span.dv { color: #dcdccc; } /* DecVal */
-code > span.bn { color: #dca3a3; } /* BaseN */
-code > span.fl { color: #c0bed1; } /* Float */
-code > span.ch { color: #dca3a3; } /* Char */
-code > span.st { color: #cc9393; } /* String */
-code > span.co { color: #7f9f7f; } /* Comment */
-code > span.ot { color: #efef8f; } /* Other */
-code > span.al { color: #ffcfaf; } /* Alert */
-code > span.fu { color: #efef8f; } /* Function */
-code > span.er { color: #c3bf9f; } /* Error */
-code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
-code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-code > span.sc { color: #dca3a3; } /* SpecialChar */
-code > span.vs { color: #cc9393; } /* VerbatimString */
-code > span.ss { color: #cc9393; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { } /* Variable */
-code > span.cf { color: #f0dfaf; } /* ControlFlow */
-code > span.op { color: #f0efd0; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-code > span.at { } /* Attribute */
-code > span.do { color: #7f9f7f; } /* Documentation */
-code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 
 </style>
 <script>
@@ -93,39 +148,9 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -135,10 +160,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -155,40 +176,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -216,7 +213,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -228,7 +225,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -239,10 +236,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -254,7 +264,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -321,7 +330,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -337,7 +346,7 @@ $(document).ready(function () {
   <a href="preprocessing.html">Pre-processing input data</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Four-step procedure
      
     <span class="caret"></span>
@@ -377,7 +386,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -388,7 +397,9 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -397,7 +408,9 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -406,17 +419,27 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-10-15
+<strong>Last updated:</strong> 2022-07-30
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
 </p>
 <p>
-<strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>workflowr/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -425,108 +448,173 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
 <div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it's best to always run the code in an empty environment.</p>
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190717code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20190717)</code> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190717code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20190717)</code> </a>
 </p>
 </div>
-<div id="strongSeedstrongcodesetseed20190717code" class="panel-collapse collapse">
+<div id="strongSeedstrongcodesetseed20190717code"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20190717)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20190717)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongunavailable"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Session information:</strong> unavailable </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongunavailable">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>Session information:</strong>
+unavailable </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongunavailable" class="panel-collapse collapse">
+<div id="strongSessioninformationstrongunavailable"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Recording the operating system, R version, and package versions is critical for reproducibility. To record the session information, add <code>sessioninfo: &quot;sessionInfo()&quot;</code> to _workflowr.yml. Alternatively, you could use <code>devtools::session_info()</code> or <code>sessioninfo::session_info()</code>. Lastly, you can manually add a code chunk to this file to run any one of these commands and then disable to automatic insertion by changing the workflowr setting to <code>sessioninfo: &quot;&quot;</code>.</p>
+<p>Recording the operating system, R version, and package versions is
+critical for reproducibility. To record the session information, add
+<code>sessioninfo: “sessionInfo()”</code> to _workflowr.yml.
+Alternatively, you could use <code>devtools::session_info()</code> or
+<code>sessioninfo::session_info()</code>. Lastly, you can manually add a
+code chunk to this file to run any one of these commands and then
+disable to automatic insertion by changing the workflowr setting to
+<code>sessioninfo: ““</code>.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
 <div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
 <div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree545f48d0833617a28fcb68f5763b9631ad4b08b2targetblank545f48da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/545f48d0833617a28fcb68f5763b9631ad4b08b2" target="_blank">545f48d</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1bf19d4307db3a11a891e92afa4921ccd5cc9cbtargetblankf1bf19da">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/hillarykoch/climb_page/tree/f1bf19d4307db3a11a891e92afa4921ccd5cc9cb" target="_blank">f1bf19d</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree545f48d0833617a28fcb68f5763b9631ad4b08b2targetblank545f48da" class="panel-collapse collapse">
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1bf19d4307db3a11a891e92afa4921ccd5cc9cbtargetblankf1bf19da"
+class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/545f48d0833617a28fcb68f5763b9631ad4b08b2" target="_blank">545f48d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version
+<a href="https://github.com/hillarykoch/climb_page/tree/f1bf19d4307db3a11a891e92afa4921ccd5cc9cb" target="_blank">f1bf19d</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
 </p>
 <p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/.DS_Store
-    Ignored:    analysis/.Rhistory
-    Ignored:    analysis/pairwise_fitting_cache/
-    Ignored:    analysis/preprocessing_cache/
-    Ignored:    data/.DS_Store
-    Ignored:    data/.Rhistory
-    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  .DS_Store
+    Untracked:  .gitignore
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.RData
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.rdb
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.rdx
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.RData
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.rdb
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.rdx
+
+Unstaged changes:
+    Modified:   analysis/running_mcmc.Rmd
+    Modified:   analysis/running_mcmc_cache/html/__globals
+    Modified:   analysis/running_mcmc_cache/html/__objects
+    Modified:   analysis/running_mcmc_cache/html/__packages
+    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.RData
+    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.rdb
+    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.rdx
 
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
 </p>
 </div>
 </div>
@@ -537,7 +625,11 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in th
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/priors.Rmd</code>) and HTML (<code>docs/priors.html</code>) files. If you've configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/priors.Rmd</code>) and HTML
+(<code>docs/priors.html</code>) files. If you’ve configured a remote Git
+repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
+in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -566,84 +658,16 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/545f48d0833617a28fcb68f5763b9631ad4b08b2/analysis/priors.Rmd" target="_blank">545f48d</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1bf19d4307db3a11a891e92afa4921ccd5cc9cb/analysis/priors.Rmd" target="_blank">f1bf19d</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-07-12
+2022-07-30
 </td>
 <td>
-fix typo in choosing delta section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/545f48d0833617a28fcb68f5763b9631ad4b08b2/docs/priors.html" target="_blank">545f48d</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-07-12
-</td>
-<td>
-fix typo in choosing delta section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/docs/priors.html" target="_blank">cc98d2b</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-24
-</td>
-<td>
-replace cache and update to describe flex_mu
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/priors.html" target="_blank">828e725</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
-</td>
-<td>
-add a preprocessing section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c5fd6fcb20e5913288cd75965141bc2b853ed5a5/docs/priors.html" target="_blank">c5fd6fc</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
-</td>
-<td>
-change nav bar to accomodate a menu
+minor text chanegs
 </td>
 </tr>
 <tr>
@@ -651,33 +675,16 @@ change nav bar to accomodate a menu
 Rmd
 </td>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41e870eb7abc966503d0cc14e63fa55ead5714d2/analysis/priors.Rmd" target="_blank">41e870e</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/analysis/priors.Rmd" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-03-29
+2022-07-30
 </td>
 <td>
-fix bug in getting prior weights
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/41e870eb7abc966503d0cc14e63fa55ead5714d2/docs/priors.html" target="_blank">41e870e</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-03-29
-</td>
-<td>
-fix bug in getting prior weights
+working with new computer
 </td>
 </tr>
 <tr>
@@ -685,781 +692,16 @@ fix bug in getting prior weights
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/5d5c3dd6d41cf77f2d95dc36ccf80aafb9edcda9/docs/priors.html" target="_blank">5d5c3dd</a>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/priors.html" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-03-07
+2022-07-30
 </td>
 <td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/7c423454bd7567fbad70ae2d7476da6097a9cd54/docs/priors.html" target="_blank">7c42345</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-02-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2a5b7c0bb84771db7dd85302094054e998efe3bd/docs/priors.html" target="_blank">2a5b7c0</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-02-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/3a9bf9d9df764de4e8e6d1f96b8804bd0a37bd63/docs/priors.html" target="_blank">3a9bf9d</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-02-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/72e6fec159f57206ca5626a145e38a252eb1aa24/docs/priors.html" target="_blank">72e6fec</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-02-20
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/862bc020269581307b908bf1cecc5a084df76352/analysis/priors.Rmd" target="_blank">862bc02</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-02-07
-</td>
-<td>
-big updates for mcmc processors
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/862bc020269581307b908bf1cecc5a084df76352/docs/priors.html" target="_blank">862bc02</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-02-07
-</td>
-<td>
-big updates for mcmc processors
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8b3e55676721b78e0a86e24bf1e7290093533dd2/docs/priors.html" target="_blank">8b3e556</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-12-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/39383ac9a8503b078f7e20fadc852a618e31820c/docs/priors.html" target="_blank">39383ac</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-12-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/645d4086a8963dc00bf52ba1112b858d74fadc41/analysis/priors.Rmd" target="_blank">645d408</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-12-03
-</td>
-<td>
-workflowr::wflow_publish(files = &quot;*&quot;)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e467a514b21ab37f8e14b42b4519daa27a8a4ca4/docs/priors.html" target="_blank">e467a51</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-08-16
-</td>
-<td>
-different shiny location
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/d58e1a6bf2175fcda383137e324380ec24a4445f/docs/priors.html" target="_blank">d58e1a6</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-08-16
-</td>
-<td>
-resource data
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/38fb1c0ff8ca8636c8ee3201a961d3681567f703/docs/priors.html" target="_blank">38fb1c0</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-08-16
-</td>
-<td>
-edit shiny
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/56e3d810510e9b2d61a672f198a3c8bc1f30e2e2/docs/priors.html" target="_blank">56e3d81</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-add hamming
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/c87184fe90a5a9deb6c23349e27b0a3d3e1c4036/analysis/priors.Rmd" target="_blank">c87184f</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-add hamming
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c87184fe90a5a9deb6c23349e27b0a3d3e1c4036/docs/priors.html" target="_blank">c87184f</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-add hamming
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/d712ef9a77eb77e93a5fcf26541acde109c2537f/docs/priors.html" target="_blank">d712ef9</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-add hamming
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/3a118c56b818f13a47338257785c58c0d134950e/docs/priors.html" target="_blank">3a118c5</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-add hamming
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/e15a4f01a9f47fda2d31c5ddc6c46195333f5e9f/analysis/priors.Rmd" target="_blank">e15a4f0</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-add hamming
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e15a4f01a9f47fda2d31c5ddc6c46195333f5e9f/docs/priors.html" target="_blank">e15a4f0</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-add hamming
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/499135617e42e2651714ac18b0a11d3a9b4f6eca/analysis/priors.Rmd" target="_blank">4991356</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-updat mcmc section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/499135617e42e2651714ac18b0a11d3a9b4f6eca/docs/priors.html" target="_blank">4991356</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-18
-</td>
-<td>
-updat mcmc section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a20df35eb1481e88c75a22f3450e217635e303bb/docs/priors.html" target="_blank">a20df35</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-fix link
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/963d8883572a2e8c5210a3547637f47dc82b7244/analysis/priors.Rmd" target="_blank">963d888</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-fix link
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/228123de56534aad2ac1114a2a067c1731cedff3/analysis/priors.Rmd" target="_blank">228123d</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update up to obtaining the hyperparameters
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/228123de56534aad2ac1114a2a067c1731cedff3/docs/priors.html" target="_blank">228123d</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update up to obtaining the hyperparameters
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1dc0c1e2ba9307c2168f1069dbb0de8222086d0/docs/priors.html" target="_blank">c1dc0c1</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update up to obtaining the hyperparameters
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/7f8434c970518b6319d6dfedeff11212706d4ac2/analysis/priors.Rmd" target="_blank">7f8434c</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update up to obtaining the hyperparameters
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/7f8434c970518b6319d6dfedeff11212706d4ac2/docs/priors.html" target="_blank">7f8434c</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update up to obtaining the hyperparameters
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/674120cd108f2262dd3d3ed4493cd8d4100bdb7b/docs/priors.html" target="_blank">674120c</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/e67a3a28787c38cf04c0e08b908a4c2a3e8c27b4/analysis/priors.Rmd" target="_blank">e67a3a2</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e67a3a28787c38cf04c0e08b908a4c2a3e8c27b4/docs/priors.html" target="_blank">e67a3a2</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/2faf4465c6a64ca0049932f56226e38efc75a361/analysis/priors.Rmd" target="_blank">2faf446</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2faf4465c6a64ca0049932f56226e38efc75a361/docs/priors.html" target="_blank">2faf446</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/8278253d213389a555ac03c54b0ff25a9b56a8ab/analysis/priors.Rmd" target="_blank">8278253</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8278253d213389a555ac03c54b0ff25a9b56a8ab/docs/priors.html" target="_blank">8278253</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2177dfade8b568f6e7babadd62a0d32c7c618ee5/docs/priors.html" target="_blank">2177dfa</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/8b30694043c8ea360a657d01fdc1dafe0f6adf67/analysis/priors.Rmd" target="_blank">8b30694</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8b30694043c8ea360a657d01fdc1dafe0f6adf67/docs/priors.html" target="_blank">8b30694</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e36b267d69f39269bcc6509be9cec996c5d741bf/docs/priors.html" target="_blank">e36b267</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a991668a59fcc2c321aecb4a4113e8e0fc38c756/docs/priors.html" target="_blank">a991668</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a36d893c3a4a10ec105b926ac1768cbb9ec4e552/docs/priors.html" target="_blank">a36d893</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e8e54b7a86b7c32f86c474241061e5e05985a73e/docs/priors.html" target="_blank">e8e54b7</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/f47c013cacadfa3c2ed3d4ee5466033c5cf316b6/docs/priors.html" target="_blank">f47c013</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-update about page
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/analysis/priors.Rmd" target="_blank">50cf23e</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-make skeleton
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/docs/priors.html" target="_blank">50cf23e</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-<td>
-make skeleton
+working with new computer
 </td>
 </tr>
 </tbody>
@@ -1469,178 +711,147 @@ make skeleton
 </div>
 </div>
 </div>
-<div id="special-considerations-this-portion-is-highly-parallelizable---" class="section level3">
-<h3><i><b><span style="color:salmon">---Special considerations: this portion is highly parallelizable---</span></b></i></h3>
-<p>We are now just about ready to set up our MCMC. First, we need to determine the hyperparameters in the priors of our Gaussian mixture. These are all calculated in an empirical Bayesian manner -- that is, we can recycle information from the pairwise fits to inform our priors in the full-information mixture. This task can be split into 2 sub-tasks:</p>
+<div id="special-considerations-this-portion-is-highly-parallelizable"
+class="section level3">
+<h3><i><b><span style="color:salmon">—Special considerations: this
+portion is highly parallelizable—</span></b></i></h3>
+<p>We are now just about ready to set up our MCMC. First, we need to
+determine the hyperparameters in the priors of our Gaussian mixture.
+These are all calculated in an empirical Bayesian manner – that is, we
+can recycle information from the pairwise fits to inform our priors in
+the full-information mixture. This task can be split into 2
+sub-tasks:</p>
 <ol style="list-style-type: decimal">
-<li><p>computing the prior hyperparameters for the cluster mixing weights</p></li>
+<li><p>computing the prior hyperparameters for the cluster mixing
+weights</p></li>
 <li><p>computing every other hyperparameter</p></li>
 </ol>
-<p>The former is the most essential, as it helps us remove more candidate latent classes, ensuring that the number of clusters is fewer than the number of observations. <strong>An important note</strong>: this is the <em>only</em> step of CLIMB that requires some sort of human intervention, but it does need to happen. A threshold, called <span class="math inline">\(\delta\)</span> in the manuscript, determines how strict one is about including classes in the final model. <span class="math inline">\(\delta\in\{0,1,\ldots,\binom{D}{2}\}\)</span>. We will get into selecting <span class="math inline">\(\delta\)</span> shortly.</p>
-<p>To get the prior weights on each candidate latent class, use the function <code>get_prior_weights()</code>. This function defaults to the settings used in the CLIMB manuscript. The user can specify:</p>
+<p>The former is the most essential, as it helps us remove more
+candidate latent classes, ensuring that the number of clusters is fewer
+than the number of observations. <strong>An important note</strong>:
+this is the <em>only</em> step of CLIMB that requires some sort of human
+intervention, but it does need to happen. A threshold, called <span
+class="math inline">\(\delta\)</span> in the manuscript, determines how
+strict one is about including classes in the final model. <span
+class="math inline">\(\delta\in\{0,1,\ldots,\binom{D}{2}\}\)</span>. We
+will get into selecting <span class="math inline">\(\delta\)</span>
+shortly.</p>
+<p>To get the prior weights on each candidate latent class, use the
+function <code>get_prior_weights()</code>. This function defaults to the
+settings used in the CLIMB manuscript. The user can specify:</p>
 <ol style="list-style-type: decimal">
-<li><p><code>reduced_classes</code>: the matrix of candidate latent classes generated by <code>get_reduced_classes()</code></p></li>
-<li><p><code>fits</code>: the list of pairwise fits generated by <code>get_pairwise_fits()</code></p></li>
-<li><p><code>parallel</code>: logical specifying if the analysis should be run in parallel (defaults to FALSE)</p></li>
-<li><p><code>ncores</code>: if in parallel, how many cores to use. Defaults to 20.</p></li>
-<li><p><code>delta</code>: this is the range of thresholds to try, but it will defaults to a sequence of all possible thresholds.</p></li>
+<li><p><code>reduced_classes</code>: the matrix of candidate latent
+classes generated by <code>get_reduced_classes()</code></p></li>
+<li><p><code>fits</code>: the list of pairwise fits generated by
+<code>get_pairwise_fits()</code></p></li>
+<li><p><code>parallel</code>: logical specifying if the analysis should
+be run in parallel (defaults to FALSE)</p></li>
+<li><p><code>ncores</code>: if in parallel, how many cores to use.
+Defaults to 20.</p></li>
+<li><p><code>delta</code>: this is the range of thresholds to try, but
+it will defaults to a sequence of all possible thresholds.</p></li>
 </ol>
-<p><strong>NB:</strong> while parallelization is always available here, it is not always necessary. Speed of this portion depends on sample size, dimension, and the number of candidate latent classes (in <code>reduced_classes</code>).</p>
+<p><strong>NB:</strong> while parallelization is always available here,
+it is not always necessary. Speed of this portion depends on sample
+size, dimension, and the number of candidate latent classes (in
+<code>reduced_classes</code>).</p>
 <p>Now, we are ready to compute the prior weights.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read in the candidate latent classes produced in the last step</span>
-reduced_classes &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span class="st">&quot;output/red_class.txt&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)
-
-<span class="co"># load in the pairwise fits from the first step</span>
-<span class="co"># (in this example case, I am simply loading the data from the package)</span>
-<span class="kw">data</span>(<span class="st">&quot;fits&quot;</span>)
-
-<span class="co"># Compute the prior weights</span>
-prior_weights &lt;-<span class="st"> </span><span class="kw">get_prior_weights</span>(reduced_classes, fits, <span class="dt">parallel =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><code>prior_weights</code> is a list of vectors. Each vector corresponds to the computed prior weights for a given value of <span class="math inline">\(\delta\)</span>. Here, <code>prior_weights[[j]]</code> corresponds to the prior weights when <span class="math inline">\(\delta = j-1\)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the candidate latent classes produced in the last step</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>reduced_classes <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;output/red_class.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load in the pairwise fits from the first step</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (in this example case, I am simply loading the data from the package)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;fits&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the prior weights</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>prior_weights <span class="ot">&lt;-</span> <span class="fu">get_prior_weights</span>(reduced_classes, fits, <span class="at">parallel =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><code>prior_weights</code> is a list of vectors. Each vector
+corresponds to the computed prior weights for a given value of <span
+class="math inline">\(\delta\)</span>. Here,
+<code>prior_weights[[j]]</code> corresponds to the prior weights when
+<span class="math inline">\(\delta = j-1\)</span>.</p>
 </div>
-<div id="here-comes-the-human-intervention" class="section level3">
-<h3><i><b><span style="color:salmon">Here comes the human intervention</span></b></i></h3>
-<p>We can plot how the number of latent classes included in the final model changes as we relax <span class="math inline">\(\delta\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is just grabbing the sample size and dimension</span>
-n &lt;-<span class="st"> </span><span class="kw">length</span>(fits[[<span class="dv">1</span>]]$cluster)
-D &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">strsplit</span>(<span class="kw">tail</span>(<span class="kw">names</span>(fits),<span class="dv">1</span>), <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])
-
-<span class="co"># to avoid degenerate distributions, we will only keep clusters such that the prior</span>
-<span class="co"># weight times the sample size is greater than the dimension.</span>
-<span class="kw">plot</span>(
-    <span class="dv">0</span>:<span class="kw">choose</span>(D,<span class="dv">2</span>),
-    <span class="kw">sapply</span>(prior_weights, function(X)
-    <span class="kw">sum</span>(X *<span class="st"> </span>n &gt;<span class="st"> </span>D)),
-    <span class="dt">ylab =</span> <span class="st">&quot;number of retained classes&quot;</span>,
-    <span class="dt">xlab =</span>  <span class="kw">expression</span>(delta))</code></pre></div>
-<p><img src="figure/priors.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-1">
-Past versions of unnamed-chunk-2-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-2-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41e870eb7abc966503d0cc14e63fa55ead5714d2/docs/figure/priors.Rmd/unnamed-chunk-2-1.png" target="_blank">41e870e</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-03-29
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/39383ac9a8503b078f7e20fadc852a618e31820c/docs/figure/priors.Rmd/unnamed-chunk-2-1.png" target="_blank">39383ac</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-12-03
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/38fb1c0ff8ca8636c8ee3201a961d3681567f703/docs/figure/priors.Rmd/unnamed-chunk-2-1.png" target="_blank">38fb1c0</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-08-16
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/550fb1eb4a15c82fbaade60cbab5ed943efb9f3a/docs/figure/priors.Rmd/unnamed-chunk-2-1.png" target="_blank">550fb1e</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-08-16
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/e67a3a28787c38cf04c0e08b908a4c2a3e8c27b4/docs/figure/priors.Rmd/unnamed-chunk-2-1.png" target="_blank">e67a3a2</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2019-07-17
-</td>
-</tr>
-</tbody>
-</table>
+<div id="here-requires-the-human-intervention" class="section level3">
+<h3><i><b><span style="color:salmon">Here requires the human
+intervention</span></b></i></h3>
+<p>We can plot how the number of latent classes included in the final
+model changes as we relax <span
+class="math inline">\(\delta\)</span>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is just grabbing the sample size and dimension</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(fits[[<span class="dv">1</span>]]<span class="sc">$</span>cluster)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">strsplit</span>(<span class="fu">tail</span>(<span class="fu">names</span>(fits),<span class="dv">1</span>), <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># to avoid degenerate distributions, we will only keep clusters such that the prior</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># weight times the sample size is greater than the dimension.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span><span class="sc">:</span><span class="fu">choose</span>(D,<span class="dv">2</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sapply</span>(prior_weights, <span class="cf">function</span>(X)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(X <span class="sc">*</span> n <span class="sc">&gt;</span> D)),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;number of retained classes&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span>  <span class="fu">expression</span>(delta))</span></code></pre></div>
+<p><img src="figure/priors.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This toy example is much cleaner than a real data set, but typically
+we expect to see that, as we relax <span
+class="math inline">\(\delta\)</span> away from 0, more classes are
+included in the final model. We have not identified a <em>uniformly
+best</em> way to select <span class="math inline">\(\delta\)</span>; a
+decent rule of thumb has simply been to include as many classes as one
+can while retaining computational feasibility, and selecting the
+<em>smallest</em> value of <span class="math inline">\(\delta\)</span>
+that gives this result. In this toy example, we might as well retain all
+classes, and thus select the prior weights corresponding to <span
+class="math inline">\(\delta = 1\)</span>. Let’s store that in the
+variable <code>p</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select out prior weights for delta = 1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> prior_weights[[<span class="dv">2</span>]]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out classes which have too small of a prior weight</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (In this toy example, we actually retain everything,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   but this is not typical for higher-dimensional/empirical analyses)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>retained_classes <span class="ot">&lt;-</span> reduced_classes[p <span class="sc">*</span> n <span class="sc">&gt;</span> D, ]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p[p <span class="sc">*</span> n <span class="sc">&gt;</span> D,]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># save the retained classes for downstream analysis</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_tsv</span>(retained_classes, <span class="at">file =</span> <span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
-</div>
-<p>This toy example is much cleaner than a real data set, but typically we expect to see that, as we relax <span class="math inline">\(\delta\)</span> away from 0, more classes are included in the final model. We have not identified a <em>uniformly best</em> way to select <span class="math inline">\(\delta\)</span>; a decent rule of thumb has simply been to include as many classes as one can while retaining computational feasibility, and selecting the <em>smallest</em> value of <span class="math inline">\(\delta\)</span> that gives this result. In this toy example, we might as well retain all classes, and thus select the prior weights corresponding to <span class="math inline">\(\delta = 1\)</span>. Let's store that in the variable <code>p</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select out prior weights for delta = 1</span>
-p &lt;-<span class="st"> </span>prior_weights[[<span class="dv">2</span>]]
-
-<span class="co"># Filter out classes which have too small of a prior weight</span>
-<span class="co"># (In this toy example, we actually retain everything,</span>
-<span class="co">#   but this is not typical for higher-dimensional/empirical analyses)</span>
-retained_classes &lt;-<span class="st"> </span>reduced_classes[p *<span class="st"> </span>n &gt;<span class="st"> </span>D, ]</code></pre></div>
-<pre><code>Warning: The `i` argument of ``[`()` can&#39;t be a matrix as of tibble 3.0.0.
-Convert to a vector.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>p[p *<span class="st"> </span>n &gt;<span class="st"> </span>D,]
-
-<span class="co"># save the retained classes for downstream analysis</span>
-readr::<span class="kw">write_tsv</span>(retained_classes, <span class="dt">path =</span> <span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</code></pre></div>
-</div>
-<div id="obtaining-the-remaining-hyperparameters" class="section level3">
+<div id="obtaining-the-remaining-hyperparameters"
+class="section level3">
 <h3>Obtaining the remaining hyperparameters</h3>
-<p>Now that the human intervention is over, the rest is simple. Just use the function <code>get_hyperparameters()</code> to compute empirical estimates of the remaining prior hyperparameters.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load the data back in</span>
-<span class="kw">data</span>(<span class="st">&quot;sim&quot;</span>)
-
-<span class="co"># obtain the hyperparameters</span>
-hyp &lt;-<span class="st"> </span><span class="kw">get_hyperparameters</span>(sim$data, fits, retained_classes, p)
-
-<span class="co"># view the output</span>
-<span class="kw">str</span>(hyp)</code></pre></div>
+<p>Now that the human intervention is over, the rest is simple. Just use
+the function <code>get_hyperparameters()</code> to compute empirical
+estimates of the remaining prior hyperparameters.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data back in</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;sim&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># obtain the hyperparameters</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>hyp <span class="ot">&lt;-</span> <span class="fu">get_hyperparameters</span>(sim<span class="sc">$</span>data, fits, retained_classes, p)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># view the output</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(hyp)</span></code></pre></div>
 <pre><code>List of 4
  $ Psi0  : num [1:3, 1:3, 1:13] 0.816 0 0.488 0 1 ...
  $ mu0   : num [1:13, 1:3] 2.68 2.68 2.68 0 0 ...
  $ alpha : num [1:13] 0.101 0.1403 0.0207 0.0988 0.0502 ...
  $ kappa0: num [1:13] 151 210 31 148 75 178 166 110 46 136 ...</code></pre>
-<p><code>hyp$kappa0</code> controls the informativity of the priors. To reduce informativity, one can make the elements of <code>kappa0</code> smaller (but still larger than <span class="math inline">\(D\)</span>!). For example, you could use something like <code>hyp$kappa0 &lt;- rep(10, D)</code>, instead of the automatic choice (proportional to <code>hyp$alpha</code>) which is returned from the <code>get_hyperparameters</code> function.</p>
-<p>We can save these hyperparameters for the next step in the analysis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(hyp, <span class="dt">file =</span> <span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)</code></pre></div>
-<p>After all that work, <strong><em>we have a model to describe our data</em></strong>, and are ready to <a href="running_mcmc.html">run the MCMC</a>.</p>
-<p><i><b><span style="color:salmon">A note on relaxing <span class="math inline">\(\delta\)</span></span></b></i>: In particularly challenging/high-dimensional problems, relaxing <span class="math inline">\(\delta\)</span> can start to introduce chunks of classes that look very similar to one another, causing bloat in the candidate latent classes. If <code>reduced_classes</code> contains too many classes--say, in the hundreds of thousands--one can consider the following <em>heuristic</em> before running <code>get_prior_weights()</code>. The function <code>reduce_by_hamming()</code> filters out some classes that are too similar to one another (that is, within a given hamming distance to some other class). This computational advantage comes at the risk of loss of information due to stochasticity/heuristics. However, if certain canonical classes are in <code>reduced_classes</code> (the all 1 class, all 0 class, and all -1 class), you can force them to remain after applying <code>reduce_by_hamming()</code>.</p>
-<p>The function can be applied as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reduced_by_hamming_classes &lt;-<span class="st"> </span><span class="kw">reduce_by_hamming</span>(reduced_classes, <span class="dt">hamming_tol =</span> <span class="dv">2</span>)</code></pre></div>
+<p><code>hyp$kappa0</code> controls the informativity of the priors. To
+reduce informativity, one can make the elements of <code>kappa0</code>
+smaller (but still larger than <span class="math inline">\(D\)</span>!).
+For example, you could use something like
+<code>hyp$kappa0 &lt;- rep(10, D)</code>, instead of the automatic
+choice (proportional to <code>hyp$alpha</code>) which is returned from
+the <code>get_hyperparameters</code> function.</p>
+<p>We can save these hyperparameters for the next step in the
+analysis:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(hyp, <span class="at">file =</span> <span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)</span></code></pre></div>
+<p>After all that work, <strong><em>we have a model to describe our
+data</em></strong>, and are ready to <a href="running_mcmc.html">run the
+MCMC</a>.</p>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
@@ -1652,13 +863,15 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+
+
 </div>
 
 <script>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1676,7 +889,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

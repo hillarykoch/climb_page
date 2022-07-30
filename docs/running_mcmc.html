@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -316,6 +319,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -323,6 +389,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -423,7 +499,7 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 3
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span> 3
 </p>
@@ -445,6 +521,27 @@ versions</em> tab lists the development history.
 </div>
 <div id="checks" class="tab-pane fade">
 <div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
@@ -519,6 +616,9 @@ The following chunks had caches available:
 <li>
 unnamed-chunk-3
 </li>
+<li>
+unnamed-chunk-6
+</li>
 </ul>
 <p>To ensure reproducibility of the results, delete the cache directory
 <code>running_mcmc_cache</code> and re-run the analysis. To have
@@ -546,18 +646,67 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongnoversioncontrol">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>Repository version:</strong> no
-version control </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1bf19d4307db3a11a891e92afa4921ccd5cc9cbtargetblankf1bf19da">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/hillarykoch/climb_page/tree/f1bf19d4307db3a11a891e92afa4921ccd5cc9cb" target="_blank">f1bf19d</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongnoversioncontrol"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1bf19d4307db3a11a891e92afa4921ccd5cc9cbtargetblankf1bf19da"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Tracking code development and connecting the code version to the
-results is critical for reproducibility. To start using Git, open the
-Terminal and type <code>git init</code> in your project directory.</p>
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/hillarykoch/climb_page/tree/f1bf19d4307db3a11a891e92afa4921ccd5cc9cb" target="_blank">f1bf19d</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  .DS_Store
+    Untracked:  .gitignore
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.RData
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.rdb
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.rdx
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.RData
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.rdb
+    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.rdx
+
+Unstaged changes:
+    Modified:   analysis/running_mcmc.Rmd
+    Modified:   analysis/running_mcmc_cache/html/__globals
+    Modified:   analysis/running_mcmc_cache/html/__objects
+    Modified:   analysis/running_mcmc_cache/html/__packages
+    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.RData
+    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.rdb
+    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.rdx
+    Modified:   output/hyperparameters.Rdata
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
 </div>
 </div>
 </div>
@@ -565,11 +714,74 @@ Terminal and type <code>git init</code> in your project directory.</p>
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-This project is not being versioned with Git. To obtain the full
-reproducibility benefits of using workflowr, please see
-<code>?wflow_start</code>.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/running_mcmc.Rmd</code>) and HTML
+(<code>docs/running_mcmc.html</code>) files. If you’ve configured a
+remote Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/analysis/running_mcmc.Rmd" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+working with new computer
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/running_mcmc.html" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+working with new computer
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -605,7 +817,7 @@ estimated hyperparameters.</p>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>retained_classes <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Now we are ready to launch an MCMC:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span>  hyp, <span class="at">nstep =</span> <span class="dv">1000</span>, <span class="at">retained_classes =</span> retained_classes)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">1000</span>, <span class="at">retained_classes =</span> retained_classes)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">extract_chains</span>(results)</span></code></pre></div>
 <pre class="shell"><code>Running the MCMC...100%|████████████████████████████████| Time: 0:02:14</code></pre>
 <p>The object <code>results</code> contains 3 objects:</p>
@@ -628,6 +840,43 @@ For example, you can check the MCMC trace plots. Here is the trace plot
 of the mean from the first cluster in the third dimension:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out<span class="sc">$</span>mu_chains[[<span class="dv">1</span>]][,<span class="dv">3</span>], <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;iteration&quot;</span>, <span class="at">ylab =</span> <span class="fu">expression</span>(mu[<span class="dv">3</span>]))</span></code></pre></div>
 <p><img src="figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>More specifically, <code>extract_chains()</code> returns a list with
 4 elements. First, recall that <code>M</code> is the number of input
 classes, <code>D</code> is the dimension of the data, and let
@@ -653,6 +902,44 @@ of <code>retained_classes</code> (above).</p></li>
 <p>These posterior samples can be used for many <a
 href="downstream.html">downstream analyses</a>.</p>
 </div>
+<div id="multiple-parallel-chains-for-assessing-convergence"
+class="section level3">
+<h3>Multiple parallel chains for assessing convergence</h3>
+<p>In addition to viewing trace plots, one could run multiple parallel
+MCMC chains in order to assess convergence quantitatively via the
+Gelman-Rubin convergence diagnostic. The code below replicates the
+previous MCMC 3 times, and calculates the potential scale reduction
+factors (PSRFs) for each parameter estimate. Ideally, each PSRF should
+be close to 1. Note that <code>calculate_gelmanRubin</code> returns NA
+for parameters associated with a 0 class label, since these parameters
+do not actually get sampled during MCMC.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run 3 replicate MCMC chains</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>results3 <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="sc">~</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">500</span>, <span class="at">retained_classes =</span> retained_classes))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>chain_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(results3, extract_chains)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>burnin_list <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>), <span class="fu">length</span>(chain_list))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate potential scale reduction factors for each parameter</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>PSRFs <span class="ot">&lt;-</span> <span class="fu">calculate_gelmanRubin</span>(chain_list, burnin_list)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(PSRFs)</span></code></pre></div>
+<pre><code>List of 3
+ $ PSRF_mu   : num [1:13, 1:3] 1.06 1 1.02 NA NA ...
+ $ PSRF_Sigma: num [1:3, 1:3, 1:13] 1.11 NA 1.12 NA NA ...
+ $ PSRF_prop : num [1:13] 1.06 1 1.02 1 1.02 ...</code></pre>
+<p>Below we plot histograms of the PSRFs for each parameter. Even after
+running these chains for a short time, we already have achieved good
+convergence properties. Unsurprisingly, cluster mean and proportion
+estimates converge faster than the covariance parameters. In practice,
+for larger and more complex datasets, chains will need to be run for
+longer than what was done here.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(PSRFs, <span class="sc">~</span> <span class="fu">as.vector</span>(.x) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             magrittr<span class="sc">::</span><span class="fu">extract</span>(<span class="sc">!</span><span class="fu">is.na</span>(.))) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">iwalk</span>(<span class="sc">~</span><span class="fu">hist</span>(.x, <span class="at">xlab =</span> <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&quot;_&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot; &quot;</span>, .y), <span class="at">main =</span> <span class="st">&quot;&quot;</span>))</span></code></pre></div>
+<p><img src="figure/running_mcmc.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -670,6 +957,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -702,6 +991,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
