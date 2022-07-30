@@ -2,8 +2,7 @@
 title: "Running the MCMC"
 output:
   workflowr::wflow_html:
-    toc: true
-    toc_depth: 4
+    toc: false
 editor_options:
   chunk_output_type: console
 ---

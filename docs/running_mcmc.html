@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -319,69 +316,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -389,16 +323,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -646,15 +570,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1bf19d4307db3a11a891e92afa4921ccd5cc9cbtargetblankf1bf19da">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreefc7424fa9a703c8e0b602a086dbcd165243a5a08targetblankfc7424fa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/hillarykoch/climb_page/tree/f1bf19d4307db3a11a891e92afa4921ccd5cc9cb" target="_blank">f1bf19d</a>
+<a href="https://github.com/hillarykoch/climb_page/tree/fc7424fa9a703c8e0b602a086dbcd165243a5a08" target="_blank">fc7424f</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1bf19d4307db3a11a891e92afa4921ccd5cc9cbtargetblankf1bf19da"
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreefc7424fa9a703c8e0b602a086dbcd165243a5a08targetblankfc7424fa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -664,7 +588,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/hillarykoch/climb_page/tree/f1bf19d4307db3a11a891e92afa4921ccd5cc9cb" target="_blank">f1bf19d</a>.
+<a href="https://github.com/hillarykoch/climb_page/tree/fc7424fa9a703c8e0b602a086dbcd165243a5a08" target="_blank">fc7424f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -684,22 +608,9 @@ Ignored files:
 Untracked files:
     Untracked:  .DS_Store
     Untracked:  .gitignore
-    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.RData
-    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.rdb
-    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-3_2dd19e162e1ca93479a84eafd24f9f9f.rdx
-    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.RData
-    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.rdb
-    Untracked:  analysis/running_mcmc_cache/html/unnamed-chunk-6_ab230b3b5e2bfb8ef76ae36c86e21c16.rdx
 
 Unstaged changes:
     Modified:   analysis/running_mcmc.Rmd
-    Modified:   analysis/running_mcmc_cache/html/__globals
-    Modified:   analysis/running_mcmc_cache/html/__objects
-    Modified:   analysis/running_mcmc_cache/html/__packages
-    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.RData
-    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.rdb
-    Deleted:    analysis/running_mcmc_cache/html/unnamed-chunk-3_51180ae92ff43303ad266c69e8feed76.rdx
-    Modified:   output/hyperparameters.Rdata
 
 </code></pre>
 <p>
@@ -745,6 +656,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/fc7424fa9a703c8e0b602a086dbcd165243a5a08/analysis/running_mcmc.Rmd" target="_blank">fc7424f</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+add gelman rubin example
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/fc7424fa9a703c8e0b602a086dbcd165243a5a08/docs/running_mcmc.html" target="_blank">fc7424f</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+add gelman rubin example
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -796,7 +741,7 @@ user needs to specify how many iterations to use. We recommend running a
 quick pilot analysis–say, for 10 iterations. This pilot analysis will
 give a good idea of how long an analysis will need to run for a given
 <em>larger</em> number of iterations (say, 20,000 iterations).</p>
-<p>You can run an mcmc simply with the function <code>run_mcmc()</code>.
+<p>You can run an MCMC simply with the function <code>run_mcmc()</code>.
 This function calls a script written in <a
 href="https://julialang.org/">Julia</a>, and executes everything at the
 default settings in the CLIMB methodology. The user needs to provide 4
@@ -862,6 +807,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/fc7424fa9a703c8e0b602a086dbcd165243a5a08/docs/figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" target="_blank">fc7424f</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/running_mcmc.Rmd/unnamed-chunk-5-1.png" target="_blank">c1e13d0</a>
@@ -939,6 +895,43 @@ longer than what was done here.</p>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             magrittr<span class="sc">::</span><span class="fu">extract</span>(<span class="sc">!</span><span class="fu">is.na</span>(.))) <span class="sc">%&gt;%</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">iwalk</span>(<span class="sc">~</span><span class="fu">hist</span>(.x, <span class="at">xlab =</span> <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&quot;_&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot; &quot;</span>, .y), <span class="at">main =</span> <span class="st">&quot;&quot;</span>))</span></code></pre></div>
 <p><img src="figure/running_mcmc.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/fc7424fa9a703c8e0b602a086dbcd165243a5a08/docs/figure/running_mcmc.Rmd/unnamed-chunk-7-1.png" target="_blank">fc7424f</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 
 
@@ -957,8 +950,6 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -991,35 +982,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3,h4",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
