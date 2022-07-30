@@ -1,30 +1,35 @@
 ---
-title: "Running the MCMC"
+  title: "Running the MCMC"
 output:
   workflowr::wflow_html:
-    toc: false
+  toc: false
 editor_options:
   chunk_output_type: console
 ---
-
-### <i><b><span style="color:salmon">---This is likely the most time-consuming step of CLIMB analysis---</span></b></i>
-
-The final step of CLIMB involves doing inference on the parsimonious Gaussian mixture using MCMC. MCMC is an iterative method, and thus the user needs to specify how many iterations to use. We recommend running a quick pilot analysis--say, for 10 iterations. This pilot analysis will give a good idea of how long an analysis will need to run for a given *larger* number of iterations (say, 20,000 iterations).
+  
+  ### <i><b><span style="color:salmon">---This is likely the most time-consuming step of CLIMB analysis---</span></b></i>
+  
+  The final step of CLIMB involves doing inference on the parsimonious Gaussian mixture using MCMC. MCMC is an iterative method, and thus 
+the user needs to specify how many iterations to use. We recommend running a quick pilot analysis--say, for 10 iterations. This pilot 
+analysis will give a good idea of how long an analysis will need to run for a given *larger* number of iterations (say, 20,000 
+iterations).
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(autodep = TRUE, warning = FALSE, message = FALSE)
 library(magrittr)
 ```
 
-You can run an MCMC simply with the function `run_mcmc()`. This function calls a script written in [Julia](https://julialang.org/), and executes everything at the default settings in the CLIMB methodology. The user needs to provide 4 arguments:
-
-1. `dat`: the input data you've been using throughout the analysis
+You can run an MCMC simply with the function `run_mcmc()`. This function calls a script written in [Julia](https://julialang.org/), and 
+executes everything at the default settings in the CLIMB methodology. The user needs to provide 4 arguments:
+  
+  1. `dat`: the input data you've been using throughout the analysis
 
 2. `hyp`: the hyperparameter values estimated in the previous step
 
 3. `nstep`: number of MCMC iterations to run
 
-4. `retained_classes`: the parsimonious list of candidate latent classes, after finally filtering out by prior weights as done in the previous step
+4. `retained_classes`: the parsimonious list of candidate latent classes, after finally filtering out by prior weights as done in the 
+previous step
 
 
 First, we load in our data, list of candidate latent classes, and estimated hyperparameters.
@@ -37,8 +42,7 @@ retained_classes <- readr::read_tsv("output/retained_classes.txt", col_names = F
 ```
 
 Now we are ready to launch an MCMC:
-```{r, cache=TRUE, message=FALSE, echo=2:3}
-library(CLIMB)
+```{r, cache=TRUE, message=FALSE, echo=1:2}
 results <- run_mcmc(sim$data, hyp = hyp, nstep = 1000, retained_classes = retained_classes)
 out <- extract_chains(results)
 
@@ -55,40 +59,50 @@ The object `results` contains 3 objects:
 
 1. `chain`: the estimate parameters over the course of `nstep` iterations
 
-2. `acceptane_rate_chain`: an $M\times$`nstep` matrix of the acceptance rates for each cluster covariance. The proposals for each cluster are adaptively tuned such that the acceptance rates converge to about 0.3
+2. `acceptane_rate_chain`: an $M\times$`nstep` matrix of the acceptance rates for each cluster covariance. The proposals for each cluster 
+are adaptively tuned such that the acceptance rates converge to about 0.3
 
 3. `tune_df_chain`: the tuning degrees of freedom across the chain, adjusted to yield optimal acceptance rates
 
 `results` is effectively a Julia object, so the first thing you should do with this object is to extract the data for R's use:
-
-`out` will contain all the different chains from the MCMC. For example, you can check the MCMC trace plots. Here is the trace plot of the mean from the first cluster in the third dimension:
-
-```{r}
+  
+  `out` will contain all the different chains from the MCMC. For example, you can check the MCMC trace plots. Here is the trace plot of 
+the mean from the first cluster in the third dimension:
+  
+  ```{r}
 plot(out$mu_chains[[1]][,3], type = "l", xlab = "iteration", ylab = expression(mu[3]))
 ```
 
-More specifically, `extract_chains()` returns a list with 4 elements. First, recall that `M` is the number of input classes, `D` is the dimension of the data, and let `iterations` be `nstep+1`. The output from `extract_chains()` contains:
+More specifically, `extract_chains()` returns a list with 4 elements. First, recall that `M` is the number of input classes, `D` is the 
+dimension of the data, and let `iterations` be `nstep+1`. The output from `extract_chains()` contains:
+  
+  1. `mu_chains`: a list with `M` elements, each element a matrix of dimension `iterations x D`. `mu_chains[[i]]` is the MCMC samples for 
+the mean vector of cluster `i`.
 
-1. `mu_chains`: a list with `M` elements, each element a matrix of dimension `iterations x D`. `mu_chains[[i]]` is the MCMC samples for the mean vector of cluster `i`.
-
-2. `Sigma_chains`: a list with `M` elements, each element an array of dimension `D x D x iterations`. `Sigma_chains[[i]]` is the MCMC samples for the covariance matrix of cluster `i`.
+2. `Sigma_chains`: a list with `M` elements, each element an array of dimension `D x D x iterations`. `Sigma_chains[[i]]` is the MCMC 
+samples for the covariance matrix of cluster `i`.
 
 3. `prop_chain`: A matrix of dimension `M x iterations`, containing the MCMC samples for the mixing proportions of each class. 
 
-4. `z_chain`: A matrix of dimension `n x iterations`, containing the MCMC samples for the class labels of each observation. These labels correspond to the row indices of `retained_classes` (above).
+4. `z_chain`: A matrix of dimension `n x iterations`, containing the MCMC samples for the class labels of each observation. These labels 
+correspond to the row indices of `retained_classes` (above).
 
 These posterior samples can be used for many [downstream analyses](downstream.html).
 
 ### Multiple parallel chains for assessing convergence
 
-In addition to viewing trace plots, one could run multiple parallel MCMC chains in order to assess convergence quantitatively via the Gelman-Rubin convergence diagnostic. The code below replicates the previous MCMC 3 times, and calculates the potential scale reduction factors (PSRFs) for each parameter estimate. Ideally, each PSRF should be close to 1. Note that `calculate_gelmanRubin` returns NA for parameters associated with a 0 class label, since these parameters do not actually get sampled during MCMC.
+In addition to viewing trace plots, one could run multiple parallel MCMC chains in order to assess convergence quantitatively via the 
+Gelman-Rubin convergence diagnostic. The code below replicates the previous MCMC 3 times, and calculates the potential scale reduction 
+factors (PSRFs) for each parameter estimate. Ideally, each PSRF should be close to 1. Note that `calculate_gelmanRubin` returns NA for 
+parameters associated with a 0 class label, since these parameters do not actually get sampled during MCMC.
 
-```{r, cache = TRUE}
+
+```{r, cache = FALSE}
 # Run 3 replicate MCMC chains
-results3 <- purrr::map(1:3, ~ run_mcmc(sim$data, hyp = hyp, nstep = 500, retained_classes = retained_classes))
+results3 <- purrr::map(1:3, ~ run_mcmc(sim$data, hyp = hyp, nstep = 1000, retained_classes = retained_classes))
 
 chain_list <- purrr::map(results3, extract_chains)
-burnin_list <- rep(list(1:100), length(chain_list))
+burnin_list <- rep(list(1:200), length(chain_list))
 
 # calculate potential scale reduction factors for each parameter
 PSRFs <- calculate_gelmanRubin(chain_list, burnin_list)
@@ -96,12 +110,20 @@ PSRFs <- calculate_gelmanRubin(chain_list, burnin_list)
 str(PSRFs)
 ```
 
-Below we plot histograms of the PSRFs for each parameter. Even after running these chains for a short time, we already have achieved good convergence properties. Unsurprisingly, cluster mean and proportion estimates converge faster than the covariance parameters. In practice, for larger and more complex datasets, chains will need to be run for longer than what was done here.
+Below we plot histograms of the PSRFs for each parameter. Even after running these chains for a short time, we already have achieved good 
+convergence properties. Unsurprisingly, cluster mean and proportion estimates converge faster than the covariance parameters. In 
+practice, for larger and more complex datasets, chains will need to be run for longer than what was done here.
 
 ```{r}
-par(mfrow = c(1,3))
+library(ggplot2)
 
 purrr::map(PSRFs, ~ as.vector(.x) %>%
              magrittr::extract(!is.na(.))) %>%
-  purrr::iwalk(~hist(.x, xlab = gsub(pattern = "_", replacement = " ", .y), main = ""))
+  purrr::imap_dfr( ~ data.frame(parameter = .y, PSRF = .x)) %>%
+  ggplot(aes(x = PSRF)) +
+  geom_histogram() +
+  scale_x_continuous(trans = "log10") +
+  facet_wrap(~parameter, labeller = labeller(.cols = ~  gsub(pattern = "PSRF_", replacement = "", .x))) +
+  theme_bw()
 ```
+
