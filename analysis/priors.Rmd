@@ -53,7 +53,7 @@ prior_weights <- get_prior_weights(reduced_classes, fits, parallel = FALSE)
 
 `prior_weights` is a list of vectors. Each vector corresponds to the computed prior weights for a given value of $\delta$. Here, `prior_weights[[j]]` corresponds to the prior weights when $\delta = j-1$.
 
-### <i><b><span style="color:salmon">Here comes the human intervention</span></b></i>
+### <i><b><span style="color:salmon">Here requires the human intervention</span></b></i>
 
 We can plot how the number of latent classes included in the final model changes as we relax $\delta$.
 
