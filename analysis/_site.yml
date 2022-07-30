@@ -1,0 +1,35 @@
+name: climb
+output_dir: ../docs
+navbar:
+  title: 
+  left:
+  - text: About CLIMB
+    href: index.html
+  - text: Pre-processing input data
+    href: preprocessing.html
+  - text: Four-step procedure
+    menu:
+    - text: Pairwise fitting
+      href: pairwise_fitting.html
+    - text: Finding candidate classes
+      href: candidate_latent_classes.html
+    - text: Computing prior hyperparameters
+      href: priors.html
+    - text: Running the MCMC
+      href: running_mcmc.html
+  - text: Downstream analysis
+    href: downstream.html
+  right:
+  - text: License
+    href: license.html
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/hillarykoch/climb_page
+output:
+  workflowr::wflow_html:
+    toc: yes
+    runtime: shiny
+    toc_float: yes
+    theme: journal
+    highlight: zenburn
+  runtime: shiny

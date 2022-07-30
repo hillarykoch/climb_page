@@ -1,0 +1,93 @@
+---
+title: "Pairwise fitting"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+### <i><b><span style="color:salmon">---Special considerations: this portion is highly parallelizable---</span></b></i>
+
+Here, we describe how to execute the first step of CLIMB: pairwise fitting (a composite likelihood method).
+
+First, load the package and the simulated dataset. This **toy** dataset has $n=1500$ observations across $D=3$ conditions (*that is,* dimensions). Thus, we need to fit $\binom{D}{2}=3$ pairwise models.
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(autodep = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+# load that package
+library(CLIMB)
+
+# load the toy data
+data("sim")
+```
+
+The fitting of each pairwise model can be done in parallel, which saves a lot of computing time when the dimension is larger. This can be done simply (in parallel, or linearly) with the function `get_pairwise_fits()`. Note that the input data should be $z$-scores (or data arising from some other scoring mechanism, transformed appropriately to $z$-scores).
+
+`get_pairwise_fits()` runs the pairwise analysis at the default settings used in the CLIMB manuscript. The user can select a few settings with this functions:
+
+1. `nlambda`: how many tuning parameters to try (defaults to 10)
+
+2. `parallel`: logical indicating whether or not to do the analysis in parallel
+
+3. `ncores`: if in parallel, how many cores to use (defaults to 10)
+
+4. `bound`: is there a lower bound on the estimated non-null mean? (defaults to zero, and must be non-negative)
+
+5. `flex_mu`: should we loosen restrictions on the mean in the pairwise fitting (defaults to FALSE, best used in conjunction with `bound`)?
+
+With all of this in place, one can obtain the pairwise fits as follows:
+```{r, cache = TRUE, message = FALSE, warning = FALSE}
+fits <- get_pairwise_fits(z = sim$data, parallel = FALSE)
+```
+
+Calling `names(fits)` tells us which pair of dimensions each fit belongs to. 
+```{r}
+names(fits)
+```
+
+It is advisable to take a look at the pairwise fitting output before proceeding, just to make sure things have gone ok so far.
+
+```{r, echo = 2:5, message = FALSE, warning = FALSE, results='hide', fig.width = 10, fig.height = 3.5}
+library(magrittr)
+axis_names <- names(fits) %>% stringr::str_split("_")
+par(mfrow = c(1,3))
+purrr::map2(.x = fits, .y = axis_names,
+     ~ plot(sim$data[, as.numeric(.y)], col = .x$cluster, pch = 4))
+```
+
+The default settings of `get_pairwise_fits()` are generally sufficient for analysis. However, it makes some modeling assumptions which can be relaxed. Namely, if one wants a slightly more flexible model based on estimation of cluster means, one could instead run the following:
+
+```{r, cache = TRUE, message = FALSE, warning = FALSE}
+# bound = qnorm(0.9) says that the magnitude of the estimated cluster means
+#   (for clusters whose mean is non-zero) must be at least the 90% quantile
+#   of a standard normal distribution
+flexible_fits <-
+  get_pairwise_fits(
+  z = sim$data,
+  parallel = FALSE,
+  flex_mu = TRUE,
+  bound = qnorm(0.9)
+  )
+```
+
+This change is sometimes desirable in cases where the data are highly skewed. It is recommended to set some positive bound when `flex_mu=TRUE`. If not, one is likely to underestimate the true number of clusters. We can see that, in this case, classification appears similar to the previous version with `flex_mu=FALSE` and `bound=0`.
+
+```{r, echo = 2:5, message = FALSE, warning = FALSE, results='hide', fig.width = 10, fig.height = 3.5}
+library(magrittr)
+axis_names <- names(flexible_fits) %>% stringr::str_split("_")
+par(mfrow = c(1,3))
+purrr::map2(.x = flexible_fits, .y = axis_names,
+     ~ plot(sim$data[, as.numeric(.y)], col = .x$cluster, pch = 4))
+```
+
+Each fit contains additional information, including the length-2 association patterns estimated to be in the given pairwise fit, the posterior probability of each observation belonging to each of these classes, and their corresponding estimated means and covariances.
+
+Finally, save this output, as it is necessary for many parts of the downstream analyses, before moving on to [the next step](candidate_latent_classes.html).
+
+```{r, eval = FALSE}
+save(fits, file = "pwfits.Rdata")
+```

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>License</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">About CLIMB</a>
+</li>
+<li>
+  <a href="preprocessing.html">Pre-processing input data</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Four-step procedure
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="pairwise_fitting.html">Pairwise fitting</a>
+    </li>
+    <li>
+      <a href="candidate_latent_classes.html">Finding candidate classes</a>
+    </li>
+    <li>
+      <a href="priors.html">Computing prior hyperparameters</a>
+    </li>
+    <li>
+      <a href="running_mcmc.html">Running the MCMC</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="downstream.html">Downstream analysis</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="license.html">License</a>
+</li>
+<li>
+  <a href="https://github.com/hillarykoch/climb_page">
+    <span class="fas fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">License</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-04-17
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreea49305692caaee2009dd7a906122305505d106a5targetblanka493056a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/a49305692caaee2009dd7a906122305505d106a5" target="_blank">a493056</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreea49305692caaee2009dd7a906122305505d106a5targetblanka493056a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/a49305692caaee2009dd7a906122305505d106a5" target="_blank">a493056</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/.Rhistory
+    Ignored:    analysis/pairwise_fitting_cache/
+    Ignored:    analysis/preprocessing_cache/
+    Ignored:    analysis/running_mcmc_cache/
+    Ignored:    data/.DS_Store
+    Ignored:    data/.Rhistory
+    Ignored:    output/.DS_Store
+
+Unstaged changes:
+    Modified:   analysis/candidate_latent_classes.Rmd
+    Modified:   analysis/downstream.Rmd
+    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/priors.Rmd
+    Modified:   analysis/running_mcmc.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/license.Rmd</code>) and HTML (<code>docs/license.html</code>) files. If you've configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/f3413aa39178bee6c4b8e89a345318a4085dd30e/docs/license.html" target="_blank">f3413aa</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2021-04-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/dd0b829748283df1a9a8482da76e31744ba504b8/docs/license.html" target="_blank">dd0b829</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-10-15
+</td>
+<td>
+replace cache
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/docs/license.html" target="_blank">cc98d2b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+<td>
+replace cache and update to describe flex_mu
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/license.html" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+<td>
+add a preprocessing section
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c5fd6fcb20e5913288cd75965141bc2b853ed5a5/docs/license.html" target="_blank">c5fd6fc</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+<td>
+change nav bar to accomodate a menu
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/5d5c3dd6d41cf77f2d95dc36ccf80aafb9edcda9/docs/license.html" target="_blank">5d5c3dd</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-03-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/7c423454bd7567fbad70ae2d7476da6097a9cd54/docs/license.html" target="_blank">7c42345</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2a5b7c0bb84771db7dd85302094054e998efe3bd/docs/license.html" target="_blank">2a5b7c0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/3a9bf9d9df764de4e8e6d1f96b8804bd0a37bd63/docs/license.html" target="_blank">3a9bf9d</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/72e6fec159f57206ca5626a145e38a252eb1aa24/docs/license.html" target="_blank">72e6fec</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/862bc020269581307b908bf1cecc5a084df76352/docs/license.html" target="_blank">862bc02</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-07
+</td>
+<td>
+big updates for mcmc processors
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8b3e55676721b78e0a86e24bf1e7290093533dd2/docs/license.html" target="_blank">8b3e556</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-12-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/39383ac9a8503b078f7e20fadc852a618e31820c/docs/license.html" target="_blank">39383ac</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-12-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e467a514b21ab37f8e14b42b4519daa27a8a4ca4/docs/license.html" target="_blank">e467a51</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+different shiny location
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/d58e1a6bf2175fcda383137e324380ec24a4445f/docs/license.html" target="_blank">d58e1a6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+resource data
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/38fb1c0ff8ca8636c8ee3201a961d3681567f703/docs/license.html" target="_blank">38fb1c0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+edit shiny
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/228123de56534aad2ac1114a2a067c1731cedff3/docs/license.html" target="_blank">228123d</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update up to obtaining the hyperparameters
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1dc0c1e2ba9307c2168f1069dbb0de8222086d0/docs/license.html" target="_blank">c1dc0c1</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update up to obtaining the hyperparameters
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/674120cd108f2262dd3d3ed4493cd8d4100bdb7b/docs/license.html" target="_blank">674120c</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e67a3a28787c38cf04c0e08b908a4c2a3e8c27b4/docs/license.html" target="_blank">e67a3a2</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2faf4465c6a64ca0049932f56226e38efc75a361/docs/license.html" target="_blank">2faf446</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2177dfade8b568f6e7babadd62a0d32c7c618ee5/docs/license.html" target="_blank">2177dfa</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8b30694043c8ea360a657d01fdc1dafe0f6adf67/docs/license.html" target="_blank">8b30694</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e36b267d69f39269bcc6509be9cec996c5d741bf/docs/license.html" target="_blank">e36b267</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a991668a59fcc2c321aecb4a4113e8e0fc38c756/docs/license.html" target="_blank">a991668</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a36d893c3a4a10ec105b926ac1768cbb9ec4e552/docs/license.html" target="_blank">a36d893</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e8e54b7a86b7c32f86c474241061e5e05985a73e/docs/license.html" target="_blank">e8e54b7</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/f47c013cacadfa3c2ed3d4ee5466033c5cf316b6/docs/license.html" target="_blank">f47c013</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/analysis/license.Rmd" target="_blank">50cf23e</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+make skeleton
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/docs/license.html" target="_blank">50cf23e</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+make skeleton
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a519159762cb6afa301f85d4453f53ae6f186162/docs/license.html" target="_blank">a519159</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/b81d6ff015a520b1cbc3c5bdeabf3835b70a3cd0/analysis/license.Rmd" target="_blank">b81d6ff</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+Start workflowr project.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<p><strong>Artistic License 2.0</strong> Copyright (c) 2000-2006, The Perl Foundation.</p>
+<p>Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.</p>
+<p>Preamble This license establishes the terms under which a given free software Package may be copied, modified, distributed, and/or redistributed. The intent is that the Copyright Holder maintains some artistic control over the development of that Package while still keeping the Package available as open source and free software.</p>
+<p>You are always permitted to make arrangements wholly outside of this license directly with the Copyright Holder of a given Package. If the terms of this license do not permit the full use that you propose to make of the Package, you should contact the Copyright Holder and seek a different licensing arrangement.</p>
+<p>Definitions &quot;Copyright Holder&quot; means the individual(s) or organization(s) named in the copyright notice for the entire Package.</p>
+<p>&quot;Contributor&quot; means any party that has contributed code or other material to the Package, in accordance with the Copyright Holder's procedures.</p>
+<p>&quot;You&quot; and &quot;your&quot; means any person who would like to copy, distribute, or modify the Package.</p>
+<p>&quot;Package&quot; means the collection of files distributed by the Copyright Holder, and derivatives of that collection and/or of those files. A given Package may consist of either the Standard Version, or a Modified Version.</p>
+<p>&quot;Distribute&quot; means providing a copy of the Package or making it accessible to anyone else, or in the case of a company or organization, to others outside of your company or organization.</p>
+<p>&quot;Distributor Fee&quot; means any fee that you charge for Distributing this Package or providing support for this Package to another party. It does not mean licensing fees.</p>
+<p>&quot;Standard Version&quot; refers to the Package if it has not been modified, or has been modified only in ways explicitly requested by the Copyright Holder.</p>
+<p>&quot;Modified Version&quot; means the Package, if it has been changed, and such changes were not explicitly requested by the Copyright Holder.</p>
+<p>&quot;Original License&quot; means this Artistic License as Distributed with the Standard Version of the Package, in its current version or as it may be modified by The Perl Foundation in the future.</p>
+<p>&quot;Source&quot; form means the source code, documentation source, and configuration files for the Package.</p>
+<p>&quot;Compiled&quot; form means the compiled bytecode, object code, binary, or any other form resulting from mechanical transformation or translation of the Source form.</p>
+<p>Permission for Use and Modification Without Distribution (1) You are permitted to use the Standard Version and create and use Modified Versions for any purpose without restriction, provided that you do not Distribute the Modified Version.</p>
+<p>Permissions for Redistribution of the Standard Version (2) You may Distribute verbatim copies of the Source form of the Standard Version of this Package in any medium without restriction, either gratis or for a Distributor Fee, provided that you duplicate all of the original copyright notices and associated disclaimers. At your discretion, such verbatim copies may or may not include a Compiled form of the Package.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>You may apply any bug fixes, portability changes, and other modifications made available from the Copyright Holder. The resulting Package will still be considered the Standard Version, and as such will be subject to the Original License.</li>
+</ol>
+<p>Distribution of Modified Versions of the Package as Source (4) You may Distribute your Modified Version as Source (either gratis or for a Distributor Fee, and with or without a Compiled form of the Modified Version) provided that you clearly document how it differs from the Standard Version, including, but not limited to, documenting any non-standard features, executables, or modules, and provided that you do at least ONE of the following:</p>
+<ol style="list-style-type: lower-alpha">
+<li>make the Modified Version available to the Copyright Holder of the Standard Version, under the Original License, so that the Copyright Holder may include your modifications in the Standard Version.</li>
+<li>ensure that installation of your Modified Version does not prevent the user installing or running the Standard Version. In addition, the Modified Version must bear a name that is different from the name of the Standard Version.</li>
+<li>allow anyone who receives a copy of the Modified Version to make the Source form of the Modified Version available to others under</li>
+<li>the Original License or</li>
+</ol>
+<ol start="2" style="list-style-type: lower-roman">
+<li>a license that permits the licensee to freely copy, modify and redistribute the Modified Version using the same licensing terms that apply to the copy that the licensee received, and requires that the Source form of the Modified Version, and of any works derived from it, be made freely available in that license fees are prohibited but Distributor Fees are allowed.</li>
+</ol>
+<p>Distribution of Compiled Forms of the Standard Version or Modified Versions without the Source (5) You may Distribute Compiled forms of the Standard Version without the Source, provided that you include complete instructions on how to get the Source of the Standard Version. Such instructions must be valid at the time of your distribution. If these instructions, at any time while you are carrying out such distribution, become invalid, you must provide new instructions on demand or cease further distribution. If you provide valid instructions or cease distribution within thirty days after you become aware that the instructions are invalid, then you do not forfeit any of your rights under this license.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>You may Distribute a Modified Version in Compiled form without the Source, provided that you comply with Section 4 with respect to the Source of the Modified Version.</li>
+</ol>
+<p>Aggregating or Linking the Package (7) You may aggregate the Package (either the Standard Version or Modified Version) with other packages and Distribute the resulting aggregation provided that you do not charge a licensing fee for the Package. Distributor Fees are permitted, and licensing fees for other components in the aggregation are permitted. The terms of this license apply to the use and Distribution of the Standard or Modified Versions as included in the aggregation.</p>
+<ol start="8" style="list-style-type: decimal">
+<li>You are permitted to link Modified and Standard Versions with other works, to embed the Package in a larger work of your own, or to build stand-alone binary or bytecode versions of applications that include the Package, and Distribute the result without restriction, provided the result does not expose a direct interface to the Package.</li>
+</ol>
+<p>Items That are Not Considered Part of a Modified Version (9) Works (including, but not limited to, modules and scripts) that merely extend or make use of the Package, do not, by themselves, cause the Package to be a Modified Version. In addition, such works are not considered parts of the Package itself, and are not subject to the terms of this license.</p>
+<p>General Provisions (10) Any use, modification, and distribution of the Standard or Modified Versions is governed by this Artistic License. By using, modifying or distributing the Package, you accept this license. Do not use, modify, or distribute the Package, if you do not accept this license.</p>
+<ol start="11" style="list-style-type: decimal">
+<li><p>If your Modified Version has been derived from a Modified Version made by someone other than you, you are nevertheless required to ensure that your Modified Version complies with the requirements of this license.</p></li>
+<li><p>This license does not grant you the right to use any trademark, service mark, tradename, or logo of the Copyright Holder.</p></li>
+<li><p>This license includes the non-exclusive, worldwide, free-of-charge patent license to make, have made, use, offer to sell, sell, import and otherwise transfer the Package with respect to any patent claims licensable by the Copyright Holder that are necessarily infringed by the Package. If you institute patent litigation (including a cross-claim or counterclaim) against any party alleging that the Package constitutes direct or contributory patent infringement, then this Artistic License to you shall terminate on the date that such litigation is filed.</p></li>
+<li><p>Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER AND CONTRIBUTORS &quot;AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES. THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p></li>
+</ol>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+---
+title: "About CLIMB"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+The Composite LIkelihood eMpirical Bayes (CLIMB) methodology was designed for Gaussian mixture models where the behavior of each component in the mixture is dictated by a latent class $h_m$ which has the form $h_m=(h_{[1]},\,h_{[2]},\ldots,h_{[D]})$, where $h_{[d]} \in\{-1,\,0,\,1\}$ for $d\in\{1,\ldots,D\}$ and $D$ is the dimension of the data. For even moderate dimensions, this model becomes computationally intractible to fit directly because the number of *candidate* latent classes is $3^D$. The CLIMB procedure circumvents this computational challenge, estimating which latent classes are supported by the data, and fitting the model in an empirical Bayesian hierarchical framework with Markov Chain Monte Carlo (MCMC).
+
+CLIMB occurs in 4 major steps:
+
+1. [Pairwise fitting](pairwise_fitting.html) of the Gaussian mixture over pairs of dimensions
+2. [Enumerating candidate latent classes](candidate_latent_classes.html) based on the output of the pairwise fits
+3. [Pruning the candidate list of latent classes](priors.html) based on computed prior probabilities of each class's mixing weight
+4. [Fitting the final model](running_mcmc.html) using MCMC
+
+Each step of analysis CLIMB requires a bit of attention because of their memory/processor requirements. That is, Steps 1 and 3 require low memory but can be parallelized for faster performance. Meanwhile, Steps 2 and 4 cannot be parallelized, and Step 2 in particular in some cases may require high memory. To be efficient when running an analysis with CLIMB, we recommend splitting the steps up accordingly.
+
+Each step of CLIMB has its own page in the "Four-step procedure" menu. We walk through a complete analysis of a simulated dataset throughout these 4 pages. Though the simple analysis provided here can be run on your personal laptop, in practice with real genomic datasets, one will need access to a computing cluster. We assume the user knows how to request multiple cores for parallel jobs or more memory for high-memory tasks. Navigate to any step's page to learn more.
+
+CLIMB's output is rich for exploration. We demonstrate how to produce some of the results or figures in the CLIMB manuscript [here](downstream.html).

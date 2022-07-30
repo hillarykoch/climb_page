@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Pairwise fitting</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">About CLIMB</a>
+</li>
+<li>
+  <a href="preprocessing.html">Pre-processing input data</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Four-step procedure
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="pairwise_fitting.html">Pairwise fitting</a>
+    </li>
+    <li>
+      <a href="candidate_latent_classes.html">Finding candidate classes</a>
+    </li>
+    <li>
+      <a href="priors.html">Computing prior hyperparameters</a>
+    </li>
+    <li>
+      <a href="running_mcmc.html">Running the MCMC</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="downstream.html">Downstream analysis</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="license.html">License</a>
+</li>
+<li>
+  <a href="https://github.com/hillarykoch/climb_page">
+    <span class="fas fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Pairwise fitting</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-04-17
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 3
+</p>
+<p>
+<strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you'll want to first commit it to the Git repo. If you're still working on the analysis, you can ignore this warning. When you're finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it's best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190717code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20190717)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20190717code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20190717)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongunavailable"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Session information:</strong> unavailable </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongunavailable" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Recording the operating system, R version, and package versions is critical for reproducibility. To record the session information, add <code>sessioninfo: &quot;sessionInfo()&quot;</code> to _workflowr.yml. Alternatively, you could use <code>devtools::session_info()</code> or <code>sessioninfo::session_info()</code>. Lastly, you can manually add a code chunk to this file to run any one of these commands and then disable to automatic insertion by changing the workflowr setting to <code>sessioninfo: &quot;&quot;</code>.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+</p>
+</div>
+<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div class="panel-body">
+The following chunks had caches available:
+<ul>
+<li>
+unnamed-chunk-3
+</li>
+<li>
+unnamed-chunk-6
+</li>
+</ul>
+<p>To ensure reproducibility of the results, delete the cache directory <code>pairwise_fitting_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee0a34e8d3c3523ed8c494759a230e91c1a4519c4targetblanke0a34e8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/e0a34e8d3c3523ed8c494759a230e91c1a4519c4" target="_blank">e0a34e8</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee0a34e8d3c3523ed8c494759a230e91c1a4519c4targetblanke0a34e8a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/e0a34e8d3c3523ed8c494759a230e91c1a4519c4" target="_blank">e0a34e8</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
+    Ignored:    analysis/.Rhistory
+    Ignored:    analysis/pairwise_fitting_cache/
+    Ignored:    analysis/preprocessing_cache/
+    Ignored:    analysis/running_mcmc_cache/
+    Ignored:    data/.DS_Store
+    Ignored:    data/.Rhistory
+    Ignored:    output/.DS_Store
+
+Unstaged changes:
+    Modified:   analysis/candidate_latent_classes.Rmd
+    Modified:   analysis/downstream.Rmd
+    Modified:   analysis/pairwise_fitting.Rmd
+    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/priors.Rmd
+    Modified:   analysis/running_mcmc.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/pairwise_fitting.Rmd</code>) and HTML (<code>docs/pairwise_fitting.html</code>) files. If you've configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/605e442251bf9a155801e289682b0dd705b098a2/docs/pairwise_fitting.html" target="_blank">605e442</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2021-04-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/a49305692caaee2009dd7a906122305505d106a5/analysis/pairwise_fitting.Rmd" target="_blank">a493056</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2021-04-17
+</td>
+<td>
+update site to match gigantum submission
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/dd0b829748283df1a9a8482da76e31744ba504b8/docs/pairwise_fitting.html" target="_blank">dd0b829</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-10-15
+</td>
+<td>
+replace cache
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/3d86b6874edfb335799f62af846156fd345d4b9a/analysis/pairwise_fitting.Rmd" target="_blank">3d86b68</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+<td>
+clean up pairwise fitting page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/3d86b6874edfb335799f62af846156fd345d4b9a/docs/pairwise_fitting.html" target="_blank">3d86b68</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+<td>
+clean up pairwise fitting page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/analysis/pairwise_fitting.Rmd" target="_blank">cc98d2b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+<td>
+replace cache and update to describe flex_mu
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/docs/pairwise_fitting.html" target="_blank">cc98d2b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+<td>
+replace cache and update to describe flex_mu
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/pairwise_fitting.html" target="_blank">828e725</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+<td>
+add a preprocessing section
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c5fd6fcb20e5913288cd75965141bc2b853ed5a5/docs/pairwise_fitting.html" target="_blank">c5fd6fc</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-23
+</td>
+<td>
+change nav bar to accomodate a menu
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/52823b2ad65656e3167e0bfc0b90304fca731e79/analysis/pairwise_fitting.Rmd" target="_blank">52823b2</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-03-07
+</td>
+<td>
+add flex mu
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/52823b2ad65656e3167e0bfc0b90304fca731e79/docs/pairwise_fitting.html" target="_blank">52823b2</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-03-07
+</td>
+<td>
+add flex mu
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/7c423454bd7567fbad70ae2d7476da6097a9cd54/docs/pairwise_fitting.html" target="_blank">7c42345</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2a5b7c0bb84771db7dd85302094054e998efe3bd/docs/pairwise_fitting.html" target="_blank">2a5b7c0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/3a9bf9d9df764de4e8e6d1f96b8804bd0a37bd63/docs/pairwise_fitting.html" target="_blank">3a9bf9d</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/72e6fec159f57206ca5626a145e38a252eb1aa24/docs/pairwise_fitting.html" target="_blank">72e6fec</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/862bc020269581307b908bf1cecc5a084df76352/analysis/pairwise_fitting.Rmd" target="_blank">862bc02</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-07
+</td>
+<td>
+big updates for mcmc processors
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/862bc020269581307b908bf1cecc5a084df76352/docs/pairwise_fitting.html" target="_blank">862bc02</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-02-07
+</td>
+<td>
+big updates for mcmc processors
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8b3e55676721b78e0a86e24bf1e7290093533dd2/docs/pairwise_fitting.html" target="_blank">8b3e556</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-12-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/39383ac9a8503b078f7e20fadc852a618e31820c/docs/pairwise_fitting.html" target="_blank">39383ac</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-12-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/645d4086a8963dc00bf52ba1112b858d74fadc41/analysis/pairwise_fitting.Rmd" target="_blank">645d408</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-12-03
+</td>
+<td>
+workflowr::wflow_publish(files = &quot;*&quot;)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e467a514b21ab37f8e14b42b4519daa27a8a4ca4/docs/pairwise_fitting.html" target="_blank">e467a51</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+different shiny location
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/d58e1a6bf2175fcda383137e324380ec24a4445f/docs/pairwise_fitting.html" target="_blank">d58e1a6</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+resource data
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/38fb1c0ff8ca8636c8ee3201a961d3681567f703/docs/pairwise_fitting.html" target="_blank">38fb1c0</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-08-16
+</td>
+<td>
+edit shiny
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/228123de56534aad2ac1114a2a067c1731cedff3/docs/pairwise_fitting.html" target="_blank">228123d</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update up to obtaining the hyperparameters
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1dc0c1e2ba9307c2168f1069dbb0de8222086d0/docs/pairwise_fitting.html" target="_blank">c1dc0c1</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update up to obtaining the hyperparameters
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/674120cd108f2262dd3d3ed4493cd8d4100bdb7b/docs/pairwise_fitting.html" target="_blank">674120c</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e67a3a28787c38cf04c0e08b908a4c2a3e8c27b4/docs/pairwise_fitting.html" target="_blank">e67a3a2</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/2faf4465c6a64ca0049932f56226e38efc75a361/analysis/pairwise_fitting.Rmd" target="_blank">2faf446</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2faf4465c6a64ca0049932f56226e38efc75a361/docs/pairwise_fitting.html" target="_blank">2faf446</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/da651412881ca6cef839048852da800799e22cee/docs/pairwise_fitting.html" target="_blank">da65141</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/8278253d213389a555ac03c54b0ff25a9b56a8ab/analysis/pairwise_fitting.Rmd" target="_blank">8278253</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/2177dfade8b568f6e7babadd62a0d32c7c618ee5/docs/pairwise_fitting.html" target="_blank">2177dfa</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/8b30694043c8ea360a657d01fdc1dafe0f6adf67/analysis/pairwise_fitting.Rmd" target="_blank">8b30694</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/8b30694043c8ea360a657d01fdc1dafe0f6adf67/docs/pairwise_fitting.html" target="_blank">8b30694</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/e36b267d69f39269bcc6509be9cec996c5d741bf/analysis/pairwise_fitting.Rmd" target="_blank">e36b267</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e36b267d69f39269bcc6509be9cec996c5d741bf/docs/pairwise_fitting.html" target="_blank">e36b267</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a991668a59fcc2c321aecb4a4113e8e0fc38c756/docs/pairwise_fitting.html" target="_blank">a991668</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/a36d893c3a4a10ec105b926ac1768cbb9ec4e552/docs/pairwise_fitting.html" target="_blank">a36d893</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e8e54b7a86b7c32f86c474241061e5e05985a73e/docs/pairwise_fitting.html" target="_blank">e8e54b7</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/f47c013cacadfa3c2ed3d4ee5466033c5cf316b6/docs/pairwise_fitting.html" target="_blank">f47c013</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+update about page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/analysis/pairwise_fitting.Rmd" target="_blank">50cf23e</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+make skeleton
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/50cf23e09e51c1258c0aa9155ce9b1a52a51c0c5/docs/pairwise_fitting.html" target="_blank">50cf23e</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2019-07-17
+</td>
+<td>
+make skeleton
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="special-considerations-this-portion-is-highly-parallelizable---" class="section level3">
+<h3><i><b><span style="color:salmon">---Special considerations: this portion is highly parallelizable---</span></b></i></h3>
+<p>Here, we describe how to execute the first step of CLIMB: pairwise fitting (a composite likelihood method).</p>
+<p>First, load the package and the simulated dataset. This <strong>toy</strong> dataset has <span class="math inline">\(n=1500\)</span> observations across <span class="math inline">\(D=3\)</span> conditions (<em>that is,</em> dimensions). Thus, we need to fit <span class="math inline">\(\binom{D}{2}=3\)</span> pairwise models.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load that package</span>
+<span class="kw">library</span>(CLIMB)
+
+<span class="co"># load the toy data</span>
+<span class="kw">data</span>(<span class="st">&quot;sim&quot;</span>)</code></pre></div>
+<p>The fitting of each pairwise model can be done in parallel, which saves a lot of computing time when the dimension is larger. This can be done simply (in parallel, or linearly) with the function <code>get_pairwise_fits()</code>. Note that the input data should be <span class="math inline">\(z\)</span>-scores (or data arising from some other scoring mechanism, transformed appropriately to <span class="math inline">\(z\)</span>-scores).</p>
+<p><code>get_pairwise_fits()</code> runs the pairwise analysis at the default settings used in the CLIMB manuscript. The user can select a few settings with this functions:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>nlambda</code>: how many tuning parameters to try (defaults to 10)</p></li>
+<li><p><code>parallel</code>: logical indicating whether or not to do the analysis in parallel</p></li>
+<li><p><code>ncores</code>: if in parallel, how many cores to use (defaults to 10)</p></li>
+<li><p><code>bound</code>: is there a lower bound on the estimated non-null mean? (defaults to zero, and must be non-negative)</p></li>
+<li><p><code>flex_mu</code>: should we loosen restrictions on the mean in the pairwise fitting (defaults to FALSE, best used in conjunction with <code>bound</code>)?</p></li>
+</ol>
+<p>With all of this in place, one can obtain the pairwise fits as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fits &lt;-<span class="st"> </span><span class="kw">get_pairwise_fits</span>(<span class="dt">z =</span> sim$data, <span class="dt">parallel =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>Calling <code>names(fits)</code> tells us which pair of dimensions each fit belongs to.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(fits)</code></pre></div>
+<pre><code>[1] &quot;1_2&quot; &quot;1_3&quot; &quot;2_3&quot;</code></pre>
+<p>It is advisable to take a look at the pairwise fitting output before proceeding, just to make sure things have gone ok so far.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">axis_names &lt;-<span class="st"> </span><span class="kw">names</span>(fits) %&gt;%<span class="st"> </span>stringr::<span class="kw">str_split</span>(<span class="st">&quot;_&quot;</span>)
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+purrr::<span class="kw">map2</span>(<span class="dt">.x =</span> fits, <span class="dt">.y =</span> axis_names,
+     ~<span class="st"> </span><span class="kw">plot</span>(sim$data[, <span class="kw">as.numeric</span>(.y)], <span class="dt">col =</span> .x$cluster, <span class="dt">pch =</span> <span class="dv">4</span>))</code></pre></div>
+<p><img src="figure/pairwise_fitting.Rmd/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/605e442251bf9a155801e289682b0dd705b098a2/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-5-1.png" target="_blank">605e442</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2021-04-17
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/3d86b6874edfb335799f62af846156fd345d4b9a/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-5-1.png" target="_blank">3d86b68</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-5-1.png" target="_blank">cc98d2b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The default settings of <code>get_pairwise_fits()</code> are generally sufficient for analysis. However, it makes some modeling assumptions which can be relaxed. Namely, if one wants a slightly more flexible model based on estimation of cluster means, one could instead run the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bound = qnorm(0.9) says that the magnitude of the estimated cluster means</span>
+<span class="co">#   (for clusters whose mean is non-zero) must be at least the 90% quantile</span>
+<span class="co">#   of a standard normal distribution</span>
+flexible_fits &lt;-
+<span class="st">  </span><span class="kw">get_pairwise_fits</span>(
+  <span class="dt">z =</span> sim$data,
+  <span class="dt">parallel =</span> <span class="ot">FALSE</span>,
+  <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>,
+  <span class="dt">bound =</span> <span class="kw">qnorm</span>(<span class="fl">0.9</span>)
+  )</code></pre></div>
+<p>This change is sometimes desirable in cases where the data are highly skewed. It is recommended to set some positive bound when <code>flex_mu=TRUE</code>. If not, one is likely to underestimate the true number of clusters. We can see that, in this case, classification appears similar to the previous version with <code>flex_mu=FALSE</code> and <code>bound=0</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">axis_names &lt;-<span class="st"> </span><span class="kw">names</span>(flexible_fits) %&gt;%<span class="st"> </span>stringr::<span class="kw">str_split</span>(<span class="st">&quot;_&quot;</span>)
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+purrr::<span class="kw">map2</span>(<span class="dt">.x =</span> flexible_fits, <span class="dt">.y =</span> axis_names,
+     ~<span class="st"> </span><span class="kw">plot</span>(sim$data[, <span class="kw">as.numeric</span>(.y)], <span class="dt">col =</span> .x$cluster, <span class="dt">pch =</span> <span class="dv">4</span>))</code></pre></div>
+<p><img src="figure/pairwise_fitting.Rmd/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/605e442251bf9a155801e289682b0dd705b098a2/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-7-1.png" target="_blank">605e442</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2021-04-17
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/3d86b6874edfb335799f62af846156fd345d4b9a/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-7-1.png" target="_blank">3d86b68</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-7-1.png" target="_blank">cc98d2b</a>
+</td>
+<td>
+hillarykoch
+</td>
+<td>
+2020-04-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Each fit contains additional information, including the length-2 association patterns estimated to be in the given pairwise fit, the posterior probability of each observation belonging to each of these classes, and their corresponding estimated means and covariances.</p>
+<p>Finally, save this output, as it is necessary for many parts of the downstream analyses, before moving on to <a href="candidate_latent_classes.html">the next step</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(fits, <span class="dt">file =</span> <span class="st">&quot;pwfits.Rdata&quot;</span>)</code></pre></div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

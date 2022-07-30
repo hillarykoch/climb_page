@@ -1,0 +1,55 @@
+---
+title: "Finding candidate classes"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+### Finding candidate latent classes: the graph enumeration and pruning algorithm
+
+### <i><b><span style="color:salmon">---Special considerations: this portion is likely a high-memory task!---</span></b></i>
+
+Now that we have our pairwise fits, we need to figure out what are the remaining candidate latent classes. These can be found using the path enumeration and pruning algorithm. This is a graph-based algorithm which can require a lot of memory (especially when the dimension of the data is large). However, with the memory available, this algorithm runs very quickly -- in our experience, in under 5 minutes.
+
+First, load in the previously obtained pairwise fits.
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(autodep = TRUE, warning = FALSE, message = FALSE)
+library(readr)
+```
+
+```{r, echo = 4}
+# load that package
+library(CLIMB)
+
+data("fits")
+```
+
+Then, we can obtain a reduced list of candidate latent classes with `get_reduced_classes()`. This function has 3 arguments:
+
+1. the pairwise fits
+
+2. the dimension of the data
+
+3. the name of an output "LEMON graph format" file (here, called `lgf.txt`). This is *not* to be edited by the user, but is produced for underlying C software.
+
+```{r, message = FALSE}
+# This finds the dimension of the data directly from the pairwise fits
+D <- as.numeric(strsplit(tail(names(fits),1), "_")[[1]][2])
+
+# Get the list of candidate latent classes
+red_class <- get_reduced_classes(fits, D, "output/lgf.txt", split_in_two = FALSE)
+
+# write the output to a text file
+readr::write_tsv(data.frame(red_class), file = "output/red_class.txt", col_names = FALSE)
+```
+
+Each row of `red_class` corresponds to a candidate latent class across the 3 dimensions. The remaining candidate latent classes are as follows:
+```{r}
+red_class
+```
+
+which is a subset of the $3^D=27$ candidate latent classes. Next, we need to determine the hyperparameters on the priors in our Bayesian Gaussian mixture model. Most important is computing the hyperparameters for the prior on the mixing weights. Some classes (especially when the dimension is larger) will have a mixing weight that will result in a degenerate mixing distribution, and so classes with small enough mixing weights can be further pruned from the model. This is discussed in the [next step](priors.html).
+
