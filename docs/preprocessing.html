@@ -13,7 +13,8 @@
 
 <title>Pre-processing input data</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -35,13 +36,15 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -53,6 +56,7 @@ div.section {
     </style>
 
 
+
 <style type="text/css">
   code {
     white-space: pre;
@@ -62,42 +66,68 @@ div.section {
   }
 </style>
 <style type="text/css" data-origin="pandoc">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #cccccc; background-color: #303030; }
-code > span.kw { color: #f0dfaf; } /* Keyword */
-code > span.dt { color: #dfdfbf; } /* DataType */
-code > span.dv { color: #dcdccc; } /* DecVal */
-code > span.bn { color: #dca3a3; } /* BaseN */
-code > span.fl { color: #c0bed1; } /* Float */
-code > span.ch { color: #dca3a3; } /* Char */
-code > span.st { color: #cc9393; } /* String */
-code > span.co { color: #7f9f7f; } /* Comment */
-code > span.ot { color: #efef8f; } /* Other */
-code > span.al { color: #ffcfaf; } /* Alert */
-code > span.fu { color: #efef8f; } /* Function */
-code > span.er { color: #c3bf9f; } /* Error */
-code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
-code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-code > span.sc { color: #dca3a3; } /* SpecialChar */
-code > span.vs { color: #cc9393; } /* VerbatimString */
-code > span.ss { color: #cc9393; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { } /* Variable */
-code > span.cf { color: #f0dfaf; } /* ControlFlow */
-code > span.op { color: #f0efd0; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-code > span.at { } /* Attribute */
-code > span.do { color: #7f9f7f; } /* Documentation */
-code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 
 </style>
 <script>
@@ -148,6 +178,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -360,12 +393,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -373,7 +406,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -389,7 +422,7 @@ div.tocify {
   <a href="preprocessing.html">Pre-processing input data</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Four-step procedure
      
     <span class="caret"></span>
@@ -419,7 +452,7 @@ div.tocify {
 </li>
 <li>
   <a href="https://github.com/hillarykoch/climb_page">
-    <span class="fas fa-github"></span>
+    <span class="fa fa-github"></span>
      
     Source code
   </a>
@@ -440,7 +473,9 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -449,7 +484,9 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -458,17 +495,27 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-04-17
+<strong>Last updated:</strong> 2022-08-13
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 3
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 2
 </p>
 <p>
-<strong>Knit directory:</strong> <code>lieb/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>workflowr/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -477,55 +524,83 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you'll want to first commit it to the Git repo. If you're still working on the analysis, you can ignore this warning. When you're finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
 <div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it's best to always run the code in an empty environment.</p>
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190717code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20190717)</code> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190717code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20190717)</code> </a>
 </p>
 </div>
-<div id="strongSeedstrongcodesetseed20190717code" class="panel-collapse collapse">
+<div id="strongSeedstrongcodesetseed20190717code"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20190717)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20190717)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongunavailable"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Session information:</strong> unavailable </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongunavailable" class="panel-collapse collapse">
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Recording the operating system, R version, and package versions is critical for reproducibility. To record the session information, add <code>sessioninfo: &quot;sessionInfo()&quot;</code> to _workflowr.yml. Alternatively, you could use <code>devtools::session_info()</code> or <code>sessioninfo::session_info()</code>. Lastly, you can manually add a code chunk to this file to run any one of these commands and then disable to automatic insertion by changing the workflowr setting to <code>sessioninfo: &quot;&quot;</code>.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
 </p>
 </div>
 <div id="strongCachestrongdetected" class="panel-collapse collapse">
@@ -536,64 +611,84 @@ The following chunks had caches available:
 unnamed-chunk-11
 </li>
 </ul>
-<p>To ensure reproducibility of the results, delete the cache directory <code>preprocessing_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+<p>To ensure reproducibility of the results, delete the cache directory
+<code>preprocessing_cache</code> and re-run the analysis. To have
+workflowr automatically delete the cache directory prior to building the
+file, set <code>delete_cache = TRUE</code> when running
+<code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
 <div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreea49305692caaee2009dd7a906122305505d106a5targetblanka493056a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/hillarykoch/climb_page/tree/a49305692caaee2009dd7a906122305505d106a5" target="_blank">a493056</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreea49305692caaee2009dd7a906122305505d106a5targetblanka493056a" class="panel-collapse collapse">
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a"
+class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/hillarykoch/climb_page/tree/a49305692caaee2009dd7a906122305505d106a5" target="_blank">a493056</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
 </p>
 <p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/.DS_Store
-    Ignored:    analysis/.Rhistory
-    Ignored:    analysis/figure/
-    Ignored:    analysis/pairwise_fitting_cache/
-    Ignored:    analysis/preprocessing_cache/
     Ignored:    analysis/running_mcmc_cache/
-    Ignored:    data/.DS_Store
-    Ignored:    data/.Rhistory
-    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  .DS_Store
 
 Unstaged changes:
     Modified:   analysis/candidate_latent_classes.Rmd
     Modified:   analysis/downstream.Rmd
+    Modified:   analysis/index.Rmd
     Modified:   analysis/preprocessing.Rmd
     Modified:   analysis/priors.Rmd
     Modified:   analysis/running_mcmc.Rmd
 
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
 </p>
 </div>
 </div>
@@ -604,7 +699,12 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in th
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/preprocessing.Rmd</code>) and HTML (<code>docs/preprocessing.html</code>) files. If you've configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/preprocessing.Rmd</code>) and
+HTML (<code>docs/preprocessing.html</code>) files. If you’ve configured
+a remote Git repository (see <code>?wflow_git_remote</code>), click on
+the hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -633,50 +733,16 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/a49305692caaee2009dd7a906122305505d106a5/analysis/preprocessing.Rmd" target="_blank">a493056</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/analysis/preprocessing.Rmd" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2021-04-17
+2022-07-30
 </td>
 <td>
-update site to match gigantum submission
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/dd0b829748283df1a9a8482da76e31744ba504b8/docs/preprocessing.html" target="_blank">dd0b829</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-10-15
-</td>
-<td>
-replace cache
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/ed24c1bc4a5e0542bed7f286a2119436be190df0/analysis/preprocessing.Rmd" target="_blank">ed24c1b</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-05-08
-</td>
-<td>
-update toc
+working with new computer
 </td>
 </tr>
 <tr>
@@ -684,186 +750,16 @@ update toc
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/ed24c1bc4a5e0542bed7f286a2119436be190df0/docs/preprocessing.html" target="_blank">ed24c1b</a>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/preprocessing.html" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-05-08
+2022-07-30
 </td>
 <td>
-update toc
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/194207230fb39f8d5e47c1bb44a77d0c57c1365f/analysis/preprocessing.Rmd" target="_blank">1942072</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-05-03
-</td>
-<td>
-fix plots on preprocessing slide
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/194207230fb39f8d5e47c1bb44a77d0c57c1365f/docs/preprocessing.html" target="_blank">1942072</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-05-03
-</td>
-<td>
-fix plots on preprocessing slide
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/analysis/preprocessing.Rmd" target="_blank">41ecdb6</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-05-02
-</td>
-<td>
-update preprocessing with quantile transformation for RNA-seq
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/preprocessing.html" target="_blank">41ecdb6</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-05-02
-</td>
-<td>
-update preprocessing with quantile transformation for RNA-seq
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/analysis/preprocessing.Rmd" target="_blank">cc98d2b</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-24
-</td>
-<td>
-replace cache and update to describe flex_mu
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/cc98d2b3469d9dd1fadf2ba3b9577cd6f35327fd/docs/preprocessing.html" target="_blank">cc98d2b</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-24
-</td>
-<td>
-replace cache and update to describe flex_mu
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/717e7627599663c41b14ce8f699853d839bde713/analysis/preprocessing.Rmd" target="_blank">717e762</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
-</td>
-<td>
-add placeholder for downstream analyses
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/717e7627599663c41b14ce8f699853d839bde713/docs/preprocessing.html" target="_blank">717e762</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
-</td>
-<td>
-add placeholder for downstream analyses
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/analysis/preprocessing.Rmd" target="_blank">828e725</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
-</td>
-<td>
-add a preprocessing section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/hillarykoch/climb_page/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/preprocessing.html" target="_blank">828e725</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
-</td>
-<td>
-add a preprocessing section
+working with new computer
 </td>
 </tr>
 </tbody>
@@ -875,22 +771,69 @@ add a preprocessing section
 </div>
 <div id="preparing-data-for-input-into-climb" class="section level3">
 <h3>Preparing data for input into CLIMB</h3>
-<p>CLIMB can, in some cases, be sensitive to data preparation and normalization. This has to do with the relationship between the association labels (<span class="math inline">\(-1, 0, 1\)</span>) and associated parameters. Most notably, if a cluster has a positive (negative) association in dimension <span class="math inline">\(d\)</span>, then the cluster mean will be positive (negative) in dimension <span class="math inline">\(d\)</span> as well. Similarly, if a cluster has null association in dimension <span class="math inline">\(d\)</span>, then the cluster mean will be 0 in dimension <span class="math inline">\(d\)</span>. What this means is that, for data which may have positive, negative, and null associations, we want the data appropriately pre-processed such that these relationships with cluster means will reasonably hold. One should be able to test the suitability of the pre-processing method chosen using only the first step of CLIMB, the pairwise fitting procedure. We will demonstrate what we mean by that later on this page.</p>
-<p>In some cases, such as input from a peak-calling routine, preparation of data is straightforward. In others, such has right-skewed data like RNA-seq, preparation may be slightly less so. Here, we walk through steps used for the data analyses in the CLIMB manuscript, plus additional alternatives. These pre-processing steps are:</p>
+<p>CLIMB can, in some cases, be sensitive to data preparation and
+normalization. This has to do with the relationship between the
+association labels (<span class="math inline">\(-1, 0, 1\)</span>) and
+associated parameters. Most notably, if a cluster has a positive
+(negative) association in dimension <span
+class="math inline">\(d\)</span>, then the cluster mean will be positive
+(negative) in dimension <span class="math inline">\(d\)</span> as well.
+Similarly, if a cluster has null association in dimension <span
+class="math inline">\(d\)</span>, then the cluster mean will be 0 in
+dimension <span class="math inline">\(d\)</span>. What this means is
+that, for data which may have positive, negative, and null associations,
+we want the data appropriately pre-processed such that these
+relationships with cluster means will reasonably hold. One should be
+able to test the suitability of the pre-processing method chosen using
+only the first step of CLIMB, the pairwise fitting procedure. We will
+demonstrate what we mean by that later on this page.</p>
+<p>In some cases, such as input from a peak-calling routine, preparation
+of data is straightforward. In others, such has right-skewed data like
+RNA-seq, preparation may be slightly less so. Here, we walk through
+steps used for the data analyses in the CLIMB manuscript, plus
+additional alternatives. These pre-processing steps are:</p>
 <ol style="list-style-type: decimal">
-<li><a href="#preparation-of-chip-seq-data">Quantile transformation and imputation for peak data</a></li>
-<li><a href="#by-log-transformation">Log transformation and quantile normalization of RNA-seq</a></li>
-<li><a href="#by-quantile-transformation">Quantile transformation of RNA-seq</a></li>
+<li><a href="#preparation-of-chip-seq-data">Quantile transformation and
+imputation for peak data</a></li>
+<li><a href="#by-log-transformation">Log transformation and quantile
+normalization of RNA-seq</a></li>
+<li><a href="#by-quantile-transformation">Quantile transformation of
+RNA-seq</a></li>
 </ol>
 </div>
 <div id="preparation-of-chip-seq-data" class="section level3">
 <h3>Preparation of ChIP-seq data</h3>
-<p>Preparation of data which come from a peak-calling routine is fairly natural. This is because the data are reported as <span class="math inline">\(p\)</span>-values, where small values provide support for the presence of a peak, and the lack of a peak corresponds to &quot;null&quot; behavior. We walk through the data preparation used on the ChIP-seq data in the CLIMB manuscript, though we expect this approach to be more broadly applicable to data output from a peak-calling tool such as MACS2.</p>
-<p>First, we assume the user has chosed some peak-calling procedure, with output reported in a format such as ENCODE narrowPeak format, which contains information about <strong>the chromosome, start location, stop location, and <span class="math inline">\(-\log_{10}(p\)</span>-</strong>value) <strong>for the peak</strong>. Next, since the analysis will be across multiple conditions, one needs to align the peaks across the various conditions being analyzed. In our case, we merged overlapping peak locations with <code>bedtools merge</code>. For locations which had a peak in one condition, but lacked a peak in another, we used a <span class="math inline">\(-\log_{10}(p\)</span>-value) of 0 as a placeholder (this correponds to the not-statistically-significant <span class="math inline">\(p\)</span>-value of 1).</p>
-<p>As an example, let's read in a 2-dimensional ChIP-seq dataset, where the peak regions have already been aligned with <code>bedtools</code>. We can see that this dataset consists of the typical BED format information (chromosome, start, stop), as well as the <span class="math inline">\(-\log_{10}(p\)</span>-values) for 2 conditions. We see that at row 3, there is a peak in condition 1 that is absent in condition 2, and the reverse is the case at row 6.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pairwise_chip &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span class="st">&quot;data/toy_chip.tsv&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)
-<span class="kw">head</span>(pairwise_chip)</code></pre></div>
-<pre><code># A tibble: 6 x 5
+<p>Preparation of data which come from a peak-calling routine is fairly
+natural. This is because the data are reported as <span
+class="math inline">\(p\)</span>-values, where small values provide
+support for the presence of a peak, and the lack of a peak corresponds
+to “null” behavior. We walk through the data preparation used on the
+ChIP-seq data in the CLIMB manuscript, though we expect this approach to
+be more broadly applicable to data output from a peak-calling tool such
+as MACS2.</p>
+<p>First, we assume the user has chosed some peak-calling procedure,
+with output reported in a format such as ENCODE narrowPeak format, which
+contains information about <strong>the chromosome, start location, stop
+location, and <span
+class="math inline">\(-\log_{10}(p\)</span>-</strong>value) <strong>for
+the peak</strong>. Next, since the analysis will be across multiple
+conditions, one needs to align the peaks across the various conditions
+being analyzed. In our case, we merged overlapping peak locations with
+<code>bedtools merge</code>. For locations which had a peak in one
+condition, but lacked a peak in another, we used a <span
+class="math inline">\(-\log_{10}(p\)</span>-value) of 0 as a placeholder
+(this correponds to the not-statistically-significant <span
+class="math inline">\(p\)</span>-value of 1).</p>
+<p>As an example, let’s read in a 2-dimensional ChIP-seq dataset, where
+the peak regions have already been aligned with <code>bedtools</code>.
+We can see that this dataset consists of the typical BED format
+information (chromosome, start, stop), as well as the <span
+class="math inline">\(-\log_{10}(p\)</span>-values) for 2 conditions. We
+see that at row 3, there is a peak in condition 1 that is absent in
+condition 2, and the reverse is the case at row 6.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pairwise_chip <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/toy_chip.tsv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pairwise_chip)</span></code></pre></div>
+<pre><code># A tibble: 6 × 5
   X1           X2        X3     X4     X5
   &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 1 chr11 100004457 100005627  1.72  22.9  
@@ -899,49 +842,55 @@ add a preprocessing section
 4 chr11 100058679 100059290  0.348  0.719
 5 chr11 100168530 100170342 11.5   27.3  
 6 chr11 100199832 100201021  0      9.40 </code></pre>
-<p>Now, we need to transform these data to input for CLIMB. This is shown below, but involves only a few main steps, as described in the CLIMB manuscript.</p>
+<p>Now, we need to transform these data to input for CLIMB. This is
+shown below, but involves only a few main steps, as described in the
+CLIMB manuscript.</p>
 <ol style="list-style-type: decimal">
-<li>Transform everything to <span class="math inline">\(p\)</span>-values.</li>
-<li>Transform <span class="math inline">\(p\)</span>-values to <span class="math inline">\(z\)</span>-scores with the standard normal quantile function</li>
-<li>Impute <span class="math inline">\(z\)</span>-scores at locations where a peak was absent in a condition.</li>
+<li>Transform everything to <span
+class="math inline">\(p\)</span>-values.</li>
+<li>Transform <span class="math inline">\(p\)</span>-values to <span
+class="math inline">\(z\)</span>-scores with the standard normal
+quantile function</li>
+<li>Impute <span class="math inline">\(z\)</span>-scores at locations
+where a peak was absent in a condition.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-
-<span class="co"># BED file information, store this for downstream analysis, e.g. examining loci with GREAT</span>
-bed_df &lt;-<span class="st"> </span>dplyr::<span class="kw">select</span>(pairwise_chip, X1, X2, X3)
-
-<span class="co"># Actual data to prepare now</span>
-pw_df &lt;-<span class="st"> </span>dplyr::<span class="kw">select</span>(pairwise_chip, X4, X5) %&gt;%
-<span class="st">  </span><span class="co"># transform to p-values</span>
-<span class="st">  </span>purrr::<span class="kw">map_df</span>(~<span class="st"> </span><span class="dv">10</span> ^<span class="st"> </span>-(.x))
-
-<span class="co"># Filter out rows which have no peaks in any condition</span>
-<span class="co">#   (this may happen as a by-product of data normalization, or from data subsetting)</span>
-keep_idx &lt;-<span class="st"> </span><span class="kw">apply</span>(pw_df, <span class="dv">1</span>, function(row) !<span class="kw">all</span>(row ==<span class="st"> </span><span class="dv">1</span>))
-  
-bed_df &lt;-<span class="st"> </span>dplyr::<span class="kw">filter</span>(bed_df, keep_idx)
-pw_df &lt;-<span class="st"> </span>dplyr::<span class="kw">filter</span>(pw_df, keep_idx)
-
-<span class="co"># Identify locations with p-value = 1 (these will be imputed)</span>
-one_idx &lt;-<span class="st"> </span>pw_df ==<span class="st"> </span><span class="dv">1</span>
-  
-<span class="co"># Transform data to z-scores using the standard normal quantile function</span>
-z &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="kw">as.matrix</span>(pw_df))
-
-<span class="co"># Address numerical overflow</span>
-maxval &lt;-<span class="st"> </span><span class="kw">max</span>(z[z !=<span class="st"> </span><span class="ot">Inf</span>])
-minval &lt;-<span class="st"> </span><span class="kw">min</span>(z[z !=<span class="st"> </span>-<span class="ot">Inf</span>])
-z[z ==<span class="st"> </span><span class="ot">Inf</span>] &lt;-<span class="st"> </span>maxval
-z[z ==<span class="st"> </span>-<span class="ot">Inf</span>] &lt;-<span class="st"> </span>minval
-
-<span class="co"># Impute z-scores at loci without peaks</span>
-z[one_idx] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">sum</span>(one_idx))
-
-<span class="co"># Take the negative, so that small p-value ==&gt; large signal</span>
-z &lt;-<span class="st"> </span>-z
-
-<span class="co"># Quickly plot the data</span>
-<span class="kw">plot</span>(z, <span class="dt">xlim =</span> <span class="kw">c</span>(-<span class="dv">3</span>,<span class="dv">25</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="dv">3</span>,<span class="dv">25</span>), <span class="dt">pch =</span> <span class="dv">4</span>, <span class="dt">xlab =</span> <span class="st">&quot;condition 1&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;condition 2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># BED file information, store this for downstream analysis, e.g. examining loci with GREAT</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>bed_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(pairwise_chip, X1, X2, X3)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Actual data to prepare now</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>pw_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(pairwise_chip, X4, X5) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># transform to p-values</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_df</span>(<span class="sc">~</span> <span class="dv">10</span> <span class="sc">^</span> <span class="sc">-</span>(.x))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out rows which have no peaks in any condition</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   (this may happen as a by-product of data normalization, or from data subsetting)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>keep_idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(pw_df, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="sc">!</span><span class="fu">all</span>(row <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>bed_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(bed_df, keep_idx)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>pw_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(pw_df, keep_idx)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify locations with p-value = 1 (these will be imputed)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>one_idx <span class="ot">&lt;-</span> pw_df <span class="sc">==</span> <span class="dv">1</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform data to z-scores using the standard normal quantile function</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">as.matrix</span>(pw_df))</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Address numerical overflow</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>maxval <span class="ot">&lt;-</span> <span class="fu">max</span>(z[z <span class="sc">!=</span> <span class="cn">Inf</span>])</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>minval <span class="ot">&lt;-</span> <span class="fu">min</span>(z[z <span class="sc">!=</span> <span class="sc">-</span><span class="cn">Inf</span>])</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>z[z <span class="sc">==</span> <span class="cn">Inf</span>] <span class="ot">&lt;-</span> maxval</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>z[z <span class="sc">==</span> <span class="sc">-</span><span class="cn">Inf</span>] <span class="ot">&lt;-</span> minval</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute z-scores at loci without peaks</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>z[one_idx] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">sum</span>(one_idx))</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the negative, so that small p-value ==&gt; large signal</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="sc">-</span>z</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Quickly plot the data</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">25</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">25</span>), <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">xlab =</span> <span class="st">&quot;condition 1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;condition 2&quot;</span>)</span></code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-3-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
@@ -967,109 +916,108 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-3-1.png" target="_blank">41ecdb6</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/preprocessing.Rmd/unnamed-chunk-3-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-05-02
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-3-1.png" target="_blank">828e725</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
+2022-07-30
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Note that it is critical here that we filtered out the same rows in bed_df (the BED information) and pw_df (the data). This is because, for downstream analyses, we need to track which loci were analyzed.</p>
+<p>Note that it is critical here that we filtered out the same rows in
+bed_df (the BED information) and pw_df (the data). This is because, for
+downstream analyses, we need to track which loci were analyzed.</p>
 </div>
 <div id="preparation-of-rna-seq-data" class="section level3">
 <h3>Preparation of RNA-seq data</h3>
 <div id="by-log-transformation" class="section level4">
 <h4>By log transformation</h4>
-<p>Here, we discuss 2 very similar ways of preparing RNA-seq data for input to CLIMB. First, lets pull some gene expression data from Gene Expression Omnibus. These data concern gene expression in Zebrafish.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(curl)
-
-<span class="co"># Download, unzip, and read in RNA-seq data from GEO</span>
-curl::<span class="kw">curl_download</span>(<span class="dt">url =</span> <span class="st">&quot;ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133459/suppl/GSE133459_RSEM_GSE133459_GFP_GSE133459_NFYADN_GSE133459_PBCAB_12hpf_zebrafish_genes_expression_tpm.tsv.gz&quot;</span>,
-                    <span class="dt">destfile =</span> <span class="st">&quot;data/tpm_zebrafish.tsv.gz&quot;</span>)
-<span class="kw">system</span>(<span class="st">&quot;gunzip data/tpm_zebrafish.tsv.gz&quot;</span>)
-TPMs &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span class="st">&quot;data/tpm_zebrafish.tsv&quot;</span>)
-
-<span class="kw">head</span>(TPMs)</code></pre></div>
-<pre><code># A tibble: 6 x 11
-  gene     transcript  GFP1  GFP2  GFP3 NFYA_DN1 NFYA_DN2 NFYA_DN3 PBCAB1 PBCAB2
-  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 mal2     NM_001135…  2.04  1.39  2.64     3.65     2.21     3.3    3.8    1.6 
-2 ftr54    NM_001099…  0     0     0        0        0        0      0      0   
-3 foxb1b   NM_131283  24.6  23.6  29.5     26.7     25.9     24.4   36.1   27.6 
-4 zgc:174… NM_001113…  4.09  6.09  4.48     7.34     5.74    10.5   10.1    8.54
-5 trafd1   NM_001089… 12.6  13.4  14.9     12.1     10.5      9.57  13.2   14.7 
-6 si:dkey… NM_001044… 11.3  10.8  17.0      8.61     7.46     8.59   7.03  11.7 
-# … with 1 more variable: PBCAB3 &lt;dbl&gt;</code></pre>
-<p>We follow some fairly typical normalization strategies to prepare the data for input into CLIMB. Only step 4 is unusual.</p>
+<p>Here, we discuss 2 very similar ways of preparing RNA-seq data for
+input to CLIMB. First, lets pull some gene expression data from Gene
+Expression Omnibus. These data concern gene expression in Zebrafish.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(curl)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download, unzip, and read in RNA-seq data from GEO</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>curl<span class="sc">::</span><span class="fu">curl_download</span>(<span class="at">url =</span> <span class="st">&quot;ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE133nnn/GSE133459/suppl/GSE133459_RSEM_GSE133459_GFP_GSE133459_NFYADN_GSE133459_PBCAB_12hpf_zebrafish_genes_expression_tpm.tsv.gz&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">destfile =</span> <span class="st">&quot;data/tpm_zebrafish.tsv.gz&quot;</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;gunzip data/tpm_zebrafish.tsv.gz&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>TPMs <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/tpm_zebrafish.tsv&quot;</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(TPMs)</span></code></pre></div>
+<pre><code># A tibble: 6 × 11
+  gene    trans…¹  GFP1  GFP2  GFP3 NFYA_…² NFYA_…³ NFYA_…⁴ PBCAB1 PBCAB2 PBCAB3
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 mal2    NM_001…  2.04  1.39  2.64    3.65    2.21    3.3    3.8    1.6    4.84
+2 ftr54   NM_001…  0     0     0       0       0       0      0      0      0   
+3 foxb1b  NM_131… 24.6  23.6  29.5    26.7    25.9    24.4   36.1   27.6   36.1 
+4 zgc:17… NM_001…  4.09  6.09  4.48    7.34    5.74   10.5   10.1    8.54   9.26
+5 trafd1  NM_001… 12.6  13.4  14.9    12.1    10.5     9.57  13.2   14.7   13.5 
+6 si:dke… NM_001… 11.3  10.8  17.0     8.61    7.46    8.59   7.03  11.7    9.52
+# … with abbreviated variable names ¹​transcript, ²​NFYA_DN1, ³​NFYA_DN2,
+#   ⁴​NFYA_DN3</code></pre>
+<p>We follow some fairly typical normalization strategies to prepare the
+data for input into CLIMB. Only step 4 is unusual.</p>
 <ol style="list-style-type: decimal">
 <li>Pool replicates.</li>
-<li>Apply a <span class="math inline">\(\log2\)</span> transform, using 1 as an offset to avoid infinities.</li>
+<li>Apply a <span class="math inline">\(\log2\)</span> transform, using
+1 as an offset to avoid infinities.</li>
 <li>Quantile normalize the data.</li>
-<li>Apply a location shift to the data such that the positive mode sits over 0.</li>
+<li>Apply a location shift to the data such that the positive mode sits
+over 0.</li>
 </ol>
-<p>We apply step 4 so that the transformed data better adhere to CLIMB's modeling assumptions. As it is only a location shift, it does not affect the associations between gene expression levels across conditions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
-<span class="kw">library</span>(modeest)
-
-<span class="co">#------------------------------------------------------------------------------</span>
-<span class="co"># Pool together replicated data</span>
-
-<span class="co"># First, find unique conditions (here, there are three)</span>
-conditions &lt;-<span class="st"> </span>stringr::<span class="kw">str_split</span>(<span class="kw">names</span>(TPMs)[-(<span class="dv">1</span>:<span class="dv">2</span>)], <span class="dt">pattern =</span> <span class="st">&quot;[[:digit:]]&quot;</span>) %&gt;%
-<span class="st">  </span>purrr::<span class="kw">map_chr</span>(<span class="dv">1</span>) %&gt;%
-<span class="st">  </span>unique
-
-<span class="co"># Pool together TPMs across replicates</span>
-merge_dat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> <span class="kw">nrow</span>(TPMs), <span class="dt">ncol =</span> <span class="kw">length</span>(conditions))
-for(i in <span class="kw">seq_along</span>(conditions)) {
-    idx &lt;-<span class="st"> </span><span class="kw">grepl</span>(<span class="dt">pattern =</span> conditions[i], <span class="dt">x =</span> <span class="kw">names</span>(TPMs))
-    if(<span class="kw">sum</span>(idx) &gt;<span class="st"> </span><span class="dv">1</span>) {
-        merge_dat[,i] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(TPMs[,idx])    
-    } else {
-        merge_dat[,i] &lt;-<span class="st"> </span>TPMs[,idx]
-    }
-}
-<span class="kw">colnames</span>(merge_dat) &lt;-<span class="st"> </span>conditions
-
-<span class="co">#------------------------------------------------------------------------------</span>
-<span class="co"># Do the adjusted quantile normalization</span>
-
-<span class="co"># Remove genes which are 0s in all conditions</span>
-keep_idx &lt;-<span class="st"> </span><span class="kw">apply</span>(merge_dat, <span class="dv">1</span>, function(row) !(<span class="kw">all</span>(row ==<span class="st"> </span><span class="dv">0</span>)))
-genes &lt;-<span class="st"> </span>TPMs$gene[keep_idx]
-merge_dat &lt;-<span class="st"> </span>merge_dat[keep_idx,]
-
-<span class="co"># log2 transform and quantile normalize with limma</span>
-l_dat &lt;-<span class="st"> </span><span class="kw">log2</span>(merge_dat +<span class="st"> </span><span class="dv">1</span>)
-ql_dat &lt;-<span class="st"> </span>limma::<span class="kw">normalizeQuantiles</span>(l_dat)
-
-<span class="co"># Estimate the central mode</span>
-<span class="co">#   It should be the same in every condition, due to quantile normalization</span>
-estimated_mode &lt;-<span class="st"> </span>modeest::<span class="kw">mlv</span>(<span class="kw">as.vector</span>(ql_dat), <span class="dt">method =</span> <span class="st">&quot;meanshift&quot;</span>, <span class="dt">par =</span> <span class="dv">5</span>)
-
-<span class="co"># Center the mode over 0</span>
-z &lt;-<span class="st"> </span>ql_dat -<span class="st"> </span>estimated_mode
-<span class="kw">colnames</span>(z) &lt;-<span class="st"> </span><span class="kw">colnames</span>(merge_dat)
-
-<span class="co"># Make a quick histogram of normalized expression from one condition</span>
-<span class="kw">hist</span>(z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of GFP&quot;</span>)</code></pre></div>
+<p>We apply step 4 so that the transformed data better adhere to CLIMB’s
+modeling assumptions. As it is only a location shift, it does not affect
+the associations between gene expression levels across conditions.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modeest)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------------------------------------------------</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Pool together replicated data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># First, find unique conditions (here, there are three)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">names</span>(TPMs)[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)], <span class="at">pattern =</span> <span class="st">&quot;[[:digit:]]&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  unique</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Pool together TPMs across replicates</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>merge_dat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> <span class="fu">nrow</span>(TPMs), <span class="at">ncol =</span> <span class="fu">length</span>(conditions))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(conditions)) {</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    idx <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="at">pattern =</span> conditions[i], <span class="at">x =</span> <span class="fu">names</span>(TPMs))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">sum</span>(idx) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        merge_dat[,i] <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(TPMs[,idx])    </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        merge_dat[,i] <span class="ot">&lt;-</span> TPMs[,idx]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(merge_dat) <span class="ot">&lt;-</span> conditions</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------------------------------------------------</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Do the adjusted quantile normalization</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove genes which are 0s in all conditions</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>keep_idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(merge_dat, <span class="dv">1</span>, <span class="cf">function</span>(row) <span class="sc">!</span>(<span class="fu">all</span>(row <span class="sc">==</span> <span class="dv">0</span>)))</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> TPMs<span class="sc">$</span>gene[keep_idx]</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>merge_dat <span class="ot">&lt;-</span> merge_dat[keep_idx,]</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># log2 transform and quantile normalize with limma</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>l_dat <span class="ot">&lt;-</span> <span class="fu">log2</span>(merge_dat <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>ql_dat <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">normalizeQuantiles</span>(l_dat)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the central mode</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#   It should be the same in every condition, due to quantile normalization</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>estimated_mode <span class="ot">&lt;-</span> modeest<span class="sc">::</span><span class="fu">mlv</span>(<span class="fu">as.vector</span>(ql_dat), <span class="at">method =</span> <span class="st">&quot;meanshift&quot;</span>, <span class="at">par =</span> <span class="dv">5</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Center the mode over 0</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> ql_dat <span class="sc">-</span> estimated_mode</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(z) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(merge_dat)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a quick histogram of normalized expression from one condition</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z[,<span class="dv">1</span>], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of GFP&quot;</span>)</span></code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
@@ -1095,25 +1043,32 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-5-1.png" target="_blank">41ecdb6</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/preprocessing.Rmd/unnamed-chunk-5-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-05-02
+2022-07-30
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>As with the ChIP-seq, we filter out genes which are removed from the analysis, so that we know which genes we examined.</p>
-<p>While this data pre-processing strategy was suitable for the analyses in the CLIMB manuscript, it may not always be suitable for all RNA-seq. Here, we demonstrate another variation on this data pre-processing strategy. Here, we will pool single-cell experiments of hematopoietic progenitor cells, take from Olsson et al. 2016 (accession code GSE70245).</p>
-<p>After reading in the data, we see that there are 382 cells in total in the experiment, coming from 4 unique cell populations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sc_dat &lt;-<span class="st"> </span>readr::<span class="kw">read_tsv</span>(<span class="st">&quot;data/olsson2016.tsv&quot;</span>)
-<span class="kw">head</span>(sc_dat)</code></pre></div>
-<pre><code># A tibble: 6 x 383
+<p>As with the ChIP-seq, we filter out genes which are removed from the
+analysis, so that we know which genes we examined.</p>
+<p>While this data pre-processing strategy was suitable for the analyses
+in the CLIMB manuscript, it may not always be suitable for all RNA-seq.
+Here, we demonstrate another variation on this data pre-processing
+strategy. Here, we will pool single-cell experiments of hematopoietic
+progenitor cells, take from Olsson et al. 2016 (accession code
+GSE70245).</p>
+<p>After reading in the data, we see that there are 382 cells in total
+in the experiment, coming from 4 unique cell populations.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sc_dat <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;data/olsson2016.tsv&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sc_dat)</span></code></pre></div>
+<pre><code># A tibble: 6 × 383
   uid    Lsk.19 Lsk.20 Lsk.27 Lsk.34 Lsk.36 Lsk.37 Lsk.50 Lsk.57 Lsk.58 Lsk.59
   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 1 Marc1       0   0      0      0      0     0          0      0      0   0   
@@ -1128,53 +1083,43 @@ hillarykoch
 #   Lsk.74 &lt;dbl&gt;, Lsk.75 &lt;dbl&gt;, Lsk.76 &lt;dbl&gt;, Lsk.77 &lt;dbl&gt;, Lsk.78 &lt;dbl&gt;,
 #   Lsk.79 &lt;dbl&gt;, Lsk.80 &lt;dbl&gt;, Lsk.81 &lt;dbl&gt;, Lsk.82 &lt;dbl&gt;, Lsk.83 &lt;dbl&gt;,
 #   Lsk.84 &lt;dbl&gt;, Lsk.85 &lt;dbl&gt;, Lsk.86 &lt;dbl&gt;, Lsk.87 &lt;dbl&gt;, Lsk.88 &lt;dbl&gt;,
-#   Lsk.89 &lt;dbl&gt;, Lsk.90 &lt;dbl&gt;, Lsk.91 &lt;dbl&gt;, Lsk.92 &lt;dbl&gt;, Lsk.93 &lt;dbl&gt;,
-#   Lsk.94 &lt;dbl&gt;, Lsk.95 &lt;dbl&gt;, Lsk.96 &lt;dbl&gt;, Lsk.10 &lt;dbl&gt;, Lsk.11 &lt;dbl&gt;,
-#   Lsk.12 &lt;dbl&gt;, Lsk.13 &lt;dbl&gt;, Lsk.14 &lt;dbl&gt;, Lsk.15 &lt;dbl&gt;, Lsk.16 &lt;dbl&gt;,
-#   Lsk.17 &lt;dbl&gt;, Lsk.18 &lt;dbl&gt;, Lsk.1 &lt;dbl&gt;, Lsk.21 &lt;dbl&gt;, Lsk.22 &lt;dbl&gt;,
-#   Lsk.23 &lt;dbl&gt;, Lsk.24 &lt;dbl&gt;, Lsk.26 &lt;dbl&gt;, Lsk.28 &lt;dbl&gt;, Lsk.29 &lt;dbl&gt;,
-#   Lsk.2 &lt;dbl&gt;, Lsk.30 &lt;dbl&gt;, Lsk.31 &lt;dbl&gt;, Lsk.32 &lt;dbl&gt;, Lsk.33 &lt;dbl&gt;,
-#   Lsk.35 &lt;dbl&gt;, Lsk.38 &lt;dbl&gt;, Lsk.39 &lt;dbl&gt;, Lsk.3 &lt;dbl&gt;, Lsk.40 &lt;dbl&gt;,
-#   Lsk.41 &lt;dbl&gt;, Lsk.42 &lt;dbl&gt;, Lsk.43 &lt;dbl&gt;, Lsk.44 &lt;dbl&gt;, Lsk.45 &lt;dbl&gt;,
-#   Lsk.46 &lt;dbl&gt;, Lsk.47 &lt;dbl&gt;, Lsk.48 &lt;dbl&gt;, Lsk.49 &lt;dbl&gt;, Lsk.4 &lt;dbl&gt;,
-#   Lsk.51 &lt;dbl&gt;, Lsk.52 &lt;dbl&gt;, Lsk.53 &lt;dbl&gt;, Lsk.54 &lt;dbl&gt;, Lsk.55 &lt;dbl&gt;,
-#   Lsk.5 &lt;dbl&gt;, Lsk.6 &lt;dbl&gt;, Lsk.7 &lt;dbl&gt;, Lsk.8 &lt;dbl&gt;, Lsk.9 &lt;dbl&gt;,
-#   Cmp.10 &lt;dbl&gt;, Cmp.11 &lt;dbl&gt;, Cmp.12 &lt;dbl&gt;, Cmp.14 &lt;dbl&gt;, Cmp.15 &lt;dbl&gt;,
-#   Cmp.16 &lt;dbl&gt;, Cmp.17 &lt;dbl&gt;, Cmp.18 &lt;dbl&gt;, Cmp.19 &lt;dbl&gt;, Cmp.20 &lt;dbl&gt;,
-#   Cmp.21 &lt;dbl&gt;, Cmp.22 &lt;dbl&gt;, Cmp.23 &lt;dbl&gt;, Cmp.24 &lt;dbl&gt;, Cmp.25 &lt;dbl&gt;,
-#   Cmp.26 &lt;dbl&gt;, Cmp.27 &lt;dbl&gt;, …</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uid &lt;-<span class="st"> </span>sc_dat$uid
-sc_dat$uid &lt;-<span class="st"> </span><span class="ot">NULL</span>
-
-<span class="co"># Extract cell types</span>
-cells &lt;-<span class="st"> </span><span class="kw">str_split</span>(<span class="kw">colnames</span>(sc_dat), <span class="dt">pattern =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>) %&gt;%
-<span class="st">    </span><span class="kw">map_chr</span>(<span class="dv">1</span>)
-<span class="kw">unique</span>(cells)</code></pre></div>
+#   Lsk.89 &lt;dbl&gt;, Lsk.90 &lt;dbl&gt;, Lsk.91 &lt;dbl&gt;, Lsk.92 &lt;dbl&gt;, Lsk.93 &lt;dbl&gt;, …
+# ℹ Use `colnames()` to see all variable names</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>uid <span class="ot">&lt;-</span> sc_dat<span class="sc">$</span>uid</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sc_dat<span class="sc">$</span>uid <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract cell types</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>cells <span class="ot">&lt;-</span> <span class="fu">str_split</span>(<span class="fu">colnames</span>(sc_dat), <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map_chr</span>(<span class="dv">1</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(cells)</span></code></pre></div>
 <pre><code>[1] &quot;Lsk&quot; &quot;Cmp&quot; &quot;Gmp&quot; &quot;LK&quot; </code></pre>
-<p>Again, we will pool the data by cell type, apply a log2 transformation with offset, and quantile normalize.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#------------------------------------------------------------------------------</span>
-<span class="co"># Pool together replicated data</span>
-sc_merge_dat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> <span class="kw">nrow</span>(sc_dat), <span class="dt">ncol =</span> <span class="kw">length</span>(<span class="kw">unique</span>(cells)))
-for(i in <span class="kw">seq_along</span>(<span class="kw">unique</span>(cells))) {
-    cell_idx &lt;-<span class="st"> </span>cells ==<span class="st"> </span><span class="kw">unique</span>(cells)[i]
-    sc_merge_dat[,i] &lt;-<span class="st"> </span><span class="kw">rowSums</span>(sc_dat[,cell_idx])
-}
-<span class="kw">colnames</span>(sc_merge_dat) &lt;-<span class="st"> </span><span class="kw">unique</span>(cells)
-
-<span class="co">#------------------------------------------------------------------------------</span>
-<span class="co"># Do the adjusted quantile normalization</span>
-
-<span class="co"># Remove genes which are 0s in all conditions</span>
-keep_idx &lt;-<span class="st"> </span><span class="kw">apply</span>(sc_merge_dat, <span class="dv">1</span>, function(X) !<span class="kw">all</span>(X ==<span class="st"> </span><span class="dv">0</span>))
-sc_merge_dat &lt;-<span class="st"> </span>sc_merge_dat[keep_idx,]
-uid &lt;-<span class="st"> </span>uid[keep_idx]
-
-<span class="co"># log2 transform and quantile normalize with limma</span>
-l_dat &lt;-<span class="st"> </span><span class="kw">log2</span>(sc_merge_dat +<span class="st"> </span><span class="dv">1</span>)
-ql_dat &lt;-<span class="st"> </span>limma::<span class="kw">normalizeQuantiles</span>(l_dat)</code></pre></div>
-<p>However, if we plot the histogram of these data, we notice they have a sligtly different distributional structure than the previous Zebrafish data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(ql_dat[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of LK&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="fl">4.5</span>), <span class="dt">col =</span> <span class="st">&quot;darkcyan&quot;</span>)</code></pre></div>
+<p>Again, we will pool the data by cell type, apply a log2
+transformation with offset, and quantile normalize.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------------------------------------------------</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pool together replicated data</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>sc_merge_dat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> <span class="fu">nrow</span>(sc_dat), <span class="at">ncol =</span> <span class="fu">length</span>(<span class="fu">unique</span>(cells)))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(<span class="fu">unique</span>(cells))) {</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    cell_idx <span class="ot">&lt;-</span> cells <span class="sc">==</span> <span class="fu">unique</span>(cells)[i]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    sc_merge_dat[,i] <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(sc_dat[,cell_idx])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sc_merge_dat) <span class="ot">&lt;-</span> <span class="fu">unique</span>(cells)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------------------------------------------------</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Do the adjusted quantile normalization</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove genes which are 0s in all conditions</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>keep_idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(sc_merge_dat, <span class="dv">1</span>, <span class="cf">function</span>(X) <span class="sc">!</span><span class="fu">all</span>(X <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>sc_merge_dat <span class="ot">&lt;-</span> sc_merge_dat[keep_idx,]</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>uid <span class="ot">&lt;-</span> uid[keep_idx]</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># log2 transform and quantile normalize with limma</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>l_dat <span class="ot">&lt;-</span> <span class="fu">log2</span>(sc_merge_dat <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>ql_dat <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">normalizeQuantiles</span>(l_dat)</span></code></pre></div>
+<p>However, if we plot the histogram of these data, we notice they have
+a sligtly different distributional structure than the previous Zebrafish
+data.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ql_dat[,<span class="dv">1</span>], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of LK&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="fl">4.5</span>), <span class="at">col =</span> <span class="st">&quot;darkcyan&quot;</span>)</span></code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-8-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
@@ -1200,56 +1145,51 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-8-1.png" target="_blank">41ecdb6</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/preprocessing.Rmd/unnamed-chunk-8-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-05-02
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/828e725ac9ae66949f0c7821028faa80ae0242c5/docs/figure/preprocessing.Rmd/unnamed-chunk-8-1.png" target="_blank">828e725</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-04-23
+2022-07-30
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Most importantly, there is a flattening of the disrtibution between the vertical cyan lines. This motivates us to apply a location shift such that this flat region lies over the origin, rather than the positive mode (here, the positive mode is around 7.5). To do this, we approximate the first and second derivitaves of the density using finite differences, and apply a location shift to the data such that the positive inflection point sits over 0.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#------------------------------------------------------------------------------</span>
-<span class="co"># Apply a location shift at the inflection point</span>
-
-<span class="co"># Approximate the density</span>
-dens &lt;-<span class="st"> </span><span class="kw">density</span>(<span class="kw">unlist</span>(ql_dat))
-
-<span class="co"># Approximate the first and second derivatives of the density</span>
-first_deriv &lt;-<span class="st"> </span><span class="kw">diff</span>(dens$y) /<span class="st"> </span><span class="kw">diff</span>(dens$x)
-second_deriv &lt;-<span class="st"> </span><span class="kw">diff</span>(first_deriv) /<span class="st"> </span><span class="kw">diff</span>(<span class="kw">tail</span>(dens$x, -<span class="dv">1</span>))
-
-<span class="co"># Find inflections</span>
-flex &lt;-<span class="st"> </span><span class="kw">c</span>()
-for(i in <span class="dv">2</span>:<span class="kw">length</span>(second_deriv)){
-    if(<span class="kw">sign</span>(second_deriv[i]) !=<span class="st"> </span><span class="kw">sign</span>(second_deriv[i<span class="dv">-1</span>])){
-        flex &lt;-<span class="st"> </span><span class="kw">c</span>(flex, i)
-    }
-}
-
-<span class="co"># Find which inflection point coincides with first derivative being approximately 0</span>
-<span class="co">#   Apply the location shift accordingly</span>
-flattening &lt;-<span class="st"> </span>dens$x[flex[<span class="kw">which.min</span>(<span class="kw">abs</span>(first_deriv[flex]))]]
-z &lt;-<span class="st"> </span>ql_dat -<span class="st"> </span>flattening
-
-<span class="co"># Make a quick histogram and plot of normalized expression from one condition</span>
-<span class="kw">hist</span>(z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">30</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of LK, after shifting&quot;</span>)</code></pre></div>
+<p>Most importantly, there is a flattening of the disrtibution between
+the vertical cyan lines. This motivates us to apply a location shift
+such that this flat region lies over the origin, rather than the
+positive mode (here, the positive mode is around 7.5). To do this, we
+approximate the first and second derivitaves of the density using finite
+differences, and apply a location shift to the data such that the
+positive inflection point sits over 0.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------------------------------------------------</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply a location shift at the inflection point</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximate the density</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>dens <span class="ot">&lt;-</span> <span class="fu">density</span>(<span class="fu">unlist</span>(ql_dat))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximate the first and second derivatives of the density</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>first_deriv <span class="ot">&lt;-</span> <span class="fu">diff</span>(dens<span class="sc">$</span>y) <span class="sc">/</span> <span class="fu">diff</span>(dens<span class="sc">$</span>x)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>second_deriv <span class="ot">&lt;-</span> <span class="fu">diff</span>(first_deriv) <span class="sc">/</span> <span class="fu">diff</span>(<span class="fu">tail</span>(dens<span class="sc">$</span>x, <span class="sc">-</span><span class="dv">1</span>))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Find inflections</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>flex <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(second_deriv)){</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">sign</span>(second_deriv[i]) <span class="sc">!=</span> <span class="fu">sign</span>(second_deriv[i<span class="dv">-1</span>])){</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        flex <span class="ot">&lt;-</span> <span class="fu">c</span>(flex, i)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Find which inflection point coincides with first derivative being approximately 0</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#   Apply the location shift accordingly</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>flattening <span class="ot">&lt;-</span> dens<span class="sc">$</span>x[flex[<span class="fu">which.min</span>(<span class="fu">abs</span>(first_deriv[flex]))]]</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> ql_dat <span class="sc">-</span> flattening</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a quick histogram and plot of normalized expression from one condition</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z[,<span class="dv">1</span>], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of LK, after shifting&quot;</span>)</span></code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-9-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
@@ -1275,42 +1215,49 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-9-1.png" target="_blank">41ecdb6</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/preprocessing.Rmd/unnamed-chunk-9-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-05-02
+2022-07-30
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>This transformation may be more widely applicable to RNA-seq datasets.</p>
+<p>This transformation may be more widely applicable to RNA-seq
+datasets.</p>
 </div>
 <div id="by-quantile-transformation" class="section level4">
 <h4>By quantile transformation</h4>
-<p>A final, straightforward method to preprocessing RNA-seq data involves quantile transformation, just like with peak-calling data. This method has the advantage of being simple, while also assuring greater suitability of CLIMB's assumption that data labeled 0 in some dimension marginally follow a <span class="math inline">\(Z\)</span>-score distribution (sometimes called the theoretical null). Let's apply this method to the previously shown RNA-seq datasets.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the normalized ranks (empirical CDF) which are uniformly distributed</span>
-<span class="co"># then apply the quantile function of the standard normal</span>
-
-<span class="co"># RECALL: merge_dat is the Zebrafish RNA-seq data</span>
-z &lt;-<span class="st"> </span><span class="kw">apply</span>(merge_dat, <span class="dv">2</span>, function(X) <span class="kw">rank</span>(X, <span class="dt">ties.method =</span> <span class="st">&quot;random&quot;</span>) /<span class="st"> </span>(<span class="kw">length</span>(X) +<span class="st"> </span><span class="dv">1</span>)) %&gt;%
-<span class="st">  </span>qnorm
-
-<span class="co"># RECALL: sc_merge_dat is the pooled single-cell RNA-seq data</span>
-sc_z &lt;-<span class="st"> </span><span class="kw">apply</span>(sc_merge_dat, <span class="dv">2</span>, function(X) <span class="kw">rank</span>(X, <span class="dt">ties.method =</span> <span class="st">&quot;random&quot;</span>) /<span class="st"> </span>(<span class="kw">length</span>(X) +<span class="st"> </span><span class="dv">1</span>)) %&gt;%
-<span class="st">  </span>qnorm
-
-<span class="co"># We see from these histograms that the data are standard normal</span>
-<span class="kw">hist</span>(z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">35</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of LSK&quot;</span>)
-<span class="kw">hist</span>(sc_z[,<span class="dv">1</span>], <span class="dt">breaks =</span> <span class="dv">35</span>, <span class="dt">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histogram of GFP&quot;</span>)
-
-<span class="co"># But the joint distributions look like mixtures</span>
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">xlab =</span> <span class="kw">colnames</span>(z)[<span class="dv">2</span>], <span class="dt">ylab =</span> <span class="kw">colnames</span>(z)[<span class="dv">3</span>], <span class="dt">main =</span> <span class="st">&quot;Zebrafish RNA-seq&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">xlab =</span> <span class="kw">colnames</span>(sc_z)[<span class="dv">1</span>], <span class="dt">ylab =</span> <span class="kw">colnames</span>(sc_z)[<span class="dv">4</span>], <span class="dt">main =</span> <span class="st">&quot;Pooled single-cell RNA-seq&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)</code></pre></div>
+<p>A final, straightforward method to preprocessing RNA-seq data
+involves quantile transformation, just like with peak-calling data. This
+method has the advantage of being simple, while also assuring greater
+suitability of CLIMB’s assumption that data labeled 0 in some dimension
+marginally follow a <span class="math inline">\(Z\)</span>-score
+distribution (sometimes called the theoretical null). Let’s apply this
+method to the previously shown RNA-seq datasets.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the normalized ranks (empirical CDF) which are uniformly distributed</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># then apply the quantile function of the standard normal</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># RECALL: merge_dat is the Zebrafish RNA-seq data</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">apply</span>(merge_dat, <span class="dv">2</span>, <span class="cf">function</span>(X) <span class="fu">rank</span>(X, <span class="at">ties.method =</span> <span class="st">&quot;random&quot;</span>) <span class="sc">/</span> (<span class="fu">length</span>(X) <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  qnorm</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># RECALL: sc_merge_dat is the pooled single-cell RNA-seq data</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>sc_z <span class="ot">&lt;-</span> <span class="fu">apply</span>(sc_merge_dat, <span class="dv">2</span>, <span class="cf">function</span>(X) <span class="fu">rank</span>(X, <span class="at">ties.method =</span> <span class="st">&quot;random&quot;</span>) <span class="sc">/</span> (<span class="fu">length</span>(X) <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  qnorm</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># We see from these histograms that the data are standard normal</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(z[,<span class="dv">1</span>], <span class="at">breaks =</span> <span class="dv">35</span>, <span class="at">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of LSK&quot;</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sc_z[,<span class="dv">1</span>], <span class="at">breaks =</span> <span class="dv">35</span>, <span class="at">xlab =</span> <span class="st">&quot;normalized transcripts&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Histogram of GFP&quot;</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># But the joint distributions look like mixtures</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="at">xlab =</span> <span class="fu">colnames</span>(z)[<span class="dv">2</span>], <span class="at">ylab =</span> <span class="fu">colnames</span>(z)[<span class="dv">3</span>], <span class="at">main =</span> <span class="st">&quot;Zebrafish RNA-seq&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sc_z[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">xlab =</span> <span class="fu">colnames</span>(sc_z)[<span class="dv">1</span>], <span class="at">ylab =</span> <span class="fu">colnames</span>(sc_z)[<span class="dv">4</span>], <span class="at">main =</span> <span class="st">&quot;Pooled single-cell RNA-seq&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-10-1.png" width="1344" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
@@ -1336,57 +1283,66 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/194207230fb39f8d5e47c1bb44a77d0c57c1365f/docs/figure/preprocessing.Rmd/unnamed-chunk-10-1.png" target="_blank">1942072</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/preprocessing.Rmd/unnamed-chunk-10-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-05-03
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-10-1.png" target="_blank">41ecdb6</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-05-02
+2022-07-30
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Using the normalized ranks and standard normal quantile transformation may cause a sort of &quot;compressing&quot; of the data. This is because ranking the data obscured distances between various clusters in the mixture. Then, when applying the typical pairwise fitting step, the cluster estimation may be sub-optimal. To resolve this, we suggest placing a lower bound on the absolute value of the class means for dimensions associated with some signal (i.e., -1 or 1), while allowing more flexibility in the estimation of the positive and negative means. It is important to note that such constraints only exist in the pairwise fitting step, and no longer pose any issue downstream.</p>
-<p>Here, we fit a pairwise model to the Zebrafish and pooled single cell datasets. We fit the model under three scenarios:</p>
+<p>Using the normalized ranks and standard normal quantile
+transformation may cause a sort of “compressing” of the data. This is
+because ranking the data obscured distances between various clusters in
+the mixture. Then, when applying the typical pairwise fitting step, the
+cluster estimation may be sub-optimal. To resolve this, we suggest
+placing a lower bound on the absolute value of the class means for
+dimensions associated with some signal (i.e., -1 or 1), while allowing
+more flexibility in the estimation of the positive and negative means.
+It is important to note that such constraints only exist in the pairwise
+fitting step, and no longer pose any issue downstream.</p>
+<p>Here, we fit a pairwise model to the Zebrafish and pooled single cell
+datasets. We fit the model under three scenarios:</p>
 <ol style="list-style-type: decimal">
-<li>A model with no lower bound on the magnitude of the class means, which is also less flexible in estimation of positive and negative associations</li>
-<li>A model with no lower bound on the magnitude of the class means, but which is more flexible in estimation of positive and negative associations</li>
-<li>A model with a lower bound on the magnitude of the class means, which is also more flexible in estimation of positive and negative associations</li>
+<li>A model with no lower bound on the magnitude of the class means,
+which is also less flexible in estimation of positive and negative
+associations</li>
+<li>A model with no lower bound on the magnitude of the class means, but
+which is more flexible in estimation of positive and negative
+associations</li>
+<li>A model with a lower bound on the magnitude of the class means,
+which is also more flexible in estimation of positive and negative
+associations</li>
 </ol>
-<p>We plot the data colored by their maximum <em>a posteriori</em> class labels. We can see that <strong>modeling approach 3</strong> appears the most robust, as approach 1 is not flexible enough, and approach 2 encounters identifiability issues, resulting in an unwanted merging of clusters.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))
-
-pal &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pals</span>(<span class="dv">1</span>)
-
-fit_no_bound &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>)
-fit_no_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>, <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
-fit_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="kw">qnorm</span>(.<span class="dv">8</span>), <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
-
-sc_fit_no_bound &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>)
-sc_fit_no_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="dv">0</span>, <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
-sc_fit_bound_flex &lt;-<span class="st"> </span>CLIMB::<span class="kw">get_pairwise_fits</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">nlambda =</span> <span class="dv">3</span>, <span class="dt">parallel =</span> <span class="ot">FALSE</span>, <span class="dt">bound =</span> <span class="kw">qnorm</span>(.<span class="dv">8</span>), <span class="dt">flex_mu =</span> <span class="ot">TRUE</span>)
-
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> pal[fit_no_bound[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 1&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> pal[fit_no_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 2&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
-<span class="kw">plot</span>(z[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="dt">col =</span> pal[fit_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 3&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
-
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> pal[sc_fit_no_bound[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 1&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> pal[sc_fit_no_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 2&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)
-<span class="kw">plot</span>(sc_z[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="dt">col =</span> pal[sc_fit_bound_flex[[<span class="dv">1</span>]]$cluster], <span class="dt">main =</span> <span class="st">&quot;Approach 3&quot;</span>, <span class="dt">pch =</span> <span class="dv">4</span>)</code></pre></div>
+<p>We plot the data colored by their maximum <em>a posteriori</em> class
+labels. We can see that <strong>modeling approach 3</strong> appears the
+most robust, as approach 1 is not flexible enough, and approach 2
+encounters identifiability issues, resulting in an unwanted merging of
+clusters.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> CLIMB<span class="sc">::</span><span class="fu">get_pals</span>(<span class="dv">1</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>fit_no_bound <span class="ot">&lt;-</span> CLIMB<span class="sc">::</span><span class="fu">get_pairwise_fits</span>(z[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="at">nlambda =</span> <span class="dv">3</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>, <span class="at">bound =</span> <span class="dv">0</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>fit_no_bound_flex <span class="ot">&lt;-</span> CLIMB<span class="sc">::</span><span class="fu">get_pairwise_fits</span>(z[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="at">nlambda =</span> <span class="dv">3</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>, <span class="at">bound =</span> <span class="dv">0</span>, <span class="at">flex_mu =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>fit_bound_flex <span class="ot">&lt;-</span> CLIMB<span class="sc">::</span><span class="fu">get_pairwise_fits</span>(z[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="at">nlambda =</span> <span class="dv">3</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>, <span class="at">bound =</span> <span class="fu">qnorm</span>(.<span class="dv">8</span>), <span class="at">flex_mu =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>sc_fit_no_bound <span class="ot">&lt;-</span> CLIMB<span class="sc">::</span><span class="fu">get_pairwise_fits</span>(sc_z[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">nlambda =</span> <span class="dv">3</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>, <span class="at">bound =</span> <span class="dv">0</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>sc_fit_no_bound_flex <span class="ot">&lt;-</span> CLIMB<span class="sc">::</span><span class="fu">get_pairwise_fits</span>(sc_z[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">nlambda =</span> <span class="dv">3</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>, <span class="at">bound =</span> <span class="dv">0</span>, <span class="at">flex_mu =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>sc_fit_bound_flex <span class="ot">&lt;-</span> CLIMB<span class="sc">::</span><span class="fu">get_pairwise_fits</span>(sc_z[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">nlambda =</span> <span class="dv">3</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>, <span class="at">bound =</span> <span class="fu">qnorm</span>(.<span class="dv">8</span>), <span class="at">flex_mu =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="at">col =</span> pal[fit_no_bound[[<span class="dv">1</span>]]<span class="sc">$</span>cluster], <span class="at">main =</span> <span class="st">&quot;Approach 1&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="at">col =</span> pal[fit_no_bound_flex[[<span class="dv">1</span>]]<span class="sc">$</span>cluster], <span class="at">main =</span> <span class="st">&quot;Approach 2&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(z[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)], <span class="at">col =</span> pal[fit_bound_flex[[<span class="dv">1</span>]]<span class="sc">$</span>cluster], <span class="at">main =</span> <span class="st">&quot;Approach 3&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sc_z[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">col =</span> pal[sc_fit_no_bound[[<span class="dv">1</span>]]<span class="sc">$</span>cluster], <span class="at">main =</span> <span class="st">&quot;Approach 1&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sc_z[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">col =</span> pal[sc_fit_no_bound_flex[[<span class="dv">1</span>]]<span class="sc">$</span>cluster], <span class="at">main =</span> <span class="st">&quot;Approach 2&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sc_z[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)], <span class="at">col =</span> pal[sc_fit_bound_flex[[<span class="dv">1</span>]]<span class="sc">$</span>cluster], <span class="at">main =</span> <span class="st">&quot;Approach 3&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="figure/preprocessing.Rmd/unnamed-chunk-11-1.png" width="1008" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
@@ -1412,24 +1368,13 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/hillarykoch/climb_page/blob/194207230fb39f8d5e47c1bb44a77d0c57c1365f/docs/figure/preprocessing.Rmd/unnamed-chunk-11-1.png" target="_blank">1942072</a>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/preprocessing.Rmd/unnamed-chunk-11-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
-hillarykoch
+Hillary Koch
 </td>
 <td>
-2020-05-03
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/hillarykoch/climb_page/blob/41ecdb67ed5cfe173b5a641f89d3749ce80e3fbb/docs/figure/preprocessing.Rmd/unnamed-chunk-11-1.png" target="_blank">41ecdb6</a>
-</td>
-<td>
-hillarykoch
-</td>
-<td>
-2020-05-02
+2022-07-30
 </td>
 </tr>
 </tbody>
@@ -1438,11 +1383,69 @@ hillarykoch
 </div>
 </div>
 </div>
+<div id="session-information" class="section level2">
+<h2>Session Information</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sessionInfo</span>())</span></code></pre></div>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Monterey 12.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] workflowr_1.7.0 modeest_2.4.0   limma_3.52.2    curl_4.3.2     
+ [5] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.9     purrr_0.3.4    
+ [9] readr_2.1.2     tidyr_1.2.0     tibble_3.1.8    ggplot2_3.3.6  
+[13] tidyverse_1.3.2
+
+loaded via a namespace (and not attached):
+ [1] fs_1.5.2             lubridate_1.8.0      bit64_4.0.5         
+ [4] doParallel_1.0.17    httr_1.4.3           LaplacesDemon_16.1.6
+ [7] rprojroot_2.0.3      fBasics_3042.89.2    tools_4.2.1         
+[10] backports_1.4.1      bslib_0.4.0          utf8_1.2.2          
+[13] R6_2.5.1             rpart_4.1.16         DBI_1.1.3           
+[16] colorspace_2.0-3     withr_2.5.0          processx_3.7.0      
+[19] tidyselect_1.1.2     timeSeries_4021.104  bit_4.0.4           
+[22] compiler_4.2.1       git2r_0.30.1         cli_3.3.0           
+[25] rvest_1.0.2          xml2_1.3.3           sass_0.4.2          
+[28] scales_1.2.0         mvtnorm_1.1-3        callr_3.7.1         
+[31] spatial_7.3-15       digest_0.6.29        rmarkdown_2.14      
+[34] pkgconfig_2.0.3      htmltools_0.5.3      dbplyr_2.2.1        
+[37] fastmap_1.1.0        stabledist_0.7-1     highr_0.9           
+[40] rlang_1.0.4          readxl_1.4.0         rstudioapi_0.13     
+[43] CLIMB_1.0.0          jquerylib_0.1.4      generics_0.1.3      
+[46] jsonlite_1.8.0       vroom_1.5.7          googlesheets4_1.0.0 
+[49] magrittr_2.0.3       Rcpp_1.0.9           munsell_0.5.0       
+[52] fansi_1.0.3          abind_1.4-5          lifecycle_1.0.1     
+[55] stringi_1.7.8        whisker_0.4          yaml_2.3.5          
+[58] brio_1.1.3           stable_1.1.6         plyr_1.8.7          
+[61] grid_4.2.1           parallel_4.2.1       promises_1.2.0.1    
+[64] crayon_1.5.1         haven_2.5.0          hms_1.1.1           
+[67] ps_1.7.1             knitr_1.39           pillar_1.8.0        
+[70] JuliaCall_0.17.4     statip_0.2.3         codetools_0.2-18    
+[73] rmutil_1.1.9         reprex_2.0.1         glue_1.6.2          
+[76] evaluate_0.15        getPass_0.2-2        modelr_0.1.8        
+[79] foreach_1.5.2        vctrs_0.4.1          tzdb_0.3.0          
+[82] httpuv_1.6.5         testthat_3.1.4       cellranger_1.1.0    
+[85] gtable_0.3.0         clue_0.3-61          assertthat_0.2.1    
+[88] cachem_1.0.6         xfun_0.31            broom_1.0.0         
+[91] later_1.3.0          googledrive_2.0.0    gargle_1.2.0        
+[94] timeDate_4021.104    iterators_1.0.14     cluster_2.1.3       
+[97] ellipsis_0.3.2      </code></pre>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
@@ -1451,6 +1454,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>
@@ -1489,6 +1494,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

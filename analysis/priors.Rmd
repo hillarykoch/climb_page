@@ -109,4 +109,11 @@ We can save these hyperparameters for the next step in the analysis:
 save(hyp, file = "output/hyperparameters.Rdata")
 ```
 
-After all that work, __*we have a model to describe our data*__, and are ready to [run the MCMC](running_mcmc.html).
+After these analyses, __*we have a model to describe our data*__, and are ready to [run the MCMC](running_mcmc.html).
+
+
+## Session Information
+
+```{r}
+print(sessionInfo())
+```

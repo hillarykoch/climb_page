@@ -19,6 +19,8 @@ navbar:
       href: running_mcmc.html
   - text: Downstream analysis
     href: downstream.html
+  - text: Example DNase-seq analysis
+    href: DNase_example.html
   right:
   - text: License
     href: license.html

@@ -14,7 +14,7 @@ First, let's load in the MCMC we briefly ran on simulated data in the [running t
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(autodep = TRUE, warning = FALSE, message = FALSE)
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
 ```
 
 
@@ -273,3 +273,9 @@ It is possible that one might want to do downstream analysis on multiple outputs
 + `merge_classes`
 
 if the argument `multichain` is set to `TRUE`, then CLIMB will expect that you pass a *list* of MCMC outputs, rather than just 1. A list of burn-in values for each chain can be supplied, or 1 set of burn-in can be applied uniformly across all chains.
+
+## Session Information
+
+```{r}
+print(sessionInfo())
+```

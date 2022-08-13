@@ -1,3 +1,5 @@
+*.DS_Store
+
 # History files
 .Rhistory
 .Rapp.history
@@ -16,3 +18,14 @@
 # knitr and R markdown default cache directories
 *_cache/
 /cache/
+
+# DNase-seq data files
+data/dat_FDR01_hg38.RData
+data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt
+data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt
+data/DNase_all_loci.bed
+data/DNase_chr21*
+data/DNase_chr22*
+
+# analysis outputs
+output*

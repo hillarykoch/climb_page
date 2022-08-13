@@ -369,6 +369,9 @@ $(document).ready(function () {
 <li>
   <a href="downstream.html">Downstream analysis</a>
 </li>
+<li>
+  <a href="DNase_example.html">Example DNase-seq analysis</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -419,13 +422,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-07-30
+<strong>Last updated:</strong> 2022-08-13
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 3
+aria-hidden="true"></span> 2
 </p>
 <p>
 <strong>Knit directory:</strong> <code>workflowr/</code> <span
@@ -505,23 +508,17 @@ reproducible.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongunavailable">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Session information:</strong>
-unavailable </a>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongunavailable"
+<div id="strongSessioninformationstrongrecorded"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Recording the operating system, R version, and package versions is
-critical for reproducibility. To record the session information, add
-<code>sessioninfo: “sessionInfo()”</code> to _workflowr.yml.
-Alternatively, you could use <code>devtools::session_info()</code> or
-<code>sessioninfo::session_info()</code>. Lastly, you can manually add a
-code chunk to this file to run any one of these commands and then
-disable to automatic insertion by changing the workflowr setting to
-<code>sessioninfo: ““</code>.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
@@ -567,15 +564,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree9dd8b503649f666fe6efebcf0157e8c1de5fd144targetblank9dd8b50a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/hillarykoch/climb_page/tree/9dd8b503649f666fe6efebcf0157e8c1de5fd144" target="_blank">9dd8b50</a>
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree9dd8b503649f666fe6efebcf0157e8c1de5fd144targetblank9dd8b50a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -585,7 +582,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/hillarykoch/climb_page/tree/9dd8b503649f666fe6efebcf0157e8c1de5fd144" target="_blank">9dd8b50</a>.
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -600,14 +597,49 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rproj.user/
+    Ignored:    analysis/DNase_example_cache/
     Ignored:    analysis/running_mcmc_cache/
+    Ignored:    data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt
+    Ignored:    data/DNase_chr21/
+    Ignored:    data/DNase_chr22/
+    Ignored:    data/dat_FDR01_hg38.RData
+    Ignored:    output/DNase/
 
 Untracked files:
-    Untracked:  .DS_Store
+    Untracked:  data/DHS_Index_and_Vocabulary_metadata.xlsx
+    Untracked:  data/biosamples_used.xlsx
+    Untracked:  data/color_mapper.txt
 
 Unstaged changes:
+    Modified:   analysis/DNase_example.Rmd
+    Modified:   analysis/candidate_latent_classes.Rmd
+    Modified:   analysis/downstream.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/pairwise_fitting.Rmd
+    Modified:   analysis/pairwise_fitting_cache/html/__packages
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdx
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdx
+    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/preprocessing_cache/html/__packages
+    Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.RData
+    Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdb
+    Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdx
+    Modified:   analysis/priors.Rmd
     Modified:   analysis/running_mcmc.Rmd
+    Modified:   data/tpm_zebrafish.tsv.gz
+    Modified:   output/.DS_Store
+
+Staged changes:
+    New:        .Renviron
+    Modified:   .gitignore
+    New:        analysis/DNase_example.Rmd
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -653,6 +685,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/e4f6d19183b1339be3fde002ddbbbbf358dcb177/analysis/running_mcmc.Rmd" target="_blank">e4f6d19</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+update docs
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/e4f6d19183b1339be3fde002ddbbbbf358dcb177/docs/running_mcmc.html" target="_blank">e4f6d19</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+update docs
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -810,8 +876,9 @@ estimated hyperparameters.</p>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>retained_classes <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Now we are ready to launch an MCMC:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">1000</span>, <span class="at">retained_classes =</span> retained_classes)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">extract_chains</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1098</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">1000</span>, <span class="at">retained_classes =</span> retained_classes)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">extract_chains</span>(results)</span></code></pre></div>
 <p><code>Running the MCMC...100%|████████████████████████████████| Time: 0:02:14</code></p>
 <p>The object <code>results</code> contains 3 objects:</p>
 <ol style="list-style-type: decimal">
@@ -833,6 +900,43 @@ For example, you can check the MCMC trace plots. Here is the trace plot
 of the mean from the first cluster in the third dimension:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out<span class="sc">$</span>mu_chains[[<span class="dv">1</span>]][,<span class="dv">3</span>], <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;iteration&quot;</span>, <span class="at">ylab =</span> <span class="fu">expression</span>(mu[<span class="dv">3</span>]))</span></code></pre></div>
 <p><img src="figure/running_mcmc.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-4-1">
+Past versions of unnamed-chunk-4-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/e4f6d19183b1339be3fde002ddbbbbf358dcb177/docs/figure/running_mcmc.Rmd/unnamed-chunk-4-1.png" target="_blank">e4f6d19</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>More specifically, <code>extract_chains()</code> returns a list with
 4 elements. First, recall that <code>M</code> is the number of input
 classes, <code>D</code> is the dimension of the data, and let
@@ -880,9 +984,9 @@ do not actually get sampled during MCMC.</p>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(PSRFs)</span></code></pre></div>
 <pre><code>List of 3
- $ PSRF_mu   : num [1:13, 1:3] 1 1.01 1 NA NA ...
- $ PSRF_Sigma: num [1:3, 1:3, 1:13] 1.1 NA 1.06 NA NA ...
- $ PSRF_prop : num [1:13] 1.01 1.01 1 1 1.03 ...</code></pre>
+ $ PSRF_mu   : num [1:13, 1:3] 1.25 1.01 1 NA NA ...
+ $ PSRF_Sigma: num [1:3, 1:3, 1:13] 1.19 NA 1.02 NA NA ...
+ $ PSRF_prop : num [1:13] 1.24 1.01 1.01 1.03 1.02 ...</code></pre>
 <p>Below we plot histograms of the PSRFs for each parameter. Even after
 running these chains for a short time, we already have achieved good
 convergence properties. Unsurprisingly, cluster mean and proportion
@@ -900,6 +1004,90 @@ longer than what was done here.</p>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>parameter, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">.cols =</span> <span class="sc">~</span>  <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">&quot;PSRF_&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>, .x))) <span class="sc">+</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="figure/running_mcmc.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/e4f6d19183b1339be3fde002ddbbbbf358dcb177/docs/figure/running_mcmc.Rmd/unnamed-chunk-6-1.png" target="_blank">e4f6d19</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session Information</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sessionInfo</span>())</span></code></pre></div>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Monterey 12.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] ggplot2_3.3.6  CLIMB_1.0.0    magrittr_2.0.3
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9           mvtnorm_1.1-3        tidyr_1.2.0         
+ [4] assertthat_0.2.1     rprojroot_2.0.3      digest_0.6.29       
+ [7] foreach_1.5.2        utf8_1.2.2           R6_2.5.1            
+[10] plyr_1.8.7           evaluate_0.15        highr_0.9           
+[13] pillar_1.8.0         rlang_1.0.4          rstudioapi_0.13     
+[16] whisker_0.4          jquerylib_0.1.4      rmarkdown_2.14      
+[19] labeling_0.4.2       readr_2.1.2          stringr_1.4.0       
+[22] munsell_0.5.0        bit_4.0.4            compiler_4.2.1      
+[25] httpuv_1.6.5         xfun_0.31            pkgconfig_2.0.3     
+[28] htmltools_0.5.3      tidyselect_1.1.2     tibble_3.1.8        
+[31] workflowr_1.7.0      codetools_0.2-18     JuliaCall_0.17.4    
+[34] fansi_1.0.3          withr_2.5.0          crayon_1.5.1        
+[37] dplyr_1.0.9          tzdb_0.3.0           later_1.3.0         
+[40] brio_1.1.3           grid_4.2.1           gtable_0.3.0        
+[43] jsonlite_1.8.0       lifecycle_1.0.1      DBI_1.1.3           
+[46] git2r_0.30.1         scales_1.2.0         cli_3.3.0           
+[49] stringi_1.7.8        vroom_1.5.7          cachem_1.0.6        
+[52] farver_2.1.1         LaplacesDemon_16.1.6 fs_1.5.2            
+[55] promises_1.2.0.1     doParallel_1.0.17    testthat_3.1.4      
+[58] bslib_0.4.0          ellipsis_0.3.2       generics_0.1.3      
+[61] vctrs_0.4.1          iterators_1.0.14     tools_4.2.1         
+[64] bit64_4.0.5          glue_1.6.2           purrr_0.3.4         
+[67] hms_1.1.1            abind_1.4-5          parallel_4.2.1      
+[70] fastmap_1.1.0        yaml_2.3.5           colorspace_2.0-3    
+[73] knitr_1.39           sass_0.4.2          </code></pre>
 </div>
 
 

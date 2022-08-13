@@ -445,6 +445,9 @@ div.tocify {
 <li>
   <a href="downstream.html">Downstream analysis</a>
 </li>
+<li>
+  <a href="DNase_example.html">Example DNase-seq analysis</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -495,13 +498,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-07-30
+<strong>Last updated:</strong> 2022-08-13
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 2
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>workflowr/</code> <span
@@ -521,6 +524,27 @@ versions</em> tab lists the development history.
 </div>
 <div id="checks" class="tab-pane fade">
 <div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
@@ -560,23 +584,17 @@ reproducible.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongunavailable">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Session information:</strong>
-unavailable </a>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongunavailable"
+<div id="strongSessioninformationstrongrecorded"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Recording the operating system, R version, and package versions is
-critical for reproducibility. To record the session information, add
-<code>sessioninfo: “sessionInfo()”</code> to _workflowr.yml.
-Alternatively, you could use <code>devtools::session_info()</code> or
-<code>sessioninfo::session_info()</code>. Lastly, you can manually add a
-code chunk to this file to run any one of these commands and then
-disable to automatic insertion by changing the workflowr setting to
-<code>sessioninfo: ““</code>.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
@@ -614,18 +632,89 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongnoversioncontrol">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>Repository version:</strong> no
-version control </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongnoversioncontrol"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Tracking code development and connecting the code version to the
-results is critical for reproducibility. To start using Git, open the
-Terminal and type <code>git init</code> in your project directory.</p>
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/DNase_example_cache/
+    Ignored:    analysis/running_mcmc_cache/
+    Ignored:    data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt
+    Ignored:    data/DNase_chr21/
+    Ignored:    data/DNase_chr22/
+    Ignored:    data/dat_FDR01_hg38.RData
+    Ignored:    output/DNase/
+
+Untracked files:
+    Untracked:  data/DHS_Index_and_Vocabulary_metadata.xlsx
+    Untracked:  data/biosamples_used.xlsx
+    Untracked:  data/color_mapper.txt
+
+Unstaged changes:
+    Modified:   analysis/DNase_example.Rmd
+    Modified:   analysis/candidate_latent_classes.Rmd
+    Modified:   analysis/downstream.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/pairwise_fitting.Rmd
+    Modified:   analysis/pairwise_fitting_cache/html/__packages
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdx
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdx
+    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/preprocessing_cache/html/__packages
+    Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.RData
+    Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdb
+    Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdx
+    Modified:   analysis/priors.Rmd
+    Modified:   analysis/running_mcmc.Rmd
+    Modified:   data/tpm_zebrafish.tsv.gz
+    Modified:   output/.DS_Store
+
+Staged changes:
+    New:        .Renviron
+    Modified:   .gitignore
+    New:        analysis/DNase_example.Rmd
+    Modified:   analysis/_site.yml
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
 </div>
 </div>
 </div>
@@ -633,11 +722,74 @@ Terminal and type <code>git init</code> in your project directory.</p>
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-This project is not being versioned with Git. To obtain the full
-reproducibility benefits of using workflowr, please see
-<code>?wflow_start</code>.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/downstream.Rmd</code>) and HTML
+(<code>docs/downstream.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/analysis/downstream.Rmd" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+working with new computer
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/downstream.html" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+working with new computer
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -651,37 +803,66 @@ output</em>, here, we demonstrate implementations of several of the
 analyses used in the CLIMB manuscript.</p>
 <p>First, let’s load in the MCMC we briefly ran on simulated data in the
 <a href="running_mcmc.html">running the MCMC</a> section.</p>
-<pre><code>
-Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chain <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;output/chain.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>chain <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;output/chain.rds&quot;</span>)</span></code></pre></div>
 <div id="visualizing-convergence" class="section level2">
 <h2>Visualizing convergence</h2>
 <p>The first thing we should do make some trace plots for some of the
 parameters being estimated. This will help us decide when the chain has
 entered its stationary distribution. Here, we make plots of a mean,
 variance, covariance, and mixing weight.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The mean in the first dimension of the third cluster</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mu31 <span class="ot">&lt;-</span> chain<span class="sc">$</span>mu_chains[[<span class="dv">3</span>]][,<span class="dv">1</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The variance of the first dimension of the second cluster</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sigma21 <span class="ot">&lt;-</span> chain<span class="sc">$</span>Sigma_chains[[<span class="dv">2</span>]][<span class="dv">1</span>,<span class="dv">1</span>,]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The covariance between dimensions 2 and 3 in the fourth cluster</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sigma423 <span class="ot">&lt;-</span> chain<span class="sc">$</span>Sigma_chains[[<span class="dv">4</span>]][<span class="dv">2</span>,<span class="dv">3</span>,]</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The mixing weight of the seventh cluster</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>pi7 <span class="ot">&lt;-</span> chain<span class="sc">$</span>prop_chain[,<span class="dv">7</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The mean in the first dimension of the third cluster</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mu31 <span class="ot">&lt;-</span> chain<span class="sc">$</span>mu_chains[[<span class="dv">3</span>]][,<span class="dv">1</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The variance of the first dimension of the second cluster</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sigma21 <span class="ot">&lt;-</span> chain<span class="sc">$</span>Sigma_chains[[<span class="dv">2</span>]][<span class="dv">1</span>,<span class="dv">1</span>,]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The covariance between dimensions 2 and 3 in the fourth cluster</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>sigma423 <span class="ot">&lt;-</span> chain<span class="sc">$</span>Sigma_chains[[<span class="dv">4</span>]][<span class="dv">2</span>,<span class="dv">3</span>,]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The mixing weight of the seventh cluster</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>pi7 <span class="ot">&lt;-</span> chain<span class="sc">$</span>prop_chain[,<span class="dv">7</span>]</span></code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-3-1.png" width="1536" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
+Past versions of unnamed-chunk-3-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-3-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/downstream.Rmd/unnamed-chunk-3-1.png" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Looking at a few of these trace plots reveals that the chain achieves
 stationary around 200 iterations in. Therefore, we discard the first 200
 iterations as burn-in, and do our analyses on the remaining 800.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>burnin <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>burnin <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span></span></code></pre></div>
 </div>
 <div id="clustering-dimensions-and-observations" class="section level2">
 <h2>Clustering dimensions and observations</h2>
@@ -698,50 +879,124 @@ hematopoietic cell populations based on CTCF binding patterns.</p>
 function <code>compute_distances_between_clusters</code> will compute
 distances between estimated clusters as well. This distance is based on
 a symmetrified theoretical Kullback-Liebler divergence.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The figure isn&#39;t as exciting with simulated data</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>col_distmat <span class="ot">&lt;-</span> <span class="fu">compute_distances_between_conditions</span>(chain, burnin)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>hc_col <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(col_distmat), <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_col, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab=</span> <span class="st">&quot;&quot;</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">sub =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Row cluster dendrogram&quot;</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>row_distmat <span class="ot">&lt;-</span> <span class="fu">compute_distances_between_clusters</span>(chain, burnin)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>hc_row <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(row_distmat), <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_row, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab=</span> <span class="st">&quot;&quot;</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">sub =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Column cluster dendrogram&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The figure isn&#39;t as exciting with simulated data</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>col_distmat <span class="ot">&lt;-</span> <span class="fu">compute_distances_between_conditions</span>(chain, burnin)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>hc_col <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(col_distmat), <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_col, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab=</span> <span class="st">&quot;&quot;</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">sub =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Row cluster dendrogram&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>row_distmat <span class="ot">&lt;-</span> <span class="fu">compute_distances_between_clusters</span>(chain, burnin)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>hc_row <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(row_distmat), <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hc_row, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab=</span> <span class="st">&quot;&quot;</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">sub =</span> <span class="st">&quot;&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Column cluster dendrogram&quot;</span>)</span></code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-5-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/downstream.Rmd/unnamed-chunk-5-1.png" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>These figures aren’t very thrilling on their own, but we can use them
 to make some nice heatmaps. CLIMB provides the function
 <code>get_row_reordering</code> to facilitate plotting the
 bi-clustering:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load back in the data</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;sim&quot;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> sim<span class="sc">$</span>data</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a row reordering for plotting</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>row_reordering <span class="ot">&lt;-</span> <span class="fu">get_row_reordering</span>(<span class="at">dat =</span> dat, <span class="at">row_clustering =</span> hc_row, <span class="at">chain =</span> chain, <span class="at">burnin =</span> burnin)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt (for ggplot2)</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>molten1 <span class="ot">&lt;-</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(dat, <span class="st">&quot;row&quot;</span> <span class="ot">=</span> row_reordering) <span class="sc">%&gt;%</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">!</span>row, <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the factor levels to match the dimensions</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(molten1<span class="sc">$</span>variable) <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the bi-clustering heatmap, like in the CLIMB manuscript</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> molten1,</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(variable, <span class="sc">~</span> .x[hc_col<span class="sc">$</span>order]), <span class="co"># Relevel factors, for column sorting on the plot</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> row, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Bi-clustering</span><span class="sc">\n</span><span class="st">heatmap&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(<span class="at">colours=</span>RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;Greens&quot;</span>))</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p1)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load back in the data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;sim&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> sim<span class="sc">$</span>data</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a row reordering for plotting</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>row_reordering <span class="ot">&lt;-</span> <span class="fu">get_row_reordering</span>(<span class="at">dat =</span> dat, <span class="at">row_clustering =</span> hc_row, <span class="at">chain =</span> chain, <span class="at">burnin =</span> burnin)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt (for ggplot2)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>molten1 <span class="ot">&lt;-</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(dat, <span class="st">&quot;row&quot;</span> <span class="ot">=</span> row_reordering) <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">!</span>row, <span class="at">names_to =</span> <span class="st">&quot;variable&quot;</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the factor levels to match the dimensions</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(molten1<span class="sc">$</span>variable) <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the bi-clustering heatmap, like in the CLIMB manuscript</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> molten1,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(variable, <span class="sc">~</span> .x[hc_col<span class="sc">$</span>order]), <span class="co"># Relevel factors, for column sorting on the plot</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> row, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Bi-clustering</span><span class="sc">\n</span><span class="st">heatmap&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(<span class="at">colours=</span>RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;Greens&quot;</span>))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p1)</span></code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-6-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/downstream.Rmd/unnamed-chunk-6-1.png" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="merging-groups" class="section level2">
 <h2>Merging groups</h2>
@@ -757,11 +1012,11 @@ aggregated from each groups constituent classes. <code>merged_z</code>
 gives the <strong>new group assignments</strong> for each observations.
 The <code>clustering</code> obect is simply a call to
 <code>stats::hclust()</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge into 5 parent groups</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>merged <span class="ot">&lt;-</span> <span class="fu">merge_classes</span>(<span class="at">n_groups =</span> <span class="dv">5</span>, <span class="at">chain =</span> chain, <span class="at">burnin =</span> burnin)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the structure of the merging</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(merged)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge into 5 parent groups</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>merged <span class="ot">&lt;-</span> <span class="fu">merge_classes</span>(<span class="at">n_groups =</span> <span class="dv">5</span>, <span class="at">chain =</span> chain, <span class="at">burnin =</span> burnin)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the structure of the merging</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(merged)</span></code></pre></div>
 <pre><code>List of 6
  $ merged_z    : int [1:1500] 5 1 1 1 1 1 1 1 1 1 ...
  $ merged_mu   : num [1:5, 1:3] 1.194 0 -2.521 -0.653 -2.541 ...
@@ -782,31 +1037,68 @@ The <code>clustering</code> obect is simply a call to
   .. ..$ : chr [1:8] &quot;1&quot; &quot;2&quot; &quot;4&quot; &quot;6&quot; ...</code></pre>
 <p>We can visualize the salient features of the new groups with a simple
 visualization of the merged group means:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For the plot color palette</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt for plotting</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>molten2 <span class="ot">&lt;-</span> </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  merged<span class="sc">$</span>merged_mu <span class="sc">%&gt;%</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">colnames&lt;-</span><span class="st">`</span> (<span class="fu">paste0</span>(<span class="st">&quot;cond&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">group =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>group, <span class="at">names_to =</span> <span class="st">&quot;condition&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;mu&quot;</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> molten2, <span class="fu">aes</span>(group, condition, <span class="at">fill =</span> mu)) <span class="sc">+</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&quot;PiYG&quot;</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p2)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For the plot color palette</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt for plotting</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>molten2 <span class="ot">&lt;-</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  merged<span class="sc">$</span>merged_mu <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">colnames&lt;-</span><span class="st">`</span> (<span class="fu">paste0</span>(<span class="st">&quot;cond&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">group =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>group, <span class="at">names_to =</span> <span class="st">&quot;condition&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;mu&quot;</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> molten2, <span class="fu">aes</span>(group, condition, <span class="at">fill =</span> mu)) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&quot;PiYG&quot;</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p2)</span></code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
+Past versions of unnamed-chunk-8-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-8-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/downstream.Rmd/unnamed-chunk-8-1.png" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="testing-for-consistency" class="section level2">
 <h2>Testing for consistency</h2>
@@ -871,8 +1163,8 @@ class="math inline">\(n\)</span> being the sample size). If returns
 <code>TRUE</code> when the null is rejected.</p>
 <p>So, for example, we can test for which simulated observations are
 “consistently expressed” across all 3 dimensions as follows:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>non_differential <span class="ot">&lt;-</span> <span class="fu">test_consistency</span>(chain, burnin, <span class="at">with_zero =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(non_differential)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>non_differential <span class="ot">&lt;-</span> <span class="fu">test_consistency</span>(chain, burnin, <span class="at">with_zero =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(non_differential)</span></code></pre></div>
 <pre><code>[1] FALSE FALSE FALSE  TRUE FALSE FALSE</code></pre>
 <p>Here, <code>TRUE</code> sits at the indices of observations who are
 likely to be consistent across all 3 dimensions.</p>
@@ -881,63 +1173,100 @@ likely to be consistent across all 3 dimensions.</p>
 dimensions. Let’s do this, and also make a precision-recall curve
 displaying the results. To make a precision-recall curve, we first need
 to know the underlying truth of the simulation.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------------------------------------------------------------------------</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain the truth</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in true association patterns</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;true_association&quot;</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Consistency threshold</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Which indices correspond to consistent signals  at threshold u = 2?</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>consistent_pos_lab_idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(true_assoc, <span class="dv">1</span>, <span class="cf">function</span>(X) <span class="fu">sum</span>(X <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">&gt;=</span> u)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>consistent_neg_lab_idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(true_assoc, <span class="dv">1</span>, <span class="cf">function</span>(X) <span class="fu">sum</span>(X <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">&gt;=</span> u)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>consistent_lab_idx <span class="ot">&lt;-</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">c</span>(</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">which</span>(consistent_neg_lab_idx),</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">which</span>(consistent_pos_lab_idx)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>      )))</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># These are the labels corresponding to consistent behavior</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>consistent_lab_idx</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------------------------------------------------------------------------</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First, obtain the truth</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in true association patterns</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;true_association&quot;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Consistency threshold</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Which indices correspond to consistent signals  at threshold u = 2?</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>consistent_pos_lab_idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(true_assoc, <span class="dv">1</span>, <span class="cf">function</span>(X) <span class="fu">sum</span>(X <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">&gt;=</span> u)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>consistent_neg_lab_idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(true_assoc, <span class="dv">1</span>, <span class="cf">function</span>(X) <span class="fu">sum</span>(X <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">&gt;=</span> u)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>consistent_lab_idx <span class="ot">&lt;-</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">c</span>(</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">which</span>(consistent_neg_lab_idx),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">which</span>(consistent_pos_lab_idx)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>      )))</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># These are the labels corresponding to consistent behavior</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>consistent_lab_idx</span></code></pre></div>
 <pre><code>[1] 3 8</code></pre>
 <p>Now, we can compute precision and recall across a range of
 <code>b</code> in (0,1).</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>b_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>replicable <span class="ot">&lt;-</span> <span class="fu">test_consistency</span>(chain, burnin, <span class="at">u =</span> <span class="dv">2</span>, <span class="at">b =</span> b_grid)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Which observations are the replicable ones</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>rep_idx <span class="ot">&lt;-</span> sim<span class="sc">$</span>cluster <span class="sc">%in%</span> consistent_lab_idx</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Total number of positives in the dataset</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="fu">sum</span>(rep_idx)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># True positives</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>TP <span class="ot">&lt;-</span> <span class="fu">map</span>(replicable, <span class="sc">~</span> .x <span class="sc">&amp;</span> rep_idx)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># False positives</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>FP <span class="ot">&lt;-</span> <span class="fu">map</span>(replicable, <span class="sc">~</span> .x <span class="sc">&amp;</span> <span class="sc">!</span>rep_idx)</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># True positive rate aka recall</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(TP, <span class="sc">~</span> <span class="fu">sum</span>(.x) <span class="sc">/</span> P)</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># precision</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">&lt;-</span> <span class="fu">map2_dbl</span>(TP, FP, <span class="sc">~</span> <span class="fu">sum</span>(.x) <span class="sc">/</span> (<span class="fu">sum</span>(.x) <span class="sc">+</span> <span class="fu">sum</span>(.y)))</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;recall&quot;</span> <span class="ot">=</span> recall, <span class="st">&quot;precision&quot;</span> <span class="ot">=</span> precision)</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> recall, <span class="at">y =</span> precision)) <span class="sc">+</span></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This horizontal line is the true proportion of replicable observations</span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(rep_idx), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;darkcyan&quot;</span>) <span class="sc">+</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>b_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>replicable <span class="ot">&lt;-</span> <span class="fu">test_consistency</span>(chain, burnin, <span class="at">u =</span> <span class="dv">2</span>, <span class="at">b =</span> b_grid)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Which observations are the replicable ones</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>rep_idx <span class="ot">&lt;-</span> sim<span class="sc">$</span>cluster <span class="sc">%in%</span> consistent_lab_idx</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Total number of positives in the dataset</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="fu">sum</span>(rep_idx)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># True positives</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>TP <span class="ot">&lt;-</span> <span class="fu">map</span>(replicable, <span class="sc">~</span> .x <span class="sc">&amp;</span> rep_idx)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># False positives</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>FP <span class="ot">&lt;-</span> <span class="fu">map</span>(replicable, <span class="sc">~</span> .x <span class="sc">&amp;</span> <span class="sc">!</span>rep_idx)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># True positive rate aka recall</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>recall <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(TP, <span class="sc">~</span> <span class="fu">sum</span>(.x) <span class="sc">/</span> P)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># precision</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>precision <span class="ot">&lt;-</span> <span class="fu">map2_dbl</span>(TP, FP, <span class="sc">~</span> <span class="fu">sum</span>(.x) <span class="sc">/</span> (<span class="fu">sum</span>(.x) <span class="sc">+</span> <span class="fu">sum</span>(.y)))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;recall&quot;</span> <span class="ot">=</span> recall, <span class="st">&quot;precision&quot;</span> <span class="ot">=</span> precision)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> recall, <span class="at">y =</span> precision)) <span class="sc">+</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This horizontal line is the true proportion of replicable observations</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(rep_idx), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;darkcyan&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
 <p><img src="figure/downstream.Rmd/unnamed-chunk-11-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/downstream.Rmd/unnamed-chunk-11-1.png" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="multiple-chains" class="section level2">
 <h2>Multiple chains</h2>
@@ -960,6 +1289,53 @@ then CLIMB will expect that you pass a <em>list</em> of MCMC outputs,
 rather than just 1. A list of burn-in values for each chain can be
 supplied, or 1 set of burn-in can be applied uniformly across all
 chains.</p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session Information</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sessionInfo</span>())</span></code></pre></div>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Monterey 12.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] RColorBrewer_1.1-3 ggplot2_3.3.6      purrr_0.3.4        CLIMB_1.0.0       
+[5] dplyr_1.0.9       
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9           mvtnorm_1.1-3        tidyr_1.2.0         
+ [4] assertthat_0.2.1     rprojroot_2.0.3      digest_0.6.29       
+ [7] foreach_1.5.2        utf8_1.2.2           R6_2.5.1            
+[10] plyr_1.8.7           evaluate_0.15        highr_0.9           
+[13] pillar_1.8.0         rlang_1.0.4          rstudioapi_0.13     
+[16] whisker_0.4          jquerylib_0.1.4      rmarkdown_2.14      
+[19] labeling_0.4.2       readr_2.1.2          stringr_1.4.0       
+[22] munsell_0.5.0        compiler_4.2.1       httpuv_1.6.5        
+[25] xfun_0.31            pkgconfig_2.0.3      htmltools_0.5.3     
+[28] tidyselect_1.1.2     tibble_3.1.8         workflowr_1.7.0     
+[31] codetools_0.2-18     JuliaCall_0.17.4     fansi_1.0.3         
+[34] withr_2.5.0          tzdb_0.3.0           later_1.3.0         
+[37] brio_1.1.3           grid_4.2.1           jsonlite_1.8.0      
+[40] gtable_0.3.0         lifecycle_1.0.1      DBI_1.1.3           
+[43] git2r_0.30.1         magrittr_2.0.3       scales_1.2.0        
+[46] cli_3.3.0            stringi_1.7.8        cachem_1.0.6        
+[49] farver_2.1.1         LaplacesDemon_16.1.6 fs_1.5.2            
+[52] promises_1.2.0.1     doParallel_1.0.17    testthat_3.1.4      
+[55] bslib_0.4.0          ellipsis_0.3.2       generics_0.1.3      
+[58] vctrs_0.4.1          cowplot_1.1.1        forcats_0.5.1       
+[61] iterators_1.0.14     tools_4.2.1          glue_1.6.2          
+[64] hms_1.1.1            abind_1.4-5          parallel_4.2.1      
+[67] fastmap_1.1.0        yaml_2.3.5           colorspace_2.0-3    
+[70] knitr_1.39           sass_0.4.2          </code></pre>
 </div>
 
 

@@ -53,3 +53,8 @@ red_class
 
 which is a subset of the $3^D=27$ candidate latent classes. Next, we need to determine the hyperparameters on the priors in our Bayesian Gaussian mixture model. Most important is computing the hyperparameters for the prior on the mixing weights. Some classes (especially when the dimension is larger) will have a mixing weight that will result in a degenerate mixing distribution, and so classes with small enough mixing weights can be further pruned from the model. This is discussed in the [next step](priors.html).
 
+## Session Information
+
+```{r}
+print(sessionInfo())
+```

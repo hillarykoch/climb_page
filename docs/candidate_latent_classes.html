@@ -419,13 +419,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-07-30
+<strong>Last updated:</strong> 2022-08-13
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 4
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 2
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>workflowr/</code> <span
@@ -445,6 +445,27 @@ versions</em> tab lists the development history.
 </div>
 <div id="checks" class="tab-pane fade">
 <div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
@@ -484,23 +505,17 @@ reproducible.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongunavailable">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Session information:</strong>
-unavailable </a>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongunavailable"
+<div id="strongSessioninformationstrongrecorded"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Recording the operating system, R version, and package versions is
-critical for reproducibility. To record the session information, add
-<code>sessioninfo: “sessionInfo()”</code> to _workflowr.yml.
-Alternatively, you could use <code>devtools::session_info()</code> or
-<code>sessioninfo::session_info()</code>. Lastly, you can manually add a
-code chunk to this file to run any one of these commands and then
-disable to automatic insertion by changing the workflowr setting to
-<code>sessioninfo: ““</code>.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
@@ -538,18 +553,59 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongnoversioncontrol">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>Repository version:</strong> no
-version control </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongnoversioncontrol"
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Tracking code development and connecting the code version to the
-results is critical for reproducibility. To start using Git, open the
-Terminal and type <code>git init</code> in your project directory.</p>
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/running_mcmc_cache/
+
+Untracked files:
+    Untracked:  .DS_Store
+
+Unstaged changes:
+    Modified:   analysis/candidate_latent_classes.Rmd
+    Modified:   analysis/downstream.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/priors.Rmd
+    Modified:   analysis/running_mcmc.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
 </div>
 </div>
 </div>
@@ -557,11 +613,75 @@ Terminal and type <code>git init</code> in your project directory.</p>
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-This project is not being versioned with Git. To obtain the full
-reproducibility benefits of using workflowr, please see
-<code>?wflow_start</code>.
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/candidate_latent_classes.Rmd</code>) and HTML
+(<code>docs/candidate_latent_classes.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/analysis/candidate_latent_classes.Rmd" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+working with new computer
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/candidate_latent_classes.html" target="_blank">c1e13d0</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-07-30
+</td>
+<td>
+working with new computer
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -629,6 +749,50 @@ classes (especially when the dimension is larger) will have a mixing
 weight that will result in a degenerate mixing distribution, and so
 classes with small enough mixing weights can be further pruned from the
 model. This is discussed in the <a href="priors.html">next step</a>.</p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session Information</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sessionInfo</span>())</span></code></pre></div>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Monterey 12.5
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] CLIMB_1.0.0 readr_2.1.2
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.1.2     xfun_0.31            bslib_0.4.0         
+ [4] purrr_0.3.4          testthat_3.1.4       vctrs_0.4.1         
+ [7] generics_0.1.3       htmltools_0.5.3      yaml_2.3.5          
+[10] utf8_1.2.2           rlang_1.0.4          jquerylib_0.1.4     
+[13] later_1.3.0          pillar_1.8.0         glue_1.6.2          
+[16] DBI_1.1.3            bit64_4.0.5          plyr_1.8.7          
+[19] foreach_1.5.2        lifecycle_1.0.1      stringr_1.4.0       
+[22] workflowr_1.7.0      mvtnorm_1.1-3        LaplacesDemon_16.1.6
+[25] codetools_0.2-18     evaluate_0.15        knitr_1.39          
+[28] tzdb_0.3.0           fastmap_1.1.0        doParallel_1.0.17   
+[31] httpuv_1.6.5         parallel_4.2.1       fansi_1.0.3         
+[34] Rcpp_1.0.9           promises_1.2.0.1     cachem_1.0.6        
+[37] vroom_1.5.7          jsonlite_1.8.0       abind_1.4-5         
+[40] bit_4.0.4            fs_1.5.2             brio_1.1.3          
+[43] hms_1.1.1            digest_0.6.29        stringi_1.7.8       
+[46] dplyr_1.0.9          rprojroot_2.0.3      cli_3.3.0           
+[49] tools_4.2.1          magrittr_2.0.3       sass_0.4.2          
+[52] tibble_3.1.8         crayon_1.5.1         whisker_0.4         
+[55] tidyr_1.2.0          pkgconfig_2.0.3      ellipsis_0.3.2      
+[58] assertthat_0.2.1     rmarkdown_2.14       rstudioapi_0.13     
+[61] iterators_1.0.14     JuliaCall_0.17.4     R6_2.5.1            
+[64] git2r_0.30.1         compiler_4.2.1      </code></pre>
 </div>
 
 

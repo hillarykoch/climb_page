@@ -91,3 +91,10 @@ Finally, save this output, as it is necessary for many parts of the downstream a
 ```{r, eval = FALSE}
 save(fits, file = "pwfits.Rdata")
 ```
+
+## Session Information
+
+```{r}
+print(sessionInfo())
+```
+

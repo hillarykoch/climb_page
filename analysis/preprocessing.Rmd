@@ -302,4 +302,8 @@ plot(sc_z[,c(1,4)], col = pal[sc_fit_bound_flex[[1]]$cluster], main = "Approach 
 ```
 
 
+## Session Information
 
+```{r}
+print(sessionInfo())
+```

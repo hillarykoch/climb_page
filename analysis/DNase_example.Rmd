@@ -1,0 +1,424 @@
+---
+title: "Lightweight DNase-seq example"
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, autodep = TRUE)
+```
+
+This vignette walks through a lightweight version of the DNase-seq analysis discussed in the CLIMB paper. The purpose of the original analysis was to investigate patterns of chromatin accessibility across 38 hematopoietic cell populations, and how these relate to differential transcription factor binding across cell populations. While the complete analysis considered DNase-seq collected on all autosomes across these cell populations, and checked results against transcription factor footprinting signals and motif enrichment at DNase hypersensitive sites, this lightweight version will only consider the analysis of DNaseq-seq in 5 cell populations on 2 chromosomes. A figure akin to Fig. 5a from the CLIMB article is generated.
+
+```{r}
+# load libraries
+library(readxl)
+suppressPackageStartupMessages(library(dplyr))
+library(purrr)
+library(readr)
+library(stringr)
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(R.utils))
+suppressWarnings(library(CLIMB))
+suppressPackageStartupMessages(library(tidyr))
+library(ggplot2)
+library(cowplot)
+```
+
+## Prepare data
+
+First we download and process the data, made publicly available by Meuleman *et al* (2020).
+
+### Download DNase-seq data
+
+```{r}
+if(!file.exists("data/dat_FDR01_hg38.RData")) {
+  download.file(url = "https://zenodo.org/record/3838751/files/dat_FDR01_hg38.RData?download=1",
+                destfile = "data/dat_FDR01_hg38.RData",
+                method = "curl")
+}
+
+if (!file.exists("data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt.gz")) {
+  download.file(url = "https://zenodo.org/record/3838751/files/DHS_Index_and_Vocabulary_hg38_WM20190703.txt.gz?download=1",
+                destfile = "data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt.gz",
+                method = "curl")
+  R.utils::gunzip("data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt.gz")
+}
+
+if (!file.exists("data/DHS_Index_and_Vocabulary_metadata.xlsx")) {
+  download.file(url = "https://zenodo.org/record/3838751/files/DHS_Index_and_Vocabulary_metadata.xlsx?download=1",
+                destfile = "data/DHS_Index_and_Vocabulary_metadata.xlsx",
+                method = "curl")
+}
+```
+
+### Extract subset of data for this demonstration
+
+We will only analyze 5 cell populations from this dataset. The selected cell populations are those whose transcription factor footprinting signals are visualized in Fig. 5b of the CLIMB paper.
+
+```{r}
+set.seed(217)
+
+# Extract sample metadata for samples to be used
+sample_data <-
+  read_xlsx("data/biosamples_used.xlsx",
+            range = c("A1:M39"))
+
+# Cell populations to be analyzeds
+cell_pops_to_keep <-
+  c(
+    "CD4.DS17881",
+    "CD34.DS12274",
+    "CD34_T18.DS25969A",
+    "CD14.DS17215",
+    "K562.DS16924"
+  )
+
+
+# Join with the data from the source paper's supplement
+all_sample_metadata <- 
+    read_xlsx("data/DHS_Index_and_Vocabulary_metadata.xlsx") %>%
+    right_join(
+        sample_data,
+        by = c("DCC Library ID" = "DCC_library_id", "DCC Biosample ID" = "DCC_biosample_id")
+    )
+
+# Get BED info
+bed <- readr::read_tsv("data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt")
+
+# Load in and subset the normalized data (this object is called `dat`)
+load("data/dat_FDR01_hg38.RData")
+
+# Subset to selected hematopoietic columns, then filter out rows with 0 or 1 DHSs
+my_dat <- dat %>%
+    as_tibble() %>%
+    dplyr::select(all_sample_metadata$`library order`) %>%
+    bind_cols(dplyr::select(bed, seqname, start, end)) %>%
+    relocate(seqname, start, end, .before = 1) %>%
+    # subset to 5 samples as plotted in the CLIMB article
+    dplyr::select(seqname, start, end, matches(cell_pops_to_keep)) %>%
+    dplyr::filter(rowSums(across(all_of(4:last_col()), ~ .x != 0)) > 1) %>%
+    rename("chr" = "seqname") %>%
+    mutate(across(4:last_col(), ~ replace(.x, .x == 0, rnorm(sum(.x==0)))))
+
+# clean large object from environment
+rm(dat)
+
+# this is to prevent some numerical issues due to extreme outliers
+max_quant <- dplyr::select(my_dat, 4:last_col()) %>%
+		map_dbl(~ quantile(.x, .999)) %>%
+		max()
+		
+my_dat <- my_dat %>%
+    mutate(across(4:last_col(), ~ replace(.x, .x >= max_quant, max_quant))) %>%
+    # select only chromosomes 21 and 22
+    filter(chr %in% c("chr21", "chr22")) %>%
+    group_split(chr)
+
+for(i in seq_along(my_dat)) {
+    if(!dir.exists(paste0("data/DNase_", my_dat[[i]]$chr[1]))) {
+        dir.create(paste0("data/DNase_", my_dat[[i]]$chr[1]))
+    }
+    saveRDS(object = my_dat[[i]], file = paste0("data/DNase_", my_dat[[i]]$chr[1], "/dat.rds"))
+}
+```
+
+## Run CLIMB
+
+As in the other vignettes, we now implement CLIMB in 4 steps. Run locally, this should complete in ~30 minutes. The bottleneck is the MCMC on 2 chromosomes serially.
+
+### Step 1: Pairwise fitting
+
+```{r, cache = TRUE}
+chr <- 21:22
+z <- map(chr, ~ readRDS(paste0("data/DNase_chr", .x, "/dat.rds")) %>%
+                 mutate(chr = NULL, start = NULL, end = NULL)) %>%
+  set_names(paste0("chr", chr))
+
+fits <- map(z, ~ CLIMB::get_pairwise_fits(z = .x, parallel = TRUE, ncores = 4))
+
+if(!dir.exists("output/DNase")) {
+  dir.create("output/DNase")
+}
+
+if(!dir.exists("output/DNase/pwfits")) {
+  dir.create("output/DNase/pwfits")
+}
+
+walk(chr, ~ {
+  if (!dir.exists(paste0("output/DNase/pwfits/chr", .x))) {
+    dir.create(paste0("output/DNase/pwfits/chr", .x))
+  }
+})
+
+iwalk(fits, ~ saveRDS(.x, paste0("output/DNase/pwfits/", .y, "/pwfits.rds")))
+```
+
+### Step 2: Finding candidate classes
+
+```{r, cache = TRUE}
+# This finds the dimension of the data directly from the pairwise fits
+D <- as.numeric(strsplit(tail(names(fits[[1]]),1), "_")[[1]][2])
+
+# calculates the sample sizes from the pairwise fits
+n <- map_dbl(fits, ~ length(.x[[1]]$cluster))
+
+if(!dir.exists("output/DNase/reduced_classes")) {
+  dir.create("output/DNase/reduced_classes")
+}
+walk(chr, ~ {
+  if (!dir.exists(paste0("output/DNase/reduced_classes/chr", .x))) {
+    dir.create(paste0("output/DNase/reduced_classes/chr", .x))
+  }
+})
+
+# Get the list of candidate latent classes
+reduced_classes <-
+  imap(fits, ~ get_reduced_classes(
+    .x,
+    D,
+    paste0("output/DNase/reduced_classes/", .y, "/lgf.txt"),
+    split_in_two = FALSE
+  ))
+
+# write the output to a text file
+iwalk(reduced_classes, ~ {
+  readr::write_tsv(
+    data.frame(.x),
+    file = paste0("output/DNase/reduced_classes/", .y, "/red_class.txt"),
+    col_names = FALSE
+  )
+})
+```
+
+### Step 3: Computing prior hyperparameters
+
+```{r, cache = TRUE}
+if(!dir.exists("output/DNase/mcmc")) {
+    dir.create("output/DNase/mcmc")
+}
+walk(chr, ~ {
+  if (!dir.exists(paste0("output/DNase/mcmc/chr", .x))) {
+    dir.create(paste0("output/DNase/mcmc/chr", .x))
+  }
+})
+
+# Compute the prior weights
+prior_weights <-
+  pmap(list(fits, reduced_classes, names(fits)), function(.x, .y, .z)
+    get_prior_weights(
+      .y,
+      .x,
+      parallel = FALSE,
+      delta = 0:10
+    )) %>%
+  # just keep all classes since the analysis is small
+  map(~ tail(.x, 1)[[1]])
+iwalk(prior_weights, ~ saveRDS(.x, paste0("output/DNase/mcmc/", .y, "/prior_weights.rds")))
+
+# obtain the hyperparameters
+hyp <-
+  pmap(list(my_dat, fits, reduced_classes, prior_weights), function(.w, .x, .y, .z)
+    get_hyperparameters(
+      as.data.frame(dplyr::select(.w, 4:last_col())),
+      .x,
+      as.data.frame(.y),
+      as.vector(.z)
+    )) %>%
+  set_names(names(fits))
+
+iwalk(hyp, ~ saveRDS(.x, file = paste0("output/DNase/mcmc/", .y, "/hyperparameters.rds")))
+```
+
+### Step 4: Running the MCMC
+
+```{r, cache = TRUE}
+results <-
+  pmap(list(my_dat, hyp, reduced_classes), function(.x, .y, .z) run_mcmc(
+    dplyr::select(.x, 4:last_col()),
+    hyp =  .y,
+    nstep = 2000,
+    retained_classes = .z
+  )) %>%
+  set_names(names(fits))
+chains <- map(results, extract_chains)
+
+iwalk(chains, ~ saveRDS(.x, file = paste0("output/DNase/mcmc/", .y, "/chain.rds")))
+```
+
+## Downstream analyses
+
+### Merge classes from chromosome-specific analyses
+
+Since each chromosome was analyzed separately, we merge the 2 sets of results. We opt to maintain 12 parent groups after merging clusters from both chromosomes, in order to be consistent with the analysis in the CLIMB paper.
+
+```{r}
+burnin <- 1:500
+merged <-
+  suppressMessages(merge_classes(
+    n_groups = 12,
+    # number of classes used in the CLIMB article's analysis
+    chain = chains,
+    burnin = burnin,
+    multichain = TRUE
+  ))
+```
+
+### Visualize clustering of loci across cell populations
+
+```{r, fig.width = 12, fig.height=2.2}
+col_distmat <- compute_distances_between_conditions(chains, burnin, multichain = TRUE)
+row_distmat <- suppresMessages(compute_distances_between_clusters(chains, burnin, multichain = TRUE))
+colnames(col_distmat) <- names(my_dat[[1]])[-(1:3)]
+
+hc_row <- hclust(as.dist(row_distmat), method = "complete")
+hc_col <- hclust(as.dist(col_distmat), method = "complete")
+
+# Get a row reordering for plotting
+row_reordering <-
+    get_row_reordering(
+        row_clustering = hc_row,
+        chain = chains,
+        burnin = burnin,
+        dat = purrr::map(my_dat, ~ dplyr::select(.x, 4:last_col())),
+        multichain = TRUE
+    )
+
+molten <- bind_rows(my_dat) %>%
+    dplyr::mutate(row = row_reordering) %>%
+    dplyr::select(4:last_col()) %>%
+    tidyr::pivot_longer(!last_col(), names_to = "cell") %>%
+    # Relevel factors, for column sorting on the plot
+    mutate(cell = forcats::fct_relevel(cell, ~ hc_col$labels[hc_col$order]))
+
+
+p1 <- ggplot(data = molten,
+             aes(x = cell,
+                 y = row,
+                 fill = value)) +
+  geom_raster() +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(),
+  ) +
+  labs(fill = "Z-score", x = "", y = "") +
+  ggtitle("Bi-clustering heatmap") +
+  scale_fill_distiller(palette = "Greens", direction = 1) +
+  coord_flip()
+print(p1)
+```
+
+### Estimated class means and first 2 principal components
+
+```{r, fig.height = 16, fig.width = 8}
+#-------------------------------------------------------------------------------
+# Read in colormap for plotting, to match cell type by function 
+#-------------------------------------------------------------------------------
+pal <- read_delim(file = "data/color_mapper.txt", col_names = FALSE, delim = " ") %>%
+    set_names(c("cell_pop", "hex"))
+
+# mean trends ---------------------------------------------------
+# each row of merged_mu should correspond to a different factor
+# each column is a cell population
+mu <- merged$merged_mu %>%
+  set_colnames(cell_pops_to_keep) %>%
+  as_tibble() %>%
+  mutate(group = 1:n(), .before = 1) %>%
+  pivot_longer(cols = 2:last_col(),
+               names_to = "cell_pop",
+               values_to = "mu_est")
+
+# covariance trends ---------------------------------------------------
+sigmas <- merged$merged_sigma %>%
+    apply(MARGIN = 3, function(X) {
+      X %>%
+        set_colnames(cell_pops_to_keep) %>%
+        as_tibble(X, .name_repair = "minimal")
+    })
+
+sigma_df <- sigmas %>%
+    imap_dfr(
+        ~ mutate(
+            .x,
+            group = .y,
+            cell_pop1 = cell_pops_to_keep,
+            .before = 1
+        ) %>%
+            pivot_longer(
+                cols = 3:last_col(),
+                names_to = "cell_pop2",
+                values_to = "covariance"
+            )
+    )
+
+#-------------------------------------------------------------------------------
+# Use row and column clustering for row reordering
+#-------------------------------------------------------------------------------
+cl <- list(row_clustering = hc_row, col_clustering = hc_col)
+pcs <- map(sigmas, ~ prcomp(.x, center = TRUE))
+
+out_plots <- list()
+clusts_to_plot <- seq_along(pcs)
+
+for(ccc in clusts_to_plot) {
+    pc_df <- as_tibble(pcs[[ccc]]$rotation) %>%
+        mutate(cell_pop = cell_pops_to_keep, .before = 1) %>%
+        pivot_longer(cols = !cell_pop, names_to = "PC", values_to = "score") %>%
+        mutate(PC = factor(PC, levels = paste0("PC", seq_along(cell_pops_to_keep)))) %>%
+        group_split(PC) %>%
+        map2_dfr((pcs[[ccc]]$sdev ^2) / sum(pcs[[ccc]]$sdev^2), ~ mutate(.x, percent_var = round(.y * 100, digits = 2))) %>%
+        left_join(
+            filter(mu, group == ccc) %>%
+                mutate(group = NULL), by = "cell_pop") %>%
+        left_join(pal, by = "cell_pop") %>%
+        mutate(
+            cell_pop = factor(cell_pop, levels = cl$col_clustering$labels[cl$col_clustering$order])
+        ) %>%
+        arrange(cell_pop) %>%
+        mutate(hex = factor(hex, levels = unique(.$hex)))
+    
+   
+    mu_plot <- ggplot(filter(pc_df, PC %in% "PC1"), aes(x = cell_pop, y  = mu_est)) +
+        geom_bar(aes(fill = hex), stat = "identity", color = "black", show.legend = FALSE) +
+        scale_fill_manual(values = levels(pc_df$hex)) +
+        labs(x = "", y = "Estimated\ncluster mean") +
+        theme_minimal()
+    if(ccc == 12) {
+        mu_plot <- mu_plot + theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+                                   legend.position = "none")
+    } else {
+        mu_plot <- mu_plot + theme(axis.text.x = element_blank(), legend.position = "none")
+    }
+        
+        
+    pc_df2 <- filter(pc_df, PC %in% paste0("PC", 1:2)) %>%
+        unite(col = PC_var, PC, percent_var, sep = " (") %>%
+        mutate(PC_var = paste0(PC_var, "%)"))
+    
+    pc_plot <- ggplot(pc_df2, aes(x = cell_pop, y = score)) +
+        geom_bar(aes(fill = hex), stat = "identity", color = "black", show.legend = FALSE) +
+        scale_fill_manual(values = levels(pc_df$hex)) +
+        labs(x = "") +
+        facet_wrap(~ PC_var, nrow = 1, ncol = 2) +
+        theme_minimal()
+    if(ccc == 12) {
+        pc_plot <- pc_plot + theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+                                   legend.position = "none")
+    } else {
+        pc_plot <- pc_plot + theme(axis.text.x = element_blank(), legend.position = "none")
+    }
+    
+    out_plots[[ccc]] <- cowplot::plot_grid(mu_plot, pc_plot, nrow = 1, ncol = 2, rel_widths = c(1,2))
+}
+
+cowplot::plot_grid(plotlist = out_plots, nrow = length(out_plots), ncol = 1, rel_heights = c(rep(1,11), 2))
+```
+
+## Session Information
+
+```{r}
+print(sessionInfo())
+```

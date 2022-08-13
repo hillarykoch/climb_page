@@ -44,7 +44,8 @@ retained_classes <- readr::read_tsv("output/retained_classes.txt", col_names = F
 ```
 
 Now we are ready to launch an MCMC:
-```{r, cache=TRUE, message=FALSE, echo=1:2}
+```{r, cache=TRUE, message=FALSE, echo=1:3}
+set.seed(100)
 results <- run_mcmc(sim$data, hyp = hyp, nstep = 1000, retained_classes = retained_classes)
 out <- extract_chains(results)
 
@@ -125,5 +126,11 @@ purrr::map(PSRFs, ~ as.vector(.x) %>%
   scale_x_continuous(trans = "log10") +
   facet_wrap(~parameter, labeller = labeller(.cols = ~  gsub(pattern = "PSRF_", replacement = "", .x))) +
   theme_bw()
+```
+
+## Session Information
+
+```{r}
+print(sessionInfo())
 ```
 
