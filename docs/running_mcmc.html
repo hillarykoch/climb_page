@@ -401,7 +401,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -412,8 +412,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -426,9 +426,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 2
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>workflowr/</code> <span
@@ -451,21 +451,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -525,24 +522,16 @@ versions is critical for reproducibility.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
-<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-The following chunks had caches available:
-<ul>
-<li>
-unnamed-chunk-3
-</li>
-</ul>
-<p>To ensure reproducibility of the results, delete the cache directory
-<code>running_mcmc_cache</code> and re-run the analysis. To have
-workflowr automatically delete the cache directory prior to building the
-file, set <code>delete_cache = TRUE</code> when running
-<code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
 </div>
 </div>
 </div>
@@ -564,15 +553,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1a7b55e3804be35646749d8e406f8f56e3d460dtargetblankf1a7b55a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>
+<a href="https://github.com/hillarykoch/climb_page/tree/f1a7b55e3804be35646749d8e406f8f56e3d460d" target="_blank">f1a7b55</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreef1a7b55e3804be35646749d8e406f8f56e3d460dtargetblankf1a7b55a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -582,7 +571,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>.
+<a href="https://github.com/hillarykoch/climb_page/tree/f1a7b55e3804be35646749d8e406f8f56e3d460d" target="_blank">f1a7b55</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -600,24 +589,17 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rproj.user/
     Ignored:    analysis/DNase_example_cache/
-    Ignored:    analysis/running_mcmc_cache/
     Ignored:    data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt
     Ignored:    data/DNase_chr21/
     Ignored:    data/DNase_chr22/
-    Ignored:    data/dat_FDR01_hg38.RData
     Ignored:    output/DNase/
 
 Untracked files:
+    Untracked:  data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt.gz
     Untracked:  data/DHS_Index_and_Vocabulary_metadata.xlsx
-    Untracked:  data/biosamples_used.xlsx
-    Untracked:  data/color_mapper.txt
 
 Unstaged changes:
-    Modified:   analysis/DNase_example.Rmd
-    Modified:   analysis/candidate_latent_classes.Rmd
-    Modified:   analysis/downstream.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/pairwise_fitting.Rmd
+    Modified:   analysis/.DS_Store
     Modified:   analysis/pairwise_fitting_cache/html/__packages
     Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.RData
     Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdb
@@ -625,21 +607,12 @@ Unstaged changes:
     Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.RData
     Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdb
     Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdx
-    Modified:   analysis/preprocessing.Rmd
     Modified:   analysis/preprocessing_cache/html/__packages
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.RData
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdb
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdx
-    Modified:   analysis/priors.Rmd
-    Modified:   analysis/running_mcmc.Rmd
     Modified:   data/tpm_zebrafish.tsv.gz
     Modified:   output/.DS_Store
-
-Staged changes:
-    New:        .Renviron
-    Modified:   .gitignore
-    New:        analysis/DNase_example.Rmd
-    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -685,6 +658,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1a7b55e3804be35646749d8e406f8f56e3d460d/analysis/running_mcmc.Rmd" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+<td>
+add DNase analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/f1a7b55e3804be35646749d8e406f8f56e3d460d/docs/running_mcmc.html" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+<td>
+add DNase analysis
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -876,7 +883,7 @@ estimated hyperparameters.</p>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;output/hyperparameters.Rdata&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>retained_classes <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_tsv</span>(<span class="st">&quot;output/retained_classes.txt&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Now we are ready to launch an MCMC:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1098</span>)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">run_mcmc</span>(sim<span class="sc">$</span>data, <span class="at">hyp =</span> hyp, <span class="at">nstep =</span> <span class="dv">1000</span>, <span class="at">retained_classes =</span> retained_classes)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">extract_chains</span>(results)</span></code></pre></div>
 <p><code>Running the MCMC...100%|████████████████████████████████| Time: 0:02:14</code></p>
@@ -922,6 +929,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1a7b55e3804be35646749d8e406f8f56e3d460d/docs/figure/running_mcmc.Rmd/unnamed-chunk-4-1.png" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/hillarykoch/climb_page/blob/e4f6d19183b1339be3fde002ddbbbbf358dcb177/docs/figure/running_mcmc.Rmd/unnamed-chunk-4-1.png" target="_blank">e4f6d19</a>
@@ -984,9 +1002,9 @@ do not actually get sampled during MCMC.</p>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(PSRFs)</span></code></pre></div>
 <pre><code>List of 3
- $ PSRF_mu   : num [1:13, 1:3] 1.25 1.01 1 NA NA ...
- $ PSRF_Sigma: num [1:3, 1:3, 1:13] 1.19 NA 1.02 NA NA ...
- $ PSRF_prop : num [1:13] 1.24 1.01 1.01 1.03 1.02 ...</code></pre>
+ $ PSRF_mu   : num [1:13, 1:3] 1.13 1.01 1 NA NA ...
+ $ PSRF_Sigma: num [1:3, 1:3, 1:13] 1 NA 1.01 NA NA ...
+ $ PSRF_prop : num [1:13] 1.12 1 1 1.01 1.02 ...</code></pre>
 <p>Below we plot histograms of the PSRFs for each parameter. Even after
 running these chains for a short time, we already have achieved good
 convergence properties. Unsurprisingly, cluster mean and proportion
@@ -1026,6 +1044,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1a7b55e3804be35646749d8e406f8f56e3d460d/docs/figure/running_mcmc.Rmd/unnamed-chunk-6-1.png" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/hillarykoch/climb_page/blob/e4f6d19183b1339be3fde002ddbbbbf358dcb177/docs/figure/running_mcmc.Rmd/unnamed-chunk-6-1.png" target="_blank">e4f6d19</a>
