@@ -369,6 +369,9 @@ $(document).ready(function () {
 <li>
   <a href="downstream.html">Downstream analysis</a>
 </li>
+<li>
+  <a href="DNase_example.html">Example DNase-seq analysis</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -398,7 +401,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -409,8 +412,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -419,13 +422,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-08-13
+<strong>Last updated:</strong> 2022-08-14
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>workflowr/</code> <span
@@ -448,21 +451,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -553,15 +553,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree061748a2321e817a6c0df94edc5b6f76c4184218targetblank061748aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>
+<a href="https://github.com/hillarykoch/climb_page/tree/061748a2321e817a6c0df94edc5b6f76c4184218" target="_blank">061748a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree061748a2321e817a6c0df94edc5b6f76c4184218targetblank061748aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -571,7 +571,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>.
+<a href="https://github.com/hillarykoch/climb_page/tree/061748a2321e817a6c0df94edc5b6f76c4184218" target="_blank">061748a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -586,25 +586,41 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rproj.user/
+    Ignored:    analysis/DNase_example_cache/
     Ignored:    analysis/running_mcmc_cache/
+    Ignored:    data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt
+    Ignored:    data/DNase_chr21/
+    Ignored:    data/DNase_chr22/
+    Ignored:    data/dat_FDR01_hg38.RData
+    Ignored:    output/DNase/
 
 Untracked files:
-    Untracked:  .DS_Store
+    Untracked:  data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt.gz
+    Untracked:  data/DHS_Index_and_Vocabulary_metadata.xlsx
 
 Unstaged changes:
-    Modified:   analysis/candidate_latent_classes.Rmd
-    Modified:   analysis/downstream.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/pairwise_fitting.Rmd
-    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/.DS_Store
+    Modified:   analysis/DNase_example.Rmd
+    Modified:   analysis/pairwise_fitting_cache/html/__packages
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdx
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdx
     Modified:   analysis/preprocessing_cache/html/__packages
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.RData
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdb
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdx
-    Modified:   analysis/priors.Rmd
-    Modified:   analysis/running_mcmc.Rmd
+    Modified:   data/.DS_Store
     Modified:   data/tpm_zebrafish.tsv.gz
+    Modified:   output/.DS_Store
+    Deleted:    output/chain.rds
+    Deleted:    output/hyperparameters.Rdata
+    Modified:   output/red_class.txt
+    Deleted:    output/retained_classes.txt
 
 </code></pre>
 <p>
@@ -649,6 +665,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1a7b55e3804be35646749d8e406f8f56e3d460d/analysis/priors.Rmd" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+<td>
+add DNase analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/f1a7b55e3804be35646749d8e406f8f56e3d460d/docs/priors.html" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+<td>
+add DNase analysis
+</td>
+</tr>
 <tr>
 <td>
 html

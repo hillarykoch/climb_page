@@ -369,6 +369,9 @@ $(document).ready(function () {
 <li>
   <a href="downstream.html">Downstream analysis</a>
 </li>
+<li>
+  <a href="DNase_example.html">Example DNase-seq analysis</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -419,13 +422,13 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-08-13
+<strong>Last updated:</strong> 2022-08-14
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 2
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>workflowr/</code> <span
@@ -448,21 +451,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -564,15 +564,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree061748a2321e817a6c0df94edc5b6f76c4184218targetblank061748aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>
+<a href="https://github.com/hillarykoch/climb_page/tree/061748a2321e817a6c0df94edc5b6f76c4184218" target="_blank">061748a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetreee4f6d19183b1339be3fde002ddbbbbf358dcb177targetblanke4f6d19a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomhillarykochclimbpagetree061748a2321e817a6c0df94edc5b6f76c4184218targetblank061748aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -582,7 +582,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/hillarykoch/climb_page/tree/e4f6d19183b1339be3fde002ddbbbbf358dcb177" target="_blank">e4f6d19</a>.
+<a href="https://github.com/hillarykoch/climb_page/tree/061748a2321e817a6c0df94edc5b6f76c4184218" target="_blank">061748a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -597,25 +597,41 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rproj.user/
+    Ignored:    analysis/DNase_example_cache/
     Ignored:    analysis/running_mcmc_cache/
+    Ignored:    data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt
+    Ignored:    data/DNase_chr21/
+    Ignored:    data/DNase_chr22/
+    Ignored:    data/dat_FDR01_hg38.RData
+    Ignored:    output/DNase/
 
 Untracked files:
-    Untracked:  .DS_Store
+    Untracked:  data/DHS_Index_and_Vocabulary_hg38_WM20190703.txt.gz
+    Untracked:  data/DHS_Index_and_Vocabulary_metadata.xlsx
 
 Unstaged changes:
-    Modified:   analysis/candidate_latent_classes.Rmd
-    Modified:   analysis/downstream.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/pairwise_fitting.Rmd
-    Modified:   analysis/preprocessing.Rmd
+    Modified:   analysis/.DS_Store
+    Modified:   analysis/DNase_example.Rmd
+    Modified:   analysis/pairwise_fitting_cache/html/__packages
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-3_49e4d860f91e483a671b4b64e8c81934.rdx
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.RData
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdb
+    Deleted:    analysis/pairwise_fitting_cache/html/unnamed-chunk-6_4e13b65e2f248675b580ad2af3613b06.rdx
     Modified:   analysis/preprocessing_cache/html/__packages
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.RData
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdb
     Deleted:    analysis/preprocessing_cache/html/unnamed-chunk-11_d0dcbf60389f2e00d36edbf7c0da270d.rdx
-    Modified:   analysis/priors.Rmd
-    Modified:   analysis/running_mcmc.Rmd
+    Modified:   data/.DS_Store
     Modified:   data/tpm_zebrafish.tsv.gz
+    Modified:   output/.DS_Store
+    Deleted:    output/chain.rds
+    Modified:   output/hyperparameters.Rdata
+    Modified:   output/red_class.txt
+    Modified:   output/retained_classes.txt
 
 </code></pre>
 <p>
@@ -661,6 +677,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1a7b55e3804be35646749d8e406f8f56e3d460d/analysis/pairwise_fitting.Rmd" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+<td>
+add DNase analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/hillarykoch/climb_page/f1a7b55e3804be35646749d8e406f8f56e3d460d/docs/pairwise_fitting.html" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+<td>
+add DNase analysis
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -780,6 +830,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1a7b55e3804be35646749d8e406f8f56e3d460d/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-5-1.png" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-5-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
@@ -843,6 +904,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/hillarykoch/climb_page/blob/f1a7b55e3804be35646749d8e406f8f56e3d460d/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-7-1.png" target="_blank">f1a7b55</a>
+</td>
+<td>
+Hillary Koch
+</td>
+<td>
+2022-08-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/hillarykoch/climb_page/blob/c1e13d0dc88c51bf19f2a4cb9c0bfebe007bae2b/docs/figure/pairwise_fitting.Rmd/unnamed-chunk-7-1.png" target="_blank">c1e13d0</a>
 </td>
 <td>
@@ -883,31 +955,30 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] magrittr_2.0.3  workflowr_1.7.0 CLIMB_1.0.0    
+[1] magrittr_2.0.3 CLIMB_1.0.0   
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.9           mvtnorm_1.1-3        tidyr_1.2.0         
- [4] getPass_0.2-2        ps_1.7.1             assertthat_0.2.1    
- [7] rprojroot_2.0.3      digest_0.6.29        foreach_1.5.2       
-[10] utf8_1.2.2           R6_2.5.1             plyr_1.8.7          
-[13] evaluate_0.15        httr_1.4.3           highr_0.9           
-[16] pillar_1.8.0         rlang_1.0.4          rstudioapi_0.13     
-[19] whisker_0.4          callr_3.7.1          jquerylib_0.1.4     
-[22] rmarkdown_2.14       readr_2.1.2          stringr_1.4.0       
-[25] compiler_4.2.1       httpuv_1.6.5         xfun_0.31           
-[28] pkgconfig_2.0.3      htmltools_0.5.3      tidyselect_1.1.2    
-[31] tibble_3.1.8         codetools_0.2-18     JuliaCall_0.17.4    
-[34] fansi_1.0.3          dplyr_1.0.9          tzdb_0.3.0          
-[37] later_1.3.0          brio_1.1.3           jsonlite_1.8.0      
-[40] lifecycle_1.0.1      DBI_1.1.3            git2r_0.30.1        
-[43] cli_3.3.0            stringi_1.7.8        cachem_1.0.6        
-[46] LaplacesDemon_16.1.6 fs_1.5.2             promises_1.2.0.1    
-[49] doParallel_1.0.17    testthat_3.1.4       bslib_0.4.0         
-[52] ellipsis_0.3.2       generics_0.1.3       vctrs_0.4.1         
-[55] iterators_1.0.14     tools_4.2.1          glue_1.6.2          
-[58] purrr_0.3.4          hms_1.1.1            processx_3.7.0      
-[61] abind_1.4-5          parallel_4.2.1       fastmap_1.1.0       
-[64] yaml_2.3.5           knitr_1.39           sass_0.4.2          </code></pre>
+ [1] tidyselect_1.1.2     xfun_0.31            bslib_0.4.0         
+ [4] purrr_0.3.4          testthat_3.1.4       vctrs_0.4.1         
+ [7] generics_0.1.3       htmltools_0.5.3      yaml_2.3.5          
+[10] utf8_1.2.2           rlang_1.0.4          jquerylib_0.1.4     
+[13] later_1.3.0          pillar_1.8.0         glue_1.6.2          
+[16] DBI_1.1.3            foreach_1.5.2        lifecycle_1.0.1     
+[19] plyr_1.8.7           stringr_1.4.0        workflowr_1.7.0     
+[22] mvtnorm_1.1-3        LaplacesDemon_16.1.6 codetools_0.2-18    
+[25] evaluate_0.15        knitr_1.39           tzdb_0.3.0          
+[28] fastmap_1.1.0        doParallel_1.0.17    httpuv_1.6.5        
+[31] parallel_4.2.1       fansi_1.0.3          highr_0.9           
+[34] Rcpp_1.0.9           readr_2.1.2          promises_1.2.0.1    
+[37] cachem_1.0.6         jsonlite_1.8.0       abind_1.4-5         
+[40] fs_1.5.2             brio_1.1.3           hms_1.1.1           
+[43] digest_0.6.29        stringi_1.7.8        dplyr_1.0.9         
+[46] rprojroot_2.0.3      cli_3.3.0            tools_4.2.1         
+[49] sass_0.4.2           tibble_3.1.8         whisker_0.4         
+[52] tidyr_1.2.0          pkgconfig_2.0.3      ellipsis_0.3.2      
+[55] assertthat_0.2.1     rmarkdown_2.14       rstudioapi_0.13     
+[58] iterators_1.0.14     JuliaCall_0.17.4     R6_2.5.1            
+[61] git2r_0.30.1         compiler_4.2.1      </code></pre>
 </div>
 
 

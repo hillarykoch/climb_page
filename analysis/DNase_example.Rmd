@@ -182,7 +182,7 @@ reduced_classes <-
     D,
     paste0("output/DNase/reduced_classes/", .y, "/lgf.txt"),
     split_in_two = FALSE
-  ))
+  ))S
 
 # write the output to a text file
 iwalk(reduced_classes, ~ {
